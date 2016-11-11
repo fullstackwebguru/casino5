@@ -6,6 +6,17 @@ use yii\helpers\Html;
 
 $this->title = 'Product';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerMetaTag([
+            'name'=>'keywords',
+            'content' => $model->meta_keywords
+        ]);
+
+$this->registerMetaTag([
+            'name'=>'description',
+            'content' => $model->meta_description
+        ]);
+
 ?>
 
 

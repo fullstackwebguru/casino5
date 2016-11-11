@@ -11,6 +11,16 @@ use frontend\widgets\SideTop5;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerMetaTag([
+            'name'=>'keywords',
+            'content' => $model->meta_keywords
+        ]);
+
+$this->registerMetaTag([
+            'name'=>'description',
+            'content' => $model->meta_description
+        ]);
+
 $guideImage = cloudinary_url($model->image_url, array("width" => 744, "height" => 347, "crop" => "fill"));
 ?>
 

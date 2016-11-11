@@ -12,8 +12,19 @@ use frontend\widgets\SideTop5;
 $this->title = 'Casino -' . $model->title;
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerMetaTag([
+            'name'=>'keywords',
+            'content' => $model->meta_keywords
+        ]);
+
+$this->registerMetaTag([
+            'name'=>'description',
+            'content' => $model->meta_description
+        ]);
+
 $companyLogo = cloudinary_url($model->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
 $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height" => 190, "crop" => "fill"));
+
 ?>
 
 <div class="top"></div>

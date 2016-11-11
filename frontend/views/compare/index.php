@@ -9,6 +9,16 @@ use kartik\markdown\Markdown;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerMetaTag([
+            'name'=>'keywords',
+            'content' => $model->meta_keywords
+        ]);
+
+$this->registerMetaTag([
+            'name'=>'description',
+            'content' => $model->meta_description
+        ]);
 ?>
 
 <?= Banner::widget() ?>
@@ -43,7 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                         <tr>
                             <td class="offers-comp">1</td>
-                            <td class="t-images-comp"><img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"></td>
+                            <td class="t-images-comp">
+                                <a href="<?=Url::toRoute($company->getRoute())?>"> <img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"> </a>
+                            </td>
                             <td class="padd-comp">
                                 <?php if ($company->feature_mobile > 0) {
                                 ?>

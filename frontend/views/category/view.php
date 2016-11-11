@@ -13,7 +13,16 @@ use frontend\widgets\SearchBox;
 $this->title = 'Category - '. $category->title;
 $this->params['breadcrumbs'][] = $this->title;
 
-Top10JsAsset::register($this);
+$this->registerMetaTag([
+            'name'=>'keywords',
+            'content' => $category->meta_keywords
+        ]);
+
+$this->registerMetaTag([
+            'name'=>'description',
+            'content' => $category->meta_description
+        ]);
+
 ?>
 
 <section id="tables-1">
