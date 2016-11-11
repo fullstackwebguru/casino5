@@ -24,9 +24,9 @@ use yii\helpers\Url;
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" id="mob-right">
+                <!-- <ul class="nav navbar-nav navbar-right" id="mob-right">
                     <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
-                </ul>
+                </ul> -->
                 <ul class="nav navbar-nav">
                     <li><?=  Html::a('Home',['/']) ?></li>
                     <li><?=  Html::a('Categories',['/category']) ?></li>

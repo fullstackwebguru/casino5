@@ -22,6 +22,9 @@ use yii\db\ActiveRecord;
  * @property string $hwork_title4
  * @property string $hwork_description4
  * @property string $how_to_find_best
+ * @property string $contact_phone
+ * @property string $contact_address
+ * @property string $contact_email
  * @property integer $created_at
  * @property integer $updated_at
  */

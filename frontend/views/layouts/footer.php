@@ -3,6 +3,8 @@ use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+use frontend\widgets\GetInTouch;
 ?>
 
 <footer>
@@ -43,12 +45,7 @@ use yii\helpers\Html;
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="net-wrapp">
-                        <p class="title-info-2">GET IN TOUCH</p>
-                        <p class="info-text-2"><span class="glyphicon glyphicon-earphone contact-info"></span> (07) 5512 3456</p>
-                        <p class="info-text-2"><span class="glyphicon glyphicon-map-marker contact-info"></span> 1234/56 Lorem ipsum dolor sit Consectetur, QLD 4000</p>
-                        <p class="info-text-2"><span class="glyphicon glyphicon-envelope contact-info"></span> lorem@ipsum.com.au</p>
-                    </div>
+                    <?= GetInTouch::widget() ?>
                 </div>
             </div>
         </div>
@@ -58,11 +55,11 @@ use yii\helpers\Html;
             <div class="row">
                 <div class="col-sm-12 more">
                     <ul class="foot-icons">
-                        <li><a href=""><img src="images/foot1.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="images/foot2.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="images/foot3.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="images/foot4.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="images/foot5.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href=""><img src="/images/foot1.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href=""><img src="/images/foot2.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href=""><img src="/images/foot3.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href=""><img src="/images/foot4.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href=""><img src="/images/foot5.png" class="img-responsive f-width" alt="Image"></a></li>
                     </ul>
                 </div>
                 <div class="col-md-5">

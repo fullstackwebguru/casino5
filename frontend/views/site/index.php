@@ -2,8 +2,6 @@
 
 /* @var $this yii\web\View */
 
-use frontend\widgets\LatestGuide;
-use frontend\widgets\NewsletterBox;
 use frontend\widgets\Banner;
 use frontend\widgets\HowToFind;
 use frontend\widgets\HowWeWork;

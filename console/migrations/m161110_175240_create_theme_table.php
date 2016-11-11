@@ -33,6 +33,9 @@ class m161110_175240_create_theme_table extends Migration
             'hwork_description2' => $this->string(255),
             'hwork_description3' => $this->string(255),
             'hwork_description4' => $this->string(255),
+            'contact_phone' => $this->string(255),
+            'contact_address' => $this->string(255),
+            'contact_email' => $this->string(255),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ],$tableOptions);

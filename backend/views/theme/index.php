@@ -88,6 +88,23 @@ $modelAttributes = [
         'value'=>$model->hwork_description4,
     ],
     [
+        'group'=>true,
+        'label'=>'GET IN TOUCH',
+        'rowOptions'=>['class'=>'info'],  
+    ],
+    [
+        'attribute'=>'contact_phone', 
+        'value'=>$model->contact_phone,
+    ],
+    [
+        'attribute'=>'contact_address', 
+        'value'=>$model->contact_address,
+    ],
+    [
+        'attribute'=>'contact_email', 
+        'value'=>$model->contact_email,
+    ],
+    [
         'attribute'=>'how_to_find_best', 
         'format'=>'raw',
         'value'=>Markdown::convert($model->how_to_find_best),

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 
 use common\models\Guide;
+use common\models\Page;
 
 /**
  * Guide controller
@@ -16,9 +17,11 @@ class GuideController extends Controller
 {
     public function actionIndex() {
         $guides = Guide::find()->orderBy(['created_at' => 'desc'])->all();
+        $model = Page::findOne(['page_id'=>'guides']);
         return $this->render('index', [
-            'guides' => $guides
-        ]);   
+            'guides' => $guides,
+            'model' => $model
+        ]);
     }
     public function actionSlug($slug) 
     {
