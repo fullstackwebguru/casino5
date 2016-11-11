@@ -48,7 +48,10 @@ $this->registerMetaTag([
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($companies as $company ) {
+                    <?php 
+                    $compIndex = 0;
+                    foreach ($companies as $company ) {
+                        $compIndex++;
                         $companyLogo = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
                     ?>
                         <tr>
@@ -97,7 +100,7 @@ $this->registerMetaTag([
                                 </div>
                                 <?php }  ?>
                             </td>
-                            <td class="btn-padd-1"><a href="<?= $company->website_url ?>" class=" btn btn-comp btn-primary">PLAY</a>
+                            <td class="btn-padd-1"><a href="<?= $company->website_url ?>" class=" btn btn-comp btn-primary" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">PLAY</a>
                             </td>
                         </tr>
                     <?php

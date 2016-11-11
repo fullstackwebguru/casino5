@@ -117,7 +117,7 @@ $this->registerMetaTag([
                         <td class="padd-1">
                             <?= Rating::widget(['rating' => $company->rating]) ?>
                         </td>
-                        <td class="btn-padd"><a href="<?= $company->website_url ?>" class=" btn btn-md t-btn">GET BONUS</a></td>
+                        <td class="btn-padd"><a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a></td>
                     </tr>
 
                     <?php
@@ -196,7 +196,7 @@ $this->registerMetaTag([
                     </div>
                 </div>
                 <?= Rating::widget(['rating' => $company->rating]) ?>
-                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn ">GET BONUS</a>
+                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn " onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
                 </div>
             </div>
         </div>
