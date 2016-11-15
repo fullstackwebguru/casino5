@@ -61,6 +61,7 @@ class Theme extends ActiveRecord
             [['hwork_title2','hwork_description2'], 'string'],
             [['hwork_title3','hwork_description3'], 'string'],
             [['hwork_title4','hwork_description4'], 'string'],
+            [['contact_email','contact_phone', 'contact_address'], 'string'],
             [['how_to_find_best'], 'string'],
             [['category_id' ], 'integer'],
         ];

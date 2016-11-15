@@ -29,9 +29,17 @@ $this->registerMetaTag([
     <h1 class="headlines-hp">TOP 5<span class="red"> CASINO WEBSITES</span></h1>
     <div class="container" id="front">
         <div class="row">
-            <div class="col-sm-12">
-                <p class="top-question"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank the products?</p>
+            <div class="col-sm-6">
+                <p class="top-question"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank casinos?</p>
             </div>
+            <div class="col-sm-6">
+                    <select id="home">
+                        <option value=""  <?= $sortSelected == 'selected' ? 'selected="selected"' : ''?> ></option>
+                        <option value="rating" <?= $sortSelected == 'rating' ? 'selected="selected"' : ''?>>Rating</a></option>
+                        <option value="features"<?= $sortSelected == 'features' ? 'selected="selected"' : ''?> >Features</a></option>
+                    </select>
+                    <p class="top-right"><i class="fa fa-filter" aria-hidden="true"></i> Sort By</p>
+                </div>
         </div>
         <div class="table-condensed desk">
             <table class="table">
@@ -53,7 +61,7 @@ $this->registerMetaTag([
                     <?php
 
                     $compIndex = 0;
-                    foreach($category->cateComps as $catComp) {
+                    foreach($cateComps as $catComp) {
                         $company = $catComp->company;
                         $compIndex ++;
 
@@ -130,7 +138,7 @@ $this->registerMetaTag([
         <?php
 
         $compIndex = 0;
-        foreach($category->cateComps as $catComp) {
+        foreach($cateComps as $catComp) {
             $company = $catComp->company;
             $compIndex ++;
 
@@ -213,3 +221,17 @@ $this->registerMetaTag([
 
 
 <?= HowToFind::widget() ?>
+
+<?php
+
+$this->registerJs(
+   '$(document).ready(function(){ 
+        var currentBaseUrl = "' . Url::toRoute('/') . '";
+        $(document).on("change", "#home", function(e, id) {
+            var id = $("#home").val();
+            window.location.href = currentBaseUrl + "?sort="+id;
+        });
+    });'
+);
+
+?>

@@ -54,18 +54,6 @@ $this->registerMetaTag([
 		 <div class="sidebar col-md-4">
 		 	<?= SideTop5::widget(['num'=>5]) ?>
             <?= SideCategory::widget(['num'=>6]) ?>
-
-            <div class="side-wrapp-1">
-                <div class="side-letter">
-                    <h3 class="newsletter">NEWSLETTER</h3>
-                    <form action="#" method="POST">
-                        <input type="text" class="form-control" id="side" placeholder="Type your email address ">
-                        <div class="col-md-12" id="more">
-                        <button type="button" class="btn btn-primary" id="news-sub">SIGN UP NOW</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
 		 </div>
 	</div>
 </section>

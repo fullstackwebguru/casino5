@@ -30,8 +30,8 @@ use yii\helpers\Url;
                 <ul class="nav navbar-nav">
                     <li><?=  Html::a('Home',['/']) ?></li>
                     <li><?=  Html::a('Categories',['/category']) ?></li>
-                    <li><?=  Html::a('Compare Casino',['/compare']) ?></li>
-                    <li><?=  Html::a('Guide',['/guide']) ?></li>
+                    <li><?=  Html::a('Compare',['/compare']) ?></li>
+                    <li><?=  Html::a('Guides',['/guide']) ?></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -45,9 +45,22 @@ class SiteController extends Controller
         $theme = $this->findMainTheme();
         $category = $theme->category;
         $model = $this->findModel('home');
+        $queryParams = Yii::$app->request->queryParams;
+
+        $sortSelected = isset($queryParams['sort']) ? $queryParams['sort'] : '';
+
+        if ($sortSelected == 'features') {
+            $cateComps = $category->getCateCompsSortByFeatures();
+        } else if ($sortSelected != '') {
+            $cateComps = $category->getCateCompsSortByRating($sortSelected);
+        } else {
+            $cateComps = $category->cateComps;
+        }
         return $this->render('index', [
             'category' => $category,
             'model' => $model,
+            'sortSelected' => $sortSelected,
+            'cateComps' => $cateComps
         ]);
     }
 
