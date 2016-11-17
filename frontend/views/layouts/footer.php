@@ -8,24 +8,6 @@ use frontend\widgets\GetInTouch;
 ?>
 
 <footer>
-    <!-- newsletter section-->
-    <section id="newsletter">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <h3 class="news-title">GET UPDATED<span class="red"> MONTHLY</span></h3>
-                    <p class="news-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                </div>
-                <div class="col-md-5">
-                    <div class="form">
-                        <input type="text" class="form-control" id="usr" placeholder="Enter your email here">
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- newsletter section-->
     <section id="info">
         <div class="container">
             <div class="row">

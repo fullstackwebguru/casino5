@@ -46,8 +46,8 @@ $this->registerMetaTag([
                 <thead>
                     <tr class="header-titles">
                         <th class="hearder-box">#</th>
-                        <th class="hearder-box">Casino site</th>
-                        <th class="hearder-box">Offers</th>
+                        <th class="hearder-box">Casino Site</th>
+                        <th class="hearder-box">Offer</th>
                         <th class="hearder-box">Features</th>
                         <th class="hearder-box">Ratings</th>
                         <th class="hearder-box">Play</th>

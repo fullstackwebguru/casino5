@@ -31,10 +31,9 @@ $this->registerMetaTag([
         	<?php foreach ($guides as $guide ) {
                         $guideImage = cloudinary_url($guide->image_url, array("width" => 186, "height" => 189, "crop" => "fill"));
 			?>
-
-
+            
             <div class="post-wrapper">
-                <img src="images/post-img-1.jpg" class="img-responsive col-sm-3 no-padding post-img" alt="p-image">
+                <a href="<?=Url::toRoute($guide->getRoute())?>"> <img src="<?= $guideImage ?>" class="img-responsive col-sm-3 no-padding post-img" alt="p-image"> </a>
                 <div class="text-gui col-sm-9">
                     <h3>Lorem ipsum</h3>
                     <span class="post-date">On <?= Yii::$app->formatter->asDate($guide->created_at , 'long'); ?> </span>
