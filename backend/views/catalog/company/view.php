@@ -117,6 +117,10 @@ $attributes = [
         'rowOptions'=>['class'=>'info'],
     ],
     [
+        'attribute'=>'bonus_as_value', 
+        'value'=>$model->bonus_as_value
+    ],
+    [
         'attribute'=>'bonus_offer', 
         'value'=>$model->bonus_offer
     ],

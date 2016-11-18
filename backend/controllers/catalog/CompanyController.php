@@ -146,12 +146,12 @@ class CompanyController extends Controller
             $uploadResult = \Cloudinary\Uploader::upload($image->tempName);
 
             if (isset($uploadResult['public_id'])) {
-                $image_url = $uploadResult['public_id'];
-                $model->image_url = $image_url;
+                $logo_url = $uploadResult['public_id'];
+                $model->logo_url = $logo_url;
 
                 $model->save();
 
-                $allImages[] = '<img src="' . cloudinary_url($image_url, array("width" => 247, "height" => 78, "crop" => "fill")) .'" class="file-preview-image">';
+                $allImages[] = '<img src="' . cloudinary_url($logo_url, array("width" => 247, "height" => 78, "crop" => "fill")) .'" class="file-preview-image">';
 
                 $allImageConfig[] =[   
                         'caption' => 'Image',

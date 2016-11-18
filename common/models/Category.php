@@ -113,9 +113,9 @@ class Category extends ActiveRecord
         return $query->all();
     }
 
-    public function getCateCompsSortByRating()
+    public function getCateCompsSortByRating($filter)
     {
-        $query = $this->getCateComps()->joinWith('category')->joinWith('company')->orderBy('company.rating DESC');
+        $query = $this->getCateComps()->joinWith('category')->joinWith('company')->where($filter)->orderBy('company.rating DESC');
         return $query->all();
     }
 

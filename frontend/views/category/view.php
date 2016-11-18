@@ -28,11 +28,6 @@ $this->registerMetaTag([
 <section id="tables-1">
     <h1 class="headlines-hp">TOP 5<span class="red"> CASINO WEBSITES</span></h1>
     <div class="container" id="front">
-        <div class="row">
-            <div class="col-sm-12">
-                <p class="top-question"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank the products?</p>
-            </div>
-        </div>
         <div class="table-condensed desk">
             <table class="table">
                 <thead>
@@ -153,7 +148,7 @@ $this->registerMetaTag([
                 <?php 
                 if ($compIndex == 1) {
                 ?>
-                <img src="images/nr1.png" id="nr-1" alt="nr1">
+                <img src="/images/nr1.png" id="nr-1" alt="nr1">
                 <?php
                 } else {
                 ?>

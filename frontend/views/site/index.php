@@ -34,23 +34,26 @@ $this->registerMetaTag([
             </div>
             <div class="col-sm-6">
                     <select id="home">
-                        <option value=""  <?= $sortSelected == 'selected' ? 'selected="selected"' : ''?> ></option>
-                        <option value="rating" <?= $sortSelected == 'rating' ? 'selected="selected"' : ''?>>Rating</a></option>
-                        <option value="features"<?= $sortSelected == 'features' ? 'selected="selected"' : ''?> >Features</a></option>
+                        <option value="all"  <?= $filterSelected == 'selected' ? 'selected="selected"' : ''?> >Show All</option>
+                        <option value="mobile" <?= $filterSelected == 'mobile' ? 'selected="selected"' : ''?>>Mobile</a></option>
+                        <option value="instant"<?= $filterSelected == 'instant' ? 'selected="selected"' : ''?> >Instant Play</a></option>
+                        <option value="download"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >Download</a></option>
+                        <option value="live"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >Live Casino</a></option>
+                        <option value="vip"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >VIP Program</a></option>
                     </select>
-                    <p class="top-right"><i class="fa fa-filter" aria-hidden="true"></i> Sort By</p>
+                    <p class="top-right"><i class="fa fa-filter" aria-hidden="true"></i> Filter By</p>
                 </div>
         </div>
         <div class="table-condensed desk">
-            <table class="table">
+            <table class="table sortable">
                 <thead>
                     <tr class="header-titles">
-                        <th class="hearder-box">#</th>
-                        <th class="hearder-box">Casino Site</th>
+                        <th data-defaultsort="disabled" class="hearder-box">#</th>
+                        <th data-defaultsort="disabled" class="hearder-box">Casino Site</th>
                         <th class="hearder-box">Offer</th>
-                        <th class="hearder-box">Features</th>
-                        <th class="hearder-box">Ratings</th>
-                        <th class="hearder-box">Play</th>
+                        <th data-defaultsort="disabled" class="hearder-box">Features</th>
+                        <th data-firstsort data-defaultsort="desc" class="hearder-box">Ratings</th>
+                        <th data-defaultsort="disabled" class="hearder-box">Play</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,7 +125,7 @@ $this->registerMetaTag([
                                 ?>
                             </div>
                         </td>
-                        <td class="padd-1">
+                        <td class="padd-1" data-value="<?= $company->rating ?>">
                             <?= Rating::widget(['rating' => $company->rating]) ?>
                         </td>
                         <td class="btn-padd"><a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a></td>
@@ -229,8 +232,11 @@ $this->registerJs(
         var currentBaseUrl = "' . Url::toRoute('/') . '";
         $(document).on("change", "#home", function(e, id) {
             var id = $("#home").val();
-            window.location.href = currentBaseUrl + "?sort="+id;
+            window.location.href = currentBaseUrl + "?filter="+id;
         });
+
+
+
     });'
 );
 

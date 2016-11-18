@@ -19,7 +19,7 @@ use yii\helpers\Url;
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="<?= Url::toRoute(['/']) ?>">Top10BestOnlineCasinos.<span style="color:#f05342">today</span></a>
+                <a class="navbar-brand" href="<?= Url::toRoute(['/']) ?>">Top5BestOnlineCasinos.<span style="color:#f05342">today</span></a>
                 <p id="date"><?= Yii::$app->formatter->asDate('now', 'full'); ?></p>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

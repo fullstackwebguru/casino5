@@ -47,19 +47,43 @@ class SiteController extends Controller
         $model = $this->findModel('home');
         $queryParams = Yii::$app->request->queryParams;
 
-        $sortSelected = isset($queryParams['sort']) ? $queryParams['sort'] : '';
+        $filterSelected = isset($queryParams['filter']) ? $queryParams['filter'] : '';
 
-        if ($sortSelected == 'features') {
-            $cateComps = $category->getCateCompsSortByFeatures();
-        } else if ($sortSelected != '') {
-            $cateComps = $category->getCateCompsSortByRating($sortSelected);
-        } else {
-            $cateComps = $category->cateComps;
+        // if ($filterSelected == 'features') {
+        //     $cateComps = $category->getCateCompsSortByFeatures();
+        // } else if ($filterSelected != '') {
+        //     $cateComps = $category->getCateCompsSortByRating($filterSelected);
+        // } else {
+        //     $cateComps = $category->cateComps;
+        // }
+        // 
+        // 
+        $filters = [];
+        
+        switch ($filterSelected) {
+            case 'mobile': 
+                $filters = ['<>', 'feature_mobile', 0];
+                break;
+            case 'instant': 
+                $filters = ['<>', 'feature_instant_play', 0];
+                break;
+            case 'live': 
+                $filters = ['<>', 'feature_live_casino', 0];
+                break;
+            case 'download': 
+                $filters = ['<>', 'feature_download', 0];
+                break;
+            case 'vip': 
+                $filters = ['<>', 'feature_vip_program', 0];
+                break;
         }
+
+        $cateComps = $category->getCateCompsSortByRating($filters);
+
         return $this->render('index', [
             'category' => $category,
             'model' => $model,
-            'sortSelected' => $sortSelected,
+            'filterSelected' => $filterSelected,
             'cateComps' => $cateComps
         ]);
     }

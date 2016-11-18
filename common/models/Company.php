@@ -18,6 +18,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $website_url
  * @property string $type_of_games
  * @property string $bonus_offer
+ * @property integer $bonus_as_value
  * @property string $software
  * @property string $support
  * @property string $currencies
@@ -75,13 +76,14 @@ class Company extends ActiveRecord
     {
         return [
             [['title', 'website_url', 'meta_keywords', 'meta_description'], 'required'],
-            [['bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'required'],
+            [['bonus_as_value','bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'required'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'required'],
             [['rating'], 'required'],
             [['review','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'string'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'boolean'],
             [['rating'], 'number', 'max' => 5],
+            [['bonus_as_value'], 'integer', 'max' => 100],
             [['title', 'slug'], 'string', 'max' => 255],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
@@ -101,7 +103,8 @@ class Company extends ActiveRecord
             'image_url' => 'Image',
             'logo_url' => 'Logo',
             'rating' => 'Rating',
-            'bonus_offer' => 'Bonus Offers',
+            'bonus_as_value' => 'Bonus As Percentage',
+            'bonus_offer' => 'Bonus Offers(Text)',
             'software' => 'Software',
             'type_of_games' => 'Type of games',
             'support' => 'Support',

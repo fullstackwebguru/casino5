@@ -13,9 +13,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/style.css',
+        'css/bootstrap-sortable.css'
     ];
     public $js = [
         'js/bootstrap.js',
+        'js/bootstrap-sortable.js',
+        'js/moment.js',
         'js/main.js',
     ];
     public $depends = [

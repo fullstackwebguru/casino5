@@ -66,6 +66,16 @@ echo Form::widget([
     ]
 ]);
 
+
+echo Form::widget([
+    'model'=>$model,
+    'form'=>$form,
+    'columns'=> 1,
+    'attributes'=>[       //  column layout
+        'bonus_as_value'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Bonnus Offers...']]
+    ]
+]);
+
 echo Form::widget([
     'model'=>$model,
     'form'=>$form,

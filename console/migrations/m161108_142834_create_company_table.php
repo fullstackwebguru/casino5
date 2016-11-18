@@ -28,6 +28,7 @@ class m161108_142834_create_company_table extends Migration
             'website_url' => $this->string(500)->notNull(),
             'rating' => $this->double(2)->notNull(),
             'review' => $this->text(),
+            'bonus_as_value' => $this->integer(255)->notNull()->defaultValue(0),
             'bonus_offer' => $this->string(255),
             'software' => $this->string(255),
             'type_of_games' => $this->string(255),
