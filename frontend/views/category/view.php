@@ -5,6 +5,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+use frontend\widgets\Banner;
 use frontend\widgets\Rating;
 
 use frontend\assets\Top10JsAsset;
@@ -24,6 +25,9 @@ $this->registerMetaTag([
         ]);
 
 ?>
+
+<?= Banner::widget() ?>
+
 <section id="tables-1">
     <h1 class="headlines-hp">TOP 5<span class="red"> CASINO WEBSITES</span></h1>
     <div class="container" id="front">

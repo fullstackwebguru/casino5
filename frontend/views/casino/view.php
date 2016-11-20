@@ -8,6 +8,7 @@ use kartik\markdown\Markdown;
 use frontend\widgets\Rating;
 use frontend\widgets\SideCategory;
 use frontend\widgets\SideTop5;
+use frontend\widgets\Banner;
 
 $this->title = 'Casino -' . $model->title;
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,6 +27,8 @@ $companyLogo = cloudinary_url($model->logo_url, array("width" => 247, "height" =
 $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height" => 190, "crop" => "fill"));
 
 ?>
+
+<?= Banner::widget() ?>
 
 <div class="top"></div>
 <section id="company">
