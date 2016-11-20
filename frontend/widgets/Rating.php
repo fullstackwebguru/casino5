@@ -62,7 +62,7 @@ class Rating extends \yii\base\Widget
         }
 
         if ($this->max_rating === null) {
-            $this->max_rating = 5;
+            $this->max_rating = 10;
         }
 
         if ($this->min_rating === null) {

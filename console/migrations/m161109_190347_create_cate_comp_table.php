@@ -21,6 +21,7 @@ class m161109_190347_create_cate_comp_table extends Migration
         $this->createTable('{{%cate_comp}}', [
             'id' => $this->primaryKey(11),
             'category_id' => $this->integer(11)->notNull(),
+            'rank' => $this->integer(11)->notNull(),
             'company_id' => $this->integer(11)->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),

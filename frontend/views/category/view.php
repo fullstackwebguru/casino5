@@ -85,7 +85,8 @@ $this->registerMetaTag([
                             <td class="offers"><p class="nr-desk"><?= $compIndex ?></p></td>
                     <?php } ?>
                         <td class="t-images">
-                            <a href="<?=Url::toRoute($company->getRoute())?>"><img src="<?= $companyImage ?>" class=" t-img" alt="<?= $company->title ?>"></a>
+                            <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">
+                                <img src="<?= $companyImage ?>" class=" t-img" alt="<?= $company->title ?>"></a>
                         </td>
                         <td class="offers">
                             <p class="offers-3"><?= $company->bonus_offer; ?> </p>
@@ -125,7 +126,7 @@ $this->registerMetaTag([
                             </div>
                         </td>
                         <td class="padd-1" data-value="<?= $company->rating ?>">
-                            <?= Rating::widget(['rating' => $company->rating]) ?>
+                            <?= Rating::widget(['rating' => $company->rating, 'link_url'=> Url::toRoute($company->getRoute())]) ?>
                         </td>
                         <td class="btn-padd">
                             <a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
@@ -173,7 +174,8 @@ $this->registerMetaTag([
                 ?>
                 <p class="nr-mob"><?= $compIndex ?></p>
                 <?php } ?>
-                <a href="<?=Url::toRoute($company->getRoute())?>"><img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>
+                 <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">
+                    <img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>
                 <p class="offers-3"><?= $company->bonus_offer; ?></p>
                 <div class="i-wrapp-mob">
                     <div class="row">
@@ -209,7 +211,7 @@ $this->registerMetaTag([
                         ?>
                     </div>
                 </div>
-                <?= Rating::widget(['rating' => $company->rating]) ?>
+                <?= Rating::widget(['rating' => $company->rating, 'link_url'=> Url::toRoute($company->getRoute())]) ?>
                 <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
                 </div>
             </div>

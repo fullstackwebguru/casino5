@@ -42,7 +42,8 @@ class CateComp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_id', 'category_id'], 'integer'],
+            [['company_id', 'category_id', 'rank'], 'integer'],
+            [['company_id', 'category_id', 'rank'], 'required'],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -57,6 +58,7 @@ class CateComp extends \yii\db\ActiveRecord
             'id' => 'ID',
             'company_id' => 'Company',
             'category_id' => 'Category',
+            'rank' => 'Rank'
         ];
     }
 

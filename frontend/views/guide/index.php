@@ -35,7 +35,7 @@ $this->registerMetaTag([
             <div class="post-wrapper">
                 <a href="<?=Url::toRoute($guide->getRoute())?>"> <img src="<?= $guideImage ?>" class="img-responsive col-sm-3 no-padding post-img" alt="p-image"> </a>
                 <div class="text-gui col-sm-9">
-                    <h3>Lorem ipsum</h3>
+                    <h3><?= $guide->title ?></h3>
                     <span class="post-date">On <?= Yii::$app->formatter->asDate($guide->created_at , 'long'); ?> </span>
                     <p class="post-content">
                         <?= $guide->meta_description ?>

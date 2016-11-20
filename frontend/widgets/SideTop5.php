@@ -35,7 +35,7 @@ class SideTop5 extends \yii\base\Widget
             $this->num = 5;
         }
 
-        $this->companies = Company::find()->orderBy(['rating' => 'desc'])->limit($this->num)->all();
+        $this->companies = Company::find()->orderBy(['rating' => SORT_DESC])->limit($this->num)->all();
     }
 
     public function run()

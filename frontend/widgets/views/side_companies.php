@@ -14,11 +14,12 @@ use frontend\widgets\Rating;
                 ?>
 
                 <tr>
-                    <td><a href="#"><img src="<?= $companyLogo ?>" class=" t-img-gui" alt="casino-img"></a></td>
+                    <td><a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;" ><img src="<?= $companyLogo ?>" class=" t-img-gui" alt="casino-img"></a></td>
                     <td>
-                        <?= Rating::widget(['rating' => $company->rating, 'type'=>'side']) ?>
+                        <?= Rating::widget(['rating' => $company->rating, 'type'=>'side', 'link_url'=> Url::toRoute($company->getRoute())]) ?>
                     </td>
-                    <td><a href="<?= $company->website_url ?>" class=" btn btn-guide btn-primary">PLAY</a></td>
+
+                    <td><a href="<?= $company->website_url ?>" class=" btn btn-guide btn-primary" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;">PLAY</a></td>
                 </tr>
 
                 <?php
