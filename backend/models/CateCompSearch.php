@@ -64,7 +64,8 @@ class CateCompSearch extends CateComp
             'category_id' => $this->category_id,
         ];
 
-        $query->andFilterWhere($where);
+        $query->andFilterWhere($where)
+            ->orderBy(['rank' => SORT_ASC]);
 
         return $dataProvider;
     }

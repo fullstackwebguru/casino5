@@ -41,7 +41,7 @@ class CategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','rank'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -162,11 +162,16 @@ class CategoryController extends Controller
         if (Yii::$app->request->post()) {
             $selectedIds = Yii::$app->request->post("companyIds");
 
+            $maxCount = $model->getCateComps()->count();
+
             foreach($selectedIds as $selectedId) {
                 $newModel = new CateComp();
                 $newModel->category_id = $id;
                 $newModel->company_id = $selectedId;
+                $newModel->rank = $maxCount;
                 $newModel->save();
+
+                $maxCount++;
             }
 
             Yii::$app->getSession()->setFlash('success', 'Added companies Successfully');
@@ -188,11 +193,21 @@ class CategoryController extends Controller
      */
     public function actionDeleteinfo($id, $infoId) {
         $model = $this->findModel($id);
+        $currModel = CateComp::findOne($infoId);
+        $currRank = $currModel->rank;
+        $currModel->delete();
 
-        CateComp::findOne($infoId)->delete();
+        $cateComps = $model->getCateComps()->orderBy(['rank' => SORT_DESC])->all();
+        foreach ($cateComps as $catecomp) {
+            if ($cateComp->rank > $currRank) {
+                $cateComp->rank = $cateComp->rank - 1;
+                $cateComp->save();
+            } else {
+                break;
+            }
+        }
         return $this->redirect(['view', 'id' => $model->id]);
     }
-
 
     /**
      * Displays a single Category model.
@@ -306,6 +321,40 @@ class CategoryController extends Controller
         }
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
+    }
+
+
+    /**
+     * Change Rank of companies in category
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionRank($id, $actionId, $type) {
+        $model = $this->findModel($id);
+        if ($type == 'up') {
+            $cateComps = $model->getCateComps()->orderBy(['rank' => SORT_ASC])->all();
+        } else {
+            $cateComps = $model->getCateComps()->orderBy(['rank' => SORT_DESC])->all();
+        }
+        
+
+        $prevOne = null;
+        foreach($cateComps as $cateComp) {
+            if ($cateComp->id == $actionId) {
+                $c = $prevOne->rank;
+                $prevOne->rank = $cateComp->rank;
+                $cateComp->rank = $c;
+
+                $prevOne->save();
+                $cateComp->save();
+
+                break;
+            } 
+
+            $prevOne = $cateComp;
+        }
+        return $this->redirect(['view', 'id' => $model->id]);
+
     }
 
     /**

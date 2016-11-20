@@ -82,8 +82,19 @@ $viewMsg = 'Not applicable';
 $updateMsg = 'Not applicable';
 $deleteMsg = 'Remove Company';
 
+$maxRank = $dataProvider->getTotalCount() - 1;
+
 $gridColumns = [
-    ['class' => 'kartik\grid\SerialColumn'],
+    [
+        'attribute' => 'rank',
+        'label' => '#',
+        'width' => '50px',
+        'vAlign'=>'middle',
+        'format' => 'raw',
+        'value'=>function ($model, $key, $index, $widget) { 
+            return ($model->rank+1);
+        }
+    ],
     [
         'attribute' => 'company_id',
         'pageSummary' => 'Page Total',
@@ -148,14 +159,36 @@ $gridColumns = [
         'vAlign'=>'middle',
         'urlCreator' => function($action, $model, $key, $index) { 
             if ($action == 'delete') {
-                return Url::toRoute(['deleteinfo', 'id'=>$model->category->id, 'infoId'=>$key]);
+                return Url::toRoute(['deleteinfo', 'id'=>$model->category->id, 'infoId'=>$model->id]);
+            } else if ($action == 'up') {
+                return Url::toRoute(['rank', 'id'=>$model->category->id, 'actionId'=>$model->id, 'type' => 'up']);
+            } else if ($action == 'down') {
+                return Url::toRoute(['rank', 'id'=>$model->category->id, 'actionId'=>$model->id, 'type' => 'down']);
             } else {
                 return '';
             }
         },
+        'template' => '{up} {down} {delete}',
+        'buttons' => [
+            'up' => function ($url, $model) {
+                if ($model->rank != 0 ) {
+                    return '<a class="change-rank" href="'. $url . '" data-rank="'. $model->rank .'" title="" data-toggle="tooltip" data-original-title="Up"><span class="glyphicon glyphicon-arrow-up"></span></a>';
+                } else {
+                    return '';
+                }
+            },
+            'down' => function ($url, $model) {
+                if ($model->rank != ($model->category->getMaxRank() - 1 ) ) {
+                    return '<a class="change-rank"  href="'. $url . '" data-rank="'. $model->rank .'" title="" data-toggle="tooltip" data-original-title="Down"><span class="glyphicon glyphicon-arrow-down"></span></a>';
+                } else {
+                    return '';
+                }
+            },
+        ],
         'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip', 'style'=>'display:none;'],
         'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip', 'style'=>'display:none;'],
         'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'], 
+        'width' => '110px'
     ],
 ];
 
@@ -164,6 +197,8 @@ $this->registerJs(
         $(document).on("click", "#reset_companyinfos", function() {
             $.pjax.reload({container:"#companyinfos"});  //Reload GridView
         });
+
+        $(document).pjax("a.change-rank", "#companyinfos");
     });'
 );
 

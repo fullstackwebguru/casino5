@@ -109,7 +109,7 @@ class Category extends ActiveRecord
 
     public function getCateCompsSortByFeatures()
     {
-        $query = $this->getCateComps()->joinWith('category')->joinWith('company')->select(['*','(feature_mobile + feature_instant_play + feature_download + feature_live_casino + feature_vip_program) as rank'])->orderBy('rank DESC');
+        $query = $this->getCateComps()->joinWith('category')->joinWith('company')->select(['*','(feature_mobile + feature_instant_play + feature_download + feature_live_casino + feature_vip_program) as cusrank'])->orderBy('cusrank DESC');
         return $query->all();
     }
 
@@ -117,6 +117,10 @@ class Category extends ActiveRecord
     {
         $query = $this->getCateComps()->joinWith('category')->joinWith('company')->where($filter)->orderBy('company.rating DESC');
         return $query->all();
+    }
+
+    public function getMaxRank() {
+        return $this->getCateComps()->count();
     }
 
     /**
