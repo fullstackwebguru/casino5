@@ -8,12 +8,43 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 
 use common\models\Company;
+use common\models\Page;
 
 /**
  * Casino controller
  */
 class CasinoController extends Controller
 {
+    public $numPerPage = 2;
+
+    public function actionIndex() {
+        $companyCount = Company::find()->orderBy('id')->count();
+        $companies = Company::find()->orderBy('title')->limit($this->numPerPage)->all();
+        $model = Page::findOne(['page_id'=>'casinos']);
+        $more = $companyCount > $this->numPerPage ? 1 : 0;
+        return $this->render('index', [
+            'model' => $model,
+            'companies' => $companies,
+            'more' => $more,
+            'startPos' => $this->numPerPage
+        ]);
+    }
+
+    public function actionGenerate()
+    {
+        $qs = Yii::$app->request->getQueryParams();
+        $startNum = isset($qs['startPos']) ? $qs['startPos'] : 0;
+
+        $companyCount = Company::find()->orderBy('title')->count();
+        $companies = Company::find()->orderBy('title')->limit($this->numPerPage)->offset($startNum)->all();
+        $more = $companyCount >$startNum + $this->numPerPage ? 1 : 0;
+        return $this->renderPartial('_companyList', [
+            'companies' => $companies,
+            'more' => $more,
+            'startPos' => $startNum + $this->numPerPage
+        ]);
+    }
+
     public function actionSlug($slug) 
     {
         $model = $this->findModelBySlug($slug);

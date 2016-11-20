@@ -38,6 +38,10 @@ $attributes = [
         'value'=>$model->website_url
     ],
     [
+        'attribute'=>'short_description', 
+        'value'=>$model->short_description
+    ],
+    [
         'attribute'=>'description', 
         'format'=>'raw',
         'value'=>Markdown::convert($model->description),

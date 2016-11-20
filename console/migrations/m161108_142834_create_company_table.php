@@ -22,6 +22,7 @@ class m161108_142834_create_company_table extends Migration
             'id' => $this->primaryKey(11),
             'category_id' => $this->integer(11)->notNull(),
             'title' => $this->string(255)->notNull(),
+            'short_description' => $this->string(300)->notNull(),
             'description' => $this->text(),
             'logo_url' => $this->string(255),
             'image_url' => $this->string(255),

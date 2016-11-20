@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use frontend\widgets\Banner;
 use yii\helpers\Url;
 
-$this->title = 'Top 10';
+$this->title = 'Top 10s';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->title = $model->title;
@@ -26,7 +26,6 @@ $this->registerMetaTag([
 ?>
 
 <?= Banner::widget() ?>
-
 
 <!-- casinos section-->
 <section id="casinos-1">

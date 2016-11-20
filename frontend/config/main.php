@@ -41,6 +41,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'casino/generate' => 'casino/generate',
                 'category/<slug>' => 'category/slug',
                 'casino/<slug>' => 'casino/slug',
                 'guide/<slug>' => 'guide/slug',

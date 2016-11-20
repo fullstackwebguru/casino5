@@ -58,6 +58,7 @@ class SiteController extends Controller
         // }
         // 
         // 
+        
         $filters = [];
         
         switch ($filterSelected) {

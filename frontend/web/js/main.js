@@ -15,12 +15,22 @@ $(document).ready(function(){
 
     });
   
-    $('a.more-btn').click(function() {
-        $('#lazy-wrapp').show(500);
-        $('a.more-btn').hide(500);
+    $(document).on('click', 'a.more-btn', function() {
+        var startPos = $(this).attr('data-pos');
+
+        var that = $(this);
+
+        $.ajax( {
+            type: "GET",
+            url : "casino/generate?startPos="+startPos,
+            success : function (data) {
+                $("#all-casino-container").append(data);
+                $('.lazy-wrapp').show(500);
+                that.hide(500).removeClass("more-btn");
+            },
+            dataType: 'html'
+        });
     });
-
-
 
     $("p.plus").click(function(){
         $("tr.hide-0").toggleClass("visible");

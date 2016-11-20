@@ -43,6 +43,15 @@ echo $form->field($model, 'temp_image')->widget(
     ]
 );
 
+echo Form::widget([
+    'model'=>$model,
+    'form'=>$form,
+    'columns'=> 1,
+    'attributes'=>[       //  column layout
+        'short_description'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Short description...']]
+    ]
+]);
+
 echo $form->field($model, 'description')->widget(
     MarkdownEditor::classname(), 
     ['height' => 300, 'encodeLabels' => false]

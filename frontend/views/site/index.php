@@ -96,19 +96,19 @@ $this->registerMetaTag([
                                 <?php if ($company->feature_mobile > 0) {
                                 ?>
                                 <div class="col-xs-6 no-padding"><i class="fa fa-mobile red" aria-hidden="true"></i></div>
-                                <?php    
+                                <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_instant_play > 0) {
                                 ?>
                                 <div class="col-xs-6 no-padding"><i class="fa fa-play red" aria-hidden="true"></i></div>
-                                <?php    
+                                <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_download > 0) {
                                 ?>
                                 <div class="col-xs-6 no-padding"><i class="fa fa-download red" aria-hidden="true"></i></div>
-                                <?php    
+                                <?php 
                                 }
                                 ?>
                                 <?php if ($company->feature_live_casino > 0) {

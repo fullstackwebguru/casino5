@@ -28,6 +28,7 @@
                         'items' => [
                             ['label' => 'Home', 'icon' => 'fa fa-file-code-o', 'url' => ['/page/home'],],
                             ['label' => 'Categories', 'icon' => 'fa fa-file-code-o', 'url' => ['/page/view','id'=>'categories','type' => 2],],
+                            ['label' => 'Casinos', 'icon' => 'fa fa-file-code-o', 'url' => ['/page/view','id'=>'casinos','type' => 2],],
                             ['label' => 'Compare', 'icon' => 'fa fa-file-code-o', 'url' => ['/page/view','id'=>'compare','type' => 1],],
                             ['label' => 'Guides', 'icon' => 'fa fa-file-code-o', 'url' => ['/page/view','id'=>'guides','type' => 2],],
                             ['label' => 'About', 'icon' => 'fa fa-file-code-o', 'url' => ['/page/view','id'=>'about', 'type' => 1],],

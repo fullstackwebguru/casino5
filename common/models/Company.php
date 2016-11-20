@@ -14,6 +14,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $title
  * @property string $logo_url
  * @property string $image_url
+ * @property string $short_description
  * @property string $description
  * @property string $website_url
  * @property string $type_of_games
@@ -79,12 +80,11 @@ class Company extends ActiveRecord
             [['bonus_as_value','bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'required'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'required'],
             [['rating'], 'required'],
-            [['review','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
+            [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'string'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'boolean'],
-            [['rating'], 'number', 'max' => 5],
-            [['bonus_as_value'], 'integer', 'max' => 100],
-            [['title', 'slug'], 'string', 'max' => 255],
+            [['rating'], 'number', 'max' => 10],
+            [['title', 'slug','short_description'], 'string', 'max' => 255],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
         ];

@@ -760,7 +760,13 @@ p.cas-text {
     text-align: center!important;
 }
 
-#lazy-wrapp {
+.load-more{
+    width: 100%;
+    margin: auto;
+    text-align: center!important;
+}
+
+.lazy-wrapp {
     display: none;
 }
 

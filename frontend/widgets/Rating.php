@@ -33,8 +33,13 @@ class Rating extends \yii\base\Widget
             'class1' => 'rate-wrapp-guide',
             'class2' => 'rate-number-gui',
             'class3' => 'stars-wrapper',
+        ],
+        'category' => [
+            'filled'   => '<i class="glyphicon glyphicon-star red-size"></i>',
+            'unfilled'  => '<i class="glyphicon glyphicon-star black-size"></i>',
+            'class2' => 'rate-number',
+            'class3' => 'stars-wrapper',  
         ]
-
     ];
 
     /**
@@ -46,6 +51,7 @@ class Rating extends \yii\base\Widget
     public $min_rating;
     public $num_stars;
 
+    public $link_url;
 
     public function init()
     {
@@ -70,6 +76,10 @@ class Rating extends \yii\base\Widget
         if ($this->type == null) {
             $this->type = "orange";
         }
+
+        if ($this->link_url == null) {
+            $this->link_url = "javascript:void(0)";
+        }
     }
 
     public function run()
@@ -77,8 +87,12 @@ class Rating extends \yii\base\Widget
         $interval = ($this->max_rating - $this->min_rating) / $this->num_stars;
         $value = floor(min($this->rating, $this->max_rating) / $interval);
 
-        $html = '<div class="' . $this->ratesTemplate[$this->type]['class1'] . '">';
-        $html .= '<p class="' . $this->ratesTemplate[$this->type]['class2'] . '"><a href="javascript:void(0)">' . $this->rating . '</a></p>';
+        $html = '';
+        if (isset($this->ratesTemplate[$this->type]['class1'])) {
+            $html .= '<div class="' . $this->ratesTemplate[$this->type]['class1'] . '">';    
+        }
+        
+        $html .= '<p class="' . $this->ratesTemplate[$this->type]['class2'] . '"><a href="' . $this->link_url . '">' . $this->rating . '</a></p>';
         $html .= '<div class="' . $this->ratesTemplate[$this->type]['class3'] . '">';
 
         for ($i=0; $i< $value; $i++) {
@@ -90,7 +104,9 @@ class Rating extends \yii\base\Widget
         }
 
         $html .= '</div>';
-        $html .= '</div>';
+        if (isset($this->ratesTemplate[$this->type]['class1'])) {
+            $html .= '</div>';
+        }
 
         return $html;
     }

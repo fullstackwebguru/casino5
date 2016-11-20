@@ -29,6 +29,7 @@ use yii\helpers\Url;
                 </ul> -->
                 <ul class="nav navbar-nav">
                     <li><?=  Html::a('Home',['/']) ?></li>
+                    <li><?=  Html::a('Casino',['/casino']) ?></li>
                     <li><?=  Html::a('Categories',['/category']) ?></li>
                     <li><?=  Html::a('Compare',['/compare']) ?></li>
                     <li><?=  Html::a('Guides',['/guide']) ?></li>
