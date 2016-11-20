@@ -71,16 +71,6 @@ echo Form::widget([
     'form'=>$form,
     'columns'=> 1,
     'attributes'=>[       //  column layout
-        'type_of_games'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter type of games...']]
-    ]
-]);
-
-
-echo Form::widget([
-    'model'=>$model,
-    'form'=>$form,
-    'columns'=> 1,
-    'attributes'=>[       //  column layout
         'bonus_as_value'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Bonnus Offers...']]
     ]
 ]);
@@ -91,42 +81,6 @@ echo Form::widget([
     'columns'=> 1,
     'attributes'=>[       //  column layout
         'bonus_offer'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter Bonnus Offers...']]
-    ]
-]);
-
-echo Form::widget([
-    'model'=>$model,
-    'form'=>$form,
-    'columns'=> 1,
-    'attributes'=>[       //  column layout
-        'software'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter softwares...']]
-    ]
-]);
-
-echo Form::widget([
-    'model'=>$model,
-    'form'=>$form,
-    'columns'=> 1,
-    'attributes'=>[       //  column layout
-        'support'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter how you support...']]
-    ]
-]);
-
-echo Form::widget([
-    'model'=>$model,
-    'form'=>$form,
-    'columns'=> 1,
-    'attributes'=>[       //  column layout
-        'currencies'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'USD, EUR']]
-    ]
-]);
-
-echo Form::widget([
-    'model'=>$model,
-    'form'=>$form,
-    'columns'=> 1,
-    'attributes'=>[       //  column layout
-        'languages'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'English, German']]
     ]
 ]);
 

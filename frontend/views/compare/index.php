@@ -30,7 +30,7 @@ $this->registerMetaTag([
             <?= Markdown::convert($model->description) ?>
             <div class="row">
                 <div class="col-md-6">
-                    <p class="top-question-comp"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank the products?</p>
+                    <p class="top-question-comp"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank the casinos?</p>
                 </div>
             </div>
             <div class="table-condensed desk">
@@ -55,7 +55,7 @@ $this->registerMetaTag([
                         $companyLogo = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
                     ?>
                         <tr>
-                            <td class="offers-comp">1</td>
+                            <td class="offers-comp"><?= $compIndex?></td>
                             <td class="t-images-comp">
                                 <a href="<?=Url::toRoute($company->getRoute())?>"> <img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"> </a>
                             </td>

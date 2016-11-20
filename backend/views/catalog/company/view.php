@@ -10,6 +10,8 @@ use kartik\widgets\FileInput;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
+use common\models\PropComp;
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Company */
@@ -36,6 +38,14 @@ $attributes = [
     [
         'attribute'=>'website_url', 
         'value'=>$model->website_url
+    ],
+    [
+        'attribute'=>'bonus_as_value', 
+        'value'=>$model->bonus_as_value
+    ],
+    [
+        'attribute'=>'bonus_offer', 
+        'value'=>$model->bonus_offer
     ],
     [
         'attribute'=>'short_description', 
@@ -114,39 +124,6 @@ $attributes = [
                 'offText' => 'No',
             ]
         ],
-    ],    
-    [
-        'group'=>true,
-        'label'=>'Additional Info',
-        'rowOptions'=>['class'=>'info'],
-    ],
-    [
-        'attribute'=>'bonus_as_value', 
-        'value'=>$model->bonus_as_value
-    ],
-    [
-        'attribute'=>'bonus_offer', 
-        'value'=>$model->bonus_offer
-    ],
-    [
-        'attribute'=>'software', 
-        'value'=>$model->software
-    ],
-    [
-        'attribute'=>'type_of_games', 
-        'value'=>$model->type_of_games
-    ],
-    [
-        'attribute'=>'support', 
-        'value'=>$model->support
-    ],
-    [
-        'attribute'=>'currencies', 
-        'value'=>$model->currencies
-    ],
-    [
-        'attribute'=>'languages', 
-        'value'=>$model->languages
     ],
     [
         'group'=>true,
@@ -182,9 +159,10 @@ $attributes = [
     [
         'attribute'=>'meta_description', 
         'value'=>$model->meta_description
-    ]
-
+    ],
 ];
+
+
 
 //images
 $allImages = [];
@@ -217,61 +195,53 @@ if ($model->logo_url) {
     ];
 }
 
-//Company additional information
+
+//field additional information
 //
-$viewMsg = 'Not applicable';
-$updateMsg = 'Not applicable';
-$deleteMsg = 'Delete Company information';
+//
+$deleteMsg = 'Delete field information';
 
 $gridColumns = [
     ['class' => 'kartik\grid\SerialColumn'],
     [
-        'attribute' => 'store_id',
-        'pageSummary' => 'Page Total',
+        'attribute' => 'property_id',
+        'label' => 'Field',
         'vAlign'=>'middle',
+        'width' => '30%',
         'value'=>function ($model, $key, $index, $widget) { 
-            return $model->store->title;
-        }
+             return $model->property->title;
+        },
     ],
     [
         'class' => 'kartik\grid\EditableColumn',
-        'attribute' => 'product_url',
+        'attribute' => 'value',
+        'pageSummary' => 'Page Total',
         'vAlign'=>'middle',
         'headerOptions'=>['class'=>'kv-sticky-column'],
         'contentOptions'=>['class'=>'kv-sticky-column'],
-        'editableOptions'=>['header'=>'Title']
+        'editableOptions'=>['header'=>'Value']
     ],
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',
+        'template' => '{delete}',
         'urlCreator' => function($action, $model, $key, $index) { 
             if ($action == 'delete') {
-                return Url::toRoute(['deleteinfo', 'id'=>$model->product->id, 'infoId'=>$key]);
+                return Url::toRoute(['deleteinfo', 'id'=>$model->company_id, 'infoId'=>$model->id]);
             } else {
                 return '';
             }
         },
-        'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip', 'style'=>'display:none;'],
-        'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip', 'style'=>'display:none;'],
         'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'], 
     ],
 ];
 
-$this->registerJs(
-   '$(document).ready(function(){ 
-        $(document).on("click", "#reset_productinfos", function() {
-            $.pjax.reload({container:"#productinfos"});  //Reload GridView
-        });
-    });'
-);
 
 ?>
 
 <div class="row">
     <div class="col-xs-12">
-
-
     <?= DetailView::widget([
         'model'=>$model,
         'condensed'=>true,
@@ -289,8 +259,53 @@ $this->registerJs(
     ]);?>
 
     </div>
-
 </div>
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+    <div class="box-header with-border">
+    <h3 class="box-title">Additional Info</h3>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns,
+        'toolbar'=> false,
+        'export' => false,
+        'containerOptions'=>['style'=>'overflow: auto'], // only set when $responsive = false
+        'headerRowOptions'=>['class'=>'kartik-sheet-style'],
+        'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
+        'pjax' => true,
+        'bordered' => true,
+        'striped' => false,
+        'condensed' => false,
+        'responsive' => true,
+        'showFooter' => false,
+        'hover' => true,
+        'showPageSummary' => false,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => false,
+        ],
+        'toolbar'=> [
+            ['content'=>
+                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>'Add', 'id'=>'add_fieldinfos', 'class'=>'showModalButton btn btn-success', 'value'=>Url::toRoute(['addinfo', 'id'=>$model->id])]) 
+            ],
+        ],
+        'pjaxSettings' => [
+            'neverTimeout' => true,
+            'options' => [
+                'id' => 'fieldinfos'
+            ]
+        ]
+    ]);?>
+
+    </div>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-xs-12">
@@ -352,3 +367,31 @@ $this->registerJs(
     </div>
     </div>
 <div>
+
+
+
+
+
+
+<?php
+    yii\bootstrap\Modal::begin([
+        'header' => 'Add Field Info',
+        'id'=>'addFieldInfoModal',
+        'class' =>'modal',
+        'size' => 'modal-md',
+    ]);
+        echo "<div class='modalContent' id='modalContent'></div>";
+    yii\bootstrap\Modal::end();
+
+        //js code:
+    $this->registerJs('
+
+        $(document).ready(function(){ 
+            $(document).on("click", "#add_fieldinfos", function() {
+                $("#addFieldInfoModal").modal("show")
+                    .find("#modalContent")
+                    .load($(this).attr("value"));
+            });
+        });
+    ');
+?>

@@ -5,8 +5,11 @@ namespace backend\controllers\catalog;
 use Yii;
 use common\models\Category;
 use common\models\Company;
+use common\models\Property;
+use common\models\PropComp;
 use backend\models\CompanySearch;
 use backend\models\CompanyInfoSearch;
+use backend\models\PropCompSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -36,7 +39,7 @@ class CompanyController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload', 'delogo', 'uplogo'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload', 'delogo', 'uplogo','addinfo','deleteinfo'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -94,6 +97,25 @@ class CompanyController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        if (Yii::$app->request->isAjax && Yii::$app->request->post('hasEditable')) {
+            $fieldId = Yii::$app->request->post('editableKey');
+            $model = PropComp::findOne($fieldId);
+
+            $out = ['output'=>'', 'message'=>''];
+            $posted = current(Yii::$app->request->post('PropComp'));
+            $post = ['PropComp' => $posted];
+
+            if ($model->load($post) && $model->save()) {
+                $out['message'] = '';
+            } else {
+                $out['message'] = 'Error in request';
+            }
+
+            echo Json::encode($out);
+            return;
+        }
+
         if (Yii::$app->request->isAjax) {
             if (Yii::$app->request->post('kvdelete')) {
                 $this->findModel($id)->delete();
@@ -109,11 +131,16 @@ class CompanyController extends Controller
             }
         }
 
+        $searchModel = new PropCompSearch();
+        $searchModel->company_id = $id;
+        $dataProvider = $searchModel->search([]);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('view', [
                 'model' => $model,
+                'dataProvider' => $dataProvider
             ]);
         }
     }
@@ -218,6 +245,51 @@ class CompanyController extends Controller
         }
 
         echo json_encode($output);
+    }
+
+    /**
+     * Add Fields 
+     * @return mixed
+     */
+    
+    public function actionAddinfo($id) {
+
+        $casinoModel = $this->findModel($id);
+        $currentProps = [];
+        if (count($casinoModel->propComps) > 0) {
+            foreach ($casinoModel->propComps as $propComp) {
+                $currentProps[] = $propComp->property_id;
+            }
+        }
+        $properties = Property::find()->orderBy('title')->andFilterWhere(['not in', 'id', $currentProps])->asArray()->all();
+        
+        $model = new PropComp();
+        $model->company_id = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->company_id]);
+        }elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_infoform', [
+                        'model' => $model,
+                        'properties' => $properties
+            ]);
+        } else {
+            return $this->render('_infoform', [
+                        'model' => $model,
+                        'properties' => $properties
+            ]);
+        }
+    }
+
+    /**
+     * Delete Product Info to product
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteinfo($id, $infoId) {
+        $model = $this->findModel($id);
+        PropComp::findOne($infoId)->delete();
+        return $this->redirect(['view', 'id' => $model->id]);
     }
 
     /**

@@ -6,6 +6,9 @@ use Yii;
 use common\models\Category;
 use common\models\Page;
 use common\models\Theme;
+use common\models\Property;
+use backend\models\PropertySearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -35,7 +38,7 @@ class ThemeController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'detach', 'upload'],
+                        'actions' => ['index', 'detach', 'upload','info','addinfo','deleteinfo'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -56,6 +59,67 @@ class ThemeController extends Controller
             'model' => $model,
             'categories' => $categories
         ]);
+    }
+
+    public function actionInfo()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->post('hasEditable')) {
+            $fieldId = Yii::$app->request->post('editableKey');
+            $model = Property::findOne($fieldId);
+
+            $out = ['output'=>'', 'message'=>''];
+            $posted = current(Yii::$app->request->post('Property'));
+            $post = ['Property' => $posted];
+
+            if ($model->load($post) && $model->save()) {
+                $out['message'] = '';
+            } else {
+                $out['message'] = 'Error in request';
+            }
+
+            echo Json::encode($out);
+            return;
+        } else {
+            $searchModel = new PropertySearch();
+            $dataProvider = $searchModel->search([]);
+
+            return $this->render('info', [
+                'dataProvider' => $dataProvider,
+            ]);    
+        }
+        
+    }
+
+    /**
+     * Add Fields 
+     * @return mixed
+     */
+    
+    public function actionAddinfo() {
+
+        $model = new Property();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['info']);
+        }elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_infoform', [
+                        'model' => $model
+            ]);
+        } else {
+            return $this->render('_infoform', [
+                        'model' => $model
+            ]);
+        }
+    }
+
+    /**
+     * Delete Product Info to product
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteinfo($id) {
+        $model = Property::findOne($id)->delete();
+        return $this->redirect(['info']);
     }
    
    

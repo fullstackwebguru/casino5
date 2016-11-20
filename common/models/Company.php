@@ -17,13 +17,8 @@ use yii\behaviors\SluggableBehavior;
  * @property string $short_description
  * @property string $description
  * @property string $website_url
- * @property string $type_of_games
  * @property string $bonus_offer
  * @property integer $bonus_as_value
- * @property string $software
- * @property string $support
- * @property string $currencies
- * @property string $languages
  * @property double $rating
  * @property string $review
  * @property integer $feature_mobile
@@ -77,13 +72,14 @@ class Company extends ActiveRecord
     {
         return [
             [['title', 'website_url', 'meta_keywords', 'meta_description'], 'required'],
-            [['bonus_as_value','bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'required'],
+            [['bonus_as_value','bonus_offer'], 'required'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'required'],
             [['rating'], 'required'],
             [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
-            [['bonus_offer','software', 'type_of_games', 'support', 'currencies', 'languages' ], 'string'],
+            [['bonus_offer'], 'string'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'boolean'],
             [['rating'], 'number', 'max' => 10],
+            [['bonus_as_value'], 'integer'],
             [['title', 'slug','short_description'], 'string', 'max' => 255],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
@@ -132,5 +128,13 @@ class Company extends ActiveRecord
     public function getRoute()
     {
         return ['casino/slug', 'slug' => $this->slug];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPropComps()
+    {
+        return $this->hasMany(PropComp::className(), ['company_id' => 'id']);
     }
 }

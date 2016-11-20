@@ -78,7 +78,7 @@ if ($model->image_url) {
 
 //Company information
 //
-$viewMsg = 'Not applicable';
+$viewMsg = 'View Company';
 $updateMsg = 'Not applicable';
 $deleteMsg = 'Remove Company';
 

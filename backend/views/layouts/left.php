@@ -21,6 +21,7 @@
                     ['label' => 'Guides', 'icon' => 'fa fa-file-code-o', 'url' => ['/catalog/guide'],],
                     ['label' => 'Theme', 'options' => ['class' => 'header']],
                     ['label' => 'Setting', 'icon' => 'fa fa-gear', 'url' => ['/theme/index']],
+                    ['label' => 'Fields', 'icon' => 'fa fa-gear', 'url' => ['/theme/info']],
                     [
                         'label' => 'Pages',
                         'icon' => 'fa fa-book',

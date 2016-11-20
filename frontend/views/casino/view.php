@@ -139,52 +139,25 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height"
                 </table>
             </div>
             <div class="col-md-12 no-padding">
+
+                <?php if (count($model->propComps) > 0 ) {  ?>
                 <p class="left single-title-2-a">ADDITIONAL INFORMATION</p>
                 <table class="table table-condensed">
                     <tbody>
+
+                        <?php foreach($model->propComps as $propComp) { ?>
                         <tr>
                             <td class="left bold">
-                                <p class="s-table-2">Software</p>
+                                <p class="s-table-2"><?= $propComp->property->title ?></p>
                             </td>
                             <td class="right">
-                                <p class="s-table-2"><?= $model->software ?></p>
+                                <p class="s-table-2"><?= $propComp->value ?></p>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="left bold">
-                                <p class="s-table-2">Type of games</p>
-                            </td>
-                            <td class="right">
-                                <p class="s-table-2"><?= $model->type_of_games ?></p>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="left bold">
-                                <p class="s-table-2">Support</p>
-                            </td>
-                            <td class="right">
-                                <p class="s-table-2"><?= $model->support ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left bold">
-                                <p class="s-table-2">Currencies</p>
-                            </td>
-                            <td class="right">
-                                <p class="s-table-2"><?= $model->currencies ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left bold">
-                                <p class="s-table-2">Languages</p>
-                            </td>
-                            <td class="right">
-                                <p class="s-table-2"><?= $model->languages ?></p>
-                            </td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
             </div>
         </div>
 
