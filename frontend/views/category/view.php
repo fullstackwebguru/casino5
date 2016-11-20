@@ -24,20 +24,35 @@ $this->registerMetaTag([
         ]);
 
 ?>
-
 <section id="tables-1">
     <h1 class="headlines-hp">TOP 5<span class="red"> CASINO WEBSITES</span></h1>
     <div class="container" id="front">
+        <div class="row">
+            <div class="col-sm-6">
+                <p class="top-question"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank casinos?</p>
+            </div>
+            <div class="col-sm-6">
+                    <select id="home">
+                        <option value="all"  <?= $filterSelected == 'selected' ? 'selected="selected"' : ''?> >Show All</option>
+                        <option value="mobile" <?= $filterSelected == 'mobile' ? 'selected="selected"' : ''?>>Mobile</a></option>
+                        <option value="instant"<?= $filterSelected == 'instant' ? 'selected="selected"' : ''?> >Instant Play</a></option>
+                        <option value="download"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >Download</a></option>
+                        <option value="live"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >Live Casino</a></option>
+                        <option value="vip"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >VIP Program</a></option>
+                    </select>
+                    <p class="top-right"><i class="fa fa-filter" aria-hidden="true"></i> Filter By</p>
+                </div>
+        </div>
         <div class="table-condensed desk">
-            <table class="table">
+            <table class="table sortable">
                 <thead>
                     <tr class="header-titles">
-                        <th class="hearder-box">#</th>
-                        <th class="hearder-box">Casino site</th>
-                        <th class="hearder-box">Offers</th>
-                        <th class="hearder-box">Features</th>
-                        <th class="hearder-box">Ratings</th>
-                        <th class="hearder-box">Play</th>
+                        <th data-defaultsort="disabled" class="hearder-box">#</th>
+                        <th data-defaultsort="disabled" class="hearder-box">Casino Site</th>
+                        <th class="hearder-box">Offer</th>
+                        <th data-defaultsort="disabled" class="hearder-box">Features</th>
+                        <th data-firstsort data-defaultsort="desc" class="hearder-box">Ratings</th>
+                        <th data-defaultsort="disabled" class="hearder-box">Play</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +63,7 @@ $this->registerMetaTag([
                     <?php
 
                     $compIndex = 0;
-                    foreach($category->cateComps as $catComp) {
+                    foreach($cateComps as $catComp) {
                         $company = $catComp->company;
                         $compIndex ++;
 
@@ -80,19 +95,19 @@ $this->registerMetaTag([
                                 <?php if ($company->feature_mobile > 0) {
                                 ?>
                                 <div class="col-xs-6 no-padding"><i class="fa fa-mobile red" aria-hidden="true"></i></div>
-                                <?php    
+                                <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_instant_play > 0) {
                                 ?>
                                 <div class="col-xs-6 no-padding"><i class="fa fa-play red" aria-hidden="true"></i></div>
-                                <?php    
+                                <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_download > 0) {
                                 ?>
                                 <div class="col-xs-6 no-padding"><i class="fa fa-download red" aria-hidden="true"></i></div>
-                                <?php    
+                                <?php 
                                 }
                                 ?>
                                 <?php if ($company->feature_live_casino > 0) {
@@ -109,10 +124,14 @@ $this->registerMetaTag([
                                 ?>
                             </div>
                         </td>
-                        <td class="padd-1">
+                        <td class="padd-1" data-value="<?= $company->rating ?>">
                             <?= Rating::widget(['rating' => $company->rating]) ?>
                         </td>
-                        <td class="btn-padd"><a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a></td>
+                        <td class="btn-padd">
+                            <a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
+                            <a href="<?= $company->website_url ?>" class=" btn btn-md" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">VISIT <?= $company->title ?></a>
+                        </td>
+
                     </tr>
 
                     <?php
@@ -125,7 +144,7 @@ $this->registerMetaTag([
         <?php
 
         $compIndex = 0;
-        foreach($category->cateComps as $catComp) {
+        foreach($cateComps as $catComp) {
             $company = $catComp->company;
             $compIndex ++;
 
@@ -191,7 +210,7 @@ $this->registerMetaTag([
                     </div>
                 </div>
                 <?= Rating::widget(['rating' => $company->rating]) ?>
-                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn " onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
+                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
                 </div>
             </div>
         </div>
@@ -200,3 +219,20 @@ $this->registerMetaTag([
         ?>
     </div>
 </section>
+
+<?php
+
+$this->registerJs(
+   '$(document).ready(function(){ 
+        var currentBaseUrl = "' . Url::current() . '";
+        $(document).on("change", "#home", function(e, id) {
+            var id = $("#home").val();
+            window.location.href = currentBaseUrl + "?filter="+id;
+        });
+
+
+
+    });'
+);
+
+?>

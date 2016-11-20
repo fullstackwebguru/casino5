@@ -36,8 +36,37 @@ class CategoryController extends Controller
     public function actionSlug($slug) 
     {
         $category = $this->findModelBySlug($slug);
+
+        $queryParams = Yii::$app->request->queryParams;
+        $filterSelected = isset($queryParams['filter']) ? $queryParams['filter'] : '';
+
+        $filters = [];
+        
+        switch ($filterSelected) {
+            case 'mobile': 
+                $filters = ['<>', 'feature_mobile', 0];
+                break;
+            case 'instant': 
+                $filters = ['<>', 'feature_instant_play', 0];
+                break;
+            case 'live': 
+                $filters = ['<>', 'feature_live_casino', 0];
+                break;
+            case 'download': 
+                $filters = ['<>', 'feature_download', 0];
+                break;
+            case 'vip': 
+                $filters = ['<>', 'feature_vip_program', 0];
+                break;
+        }
+
+        $cateComps = $category->getCateCompsSortByRating($filters);
+
+
         return $this->render('view', [
-            'category' => $category
+            'category' => $category,
+            'filterSelected' => $filterSelected,
+            'cateComps' => $cateComps
         ]);
     }
 
