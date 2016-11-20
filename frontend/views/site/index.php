@@ -38,8 +38,8 @@ $this->registerMetaTag([
                         <option value="mobile" <?= $filterSelected == 'mobile' ? 'selected="selected"' : ''?>>Mobile</a></option>
                         <option value="instant"<?= $filterSelected == 'instant' ? 'selected="selected"' : ''?> >Instant Play</a></option>
                         <option value="download"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >Download</a></option>
-                        <option value="live"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >Live Casino</a></option>
-                        <option value="vip"<?= $filterSelected == 'download' ? 'selected="selected"' : ''?> >VIP Program</a></option>
+                        <option value="live"<?= $filterSelected == 'live' ? 'selected="selected"' : ''?> >Live Casino</a></option>
+                        <option value="vip"<?= $filterSelected == 'vip' ? 'selected="selected"' : ''?> >VIP Program</a></option>
                     </select>
                     <p class="top-right"><i class="fa fa-filter" aria-hidden="true"></i> Filter By</p>
                 </div>
@@ -48,11 +48,11 @@ $this->registerMetaTag([
             <table class="table sortable">
                 <thead>
                     <tr class="header-titles">
-                        <th data-defaultsort="disabled" class="hearder-box">#</th>
+                        <th data-firstsort data-defaultsort="asc" class="hearder-box">#</th>
                         <th data-defaultsort="disabled" class="hearder-box">Casino Site</th>
                         <th class="hearder-box">Offer</th>
                         <th data-defaultsort="disabled" class="hearder-box">Features</th>
-                        <th data-firstsort data-defaultsort="desc" class="hearder-box">Ratings</th>
+                        <th class="hearder-box">Ratings</th>
                         <th data-defaultsort="disabled" class="hearder-box">Play</th>
                     </tr>
                 </thead>
@@ -62,34 +62,30 @@ $this->registerMetaTag([
                     </tr>
 
                     <?php
-
-                    $compIndex = 0;
                     foreach($cateComps as $catComp) {
                         $company = $catComp->company;
-                        $compIndex ++;
-
                         $companyImage = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
                     ?>
 
                     <?php 
 
-                    if ($compIndex == 1) {
+                    if ($catComp->rank == 0) {
                 
                     ?>
                     <tr id="first">
-                        <td class="t-images-1"><img src="/images/nr1.jpg" id="nr1" alt="nr1"></td>
+                        <td class="t-images-1" data-value="<?= $catComp->rank ?>"><img src="/images/nr1.jpg" id="nr1" alt="nr1"></td>
 
                     <?php
                     } else {
                     ?>
                         <tr>
-                            <td class="offers"><p class="nr-desk"><?= $compIndex ?></p></td>
+                            <td class="offers" data-value="<?= $catComp->rank ?>" ><p class="nr-desk"><?= $catComp->rank+1 ?></p></td>
                     <?php } ?>
                         <td class="t-images">
-                            <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">
+                            <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
                             <img src="<?= $companyImage ?>" class=" t-img" alt="<?= $company->title ?>"></a>
                         </td>
-                        <td class="offers">
+                        <td class="offers" data-value="<?= $company->bonus_as_value ?>">
                             <p class="offers-3"><?= $company->bonus_offer; ?> </p>
                         </td>
                         <td class="padd-2">
@@ -130,8 +126,8 @@ $this->registerMetaTag([
                             <?= Rating::widget(['rating' => $company->rating, 'link_url'=> Url::toRoute($company->getRoute()) ]) ?>
                         </td>
                         <td class="btn-padd">
-                            <a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
-                            <a href="<?= $company->website_url ?>" class=" btn btn-md" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">VISIT <?= $company->title ?></a>
+                            <a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">GET BONUS</a>
+                            <a href="<?= $company->website_url ?>" class=" btn btn-md" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">VISIT <?= $company->title ?></a>
                         </td>
 
                     </tr>
@@ -144,17 +140,13 @@ $this->registerMetaTag([
         </div>
 
         <?php
-
-        $compIndex = 0;
         foreach($cateComps as $catComp) {
             $company = $catComp->company;
-            $compIndex ++;
-
             $companyImage = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
         ?>
 
         <?php 
-        if ($compIndex == 1) {
+        if ($catComp->rank == 0) {
         ?>
         <hr class="cas-top mob">
         <div class="small-wrapp mob first-mob ">
@@ -167,15 +159,15 @@ $this->registerMetaTag([
         <?php } ?>
             <div class="cas-mob-wrapp">
                 <?php 
-                if ($compIndex == 1) {
+                if ($catComp->rank == 0) {
                 ?>
                 <img src="/images/nr1.png" id="nr-1" alt="nr1">
                 <?php
                 } else {
                 ?>
-                <p class="nr-mob"><?= $compIndex ?></p>
+                <p class="nr-mob"><?= $catComp->rank+1 ?></p>
                 <?php } ?>
-                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">
+                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
                     <img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>
                 <p class="offers-3"><?= $company->bonus_offer; ?></p>
                 <div class="i-wrapp-mob">
@@ -213,7 +205,7 @@ $this->registerMetaTag([
                     </div>
                 </div>
                 <?= Rating::widget(['rating' => $company->rating, 'link_url'=> Url::toRoute($company->getRoute())]) ?>
-                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">GET BONUS</a>
+                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">GET BONUS</a>
                 </div>
             </div>
         </div>

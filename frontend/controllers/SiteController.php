@@ -79,7 +79,7 @@ class SiteController extends Controller
                 break;
         }
 
-        $cateComps = $category->getCateCompsSortByRating($filters);
+        $cateComps = $category->getCateCompsSortByRank($filters);
 
         return $this->render('index', [
             'category' => $category,

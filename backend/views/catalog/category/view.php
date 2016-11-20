@@ -158,8 +158,10 @@ $gridColumns = [
         'dropdown' => false,
         'vAlign'=>'middle',
         'urlCreator' => function($action, $model, $key, $index) { 
-            if ($action == 'delete') {
-                return Url::toRoute(['deleteinfo', 'id'=>$model->category->id, 'infoId'=>$model->id]);
+            if ($action == 'view') {
+                return Url::toRoute(['/catalog/company/view', 'id'=> $model->company_id]);
+            } else if ($action == 'delete') {
+                return Url::toRoute(['', 'id'=>$model->category->id, 'infoId'=>$model->id]);
             } else if ($action == 'up') {
                 return Url::toRoute(['rank', 'id'=>$model->category->id, 'actionId'=>$model->id, 'type' => 'up']);
             } else if ($action == 'down') {
@@ -168,7 +170,7 @@ $gridColumns = [
                 return '';
             }
         },
-        'template' => '{up} {down} {delete}',
+        'template' => '{up} {down} {view} {delete}',
         'buttons' => [
             'up' => function ($url, $model) {
                 if ($model->rank != 0 ) {
@@ -185,7 +187,7 @@ $gridColumns = [
                 }
             },
         ],
-        'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip', 'style'=>'display:none;'],
+        'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
         'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip', 'style'=>'display:none;'],
         'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'], 
         'width' => '110px'
