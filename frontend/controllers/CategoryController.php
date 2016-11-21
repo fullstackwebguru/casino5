@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
     public function actionIndex() {
 
-        $categories = Category::find()->where(['<>', 'id', 1])->orderBy('title')->all();
+        $categories = Category::find()->where(['<>', 'id', 1])->orderBy(['self_rank' => SORT_ASC])->all();
         $model = Page::findOne(['page_id'=>'categories']);
         return $this->render('index', [
             'model' => $model,

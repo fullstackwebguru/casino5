@@ -75,7 +75,8 @@ class CategorySearch extends Category
 
         $query->andFilterWhere(['<>', 'id', 1])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug]);
+            ->andFilterWhere(['like', 'slug', $this->slug])
+            ->orderBy(['self_rank' => SORT_ASC]);
 
         return $dataProvider;
     }

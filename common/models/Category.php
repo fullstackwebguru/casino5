@@ -15,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $title
  * @property string $short_description
  * @property string $description
+ * @property string $self_rank
  * @property string $slug
  * @property string $image_url
  * @property string $meta_description
@@ -63,6 +64,7 @@ class Category extends ActiveRecord
         return [
             [['title','short_title', 'short_description', 'meta_keywords', 'meta_description'], 'required'],
             [['title'], 'string', 'max' => 255],
+            [['self_rank'], 'integer'],
             [['description', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['temp_image'], 'safe'],
             [['temp_image'], 'file', 'extensions'=>'jpg, gif, png'],
@@ -129,6 +131,13 @@ class Category extends ActiveRecord
 
     public function getMaxRank() {
         return $this->getCateComps()->count();
+    }
+
+    public function getMaxSelfRank() {
+        $maxModels = Category::find()->orderBy(['self_rank' => SORT_DESC])->limit(1)->all();
+        foreach ($maxModels as $maxModel) {
+            return $maxModel->self_rank;    
+        }
     }
 
     /**

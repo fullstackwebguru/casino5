@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
+use common\models\Category;
 
 
 /* @var $this yii\web\View */
@@ -14,10 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $viewMsg = 'View Category Details';
 $updateMsg = 'Update Category Details';
-$deleteMsg = 'Delte Category';
+$deleteMsg = 'Delete Category';
 
 $gridColumns = [
-    ['class' => 'kartik\grid\SerialColumn'],
+    [
+        'attribute' => 'self_rank',
+        'label' => '#',
+        'width' => '50px',
+        'vAlign'=>'middle'
+    ],
     [
         'attribute'=>'image_url', 
         'vAlign'=>'middle',
@@ -44,13 +50,35 @@ $gridColumns = [
         'urlCreator' => function($action, $model, $key, $index) { 
             if ($action == 'update') {
                 return Url::toRoute(['view', 'id'=>$key, 'viewMode'=>'edit']);     
+            } else if ($action == 'up') {
+                return Url::toRoute(['position', 'id'=>$model->id, 'type' => 'up']);
+            } else if ($action == 'down') {
+                return Url::toRoute(['position', 'id'=>$model->id, 'type' => 'down']);
             } else {
                 return Url::toRoute([$action, 'id'=>$key]);
-            }
+            } 
         },
+        'template' => '{up} {down} {view} {update} {delete}',
+        'buttons' => [
+            'up' => function ($url, $model) {
+                if ($model->self_rank != 1 ) {
+                    return '<a class="change-rank" href="'. $url . '" data-rank="'. $model->self_rank .'" title="" data-toggle="tooltip" data-original-title="Up"><span class="glyphicon glyphicon-arrow-up"></span></a>';
+                } else {
+                    return '';
+                }
+            },
+            'down' => function ($url, $model) {
+                if ($model->self_rank != ($model->getMaxSelfRank()) ) {
+                    return '<a class="change-rank"  href="'. $url . '" data-rank="'. $model->self_rank .'" title="" data-toggle="tooltip" data-original-title="Down"><span class="glyphicon glyphicon-arrow-down"></span></a>';
+                } else {
+                    return '';
+                }
+            },
+        ],
         'viewOptions'=>['title'=>$viewMsg, 'data-toggle'=>'tooltip'],
         'updateOptions'=>['title'=>$updateMsg, 'data-toggle'=>'tooltip'],
         'deleteOptions'=>['title'=>$deleteMsg, 'data-toggle'=>'tooltip'], 
+        'width' => '150px'
     ],
 ];
 

@@ -45,7 +45,7 @@ class CategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','rank','addfield','deletefield'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank','addfield','deletefield'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -202,7 +202,7 @@ class CategoryController extends Controller
         $currModel->delete();
 
         $cateComps = $model->getCateComps()->orderBy(['rank' => SORT_DESC])->all();
-        foreach ($cateComps as $catecomp) {
+        foreach ($cateComps as $cateComp) {
             if ($cateComp->rank > $currRank) {
                 $cateComp->rank = $cateComp->rank - 1;
                 $cateComp->save();
@@ -329,8 +329,9 @@ class CategoryController extends Controller
                     $image_url = $uploadResult['public_id'];
                     $model->image_url = $image_url;
                 }
-
             }
+
+            $model->self_rank = $model->getMaxSelfRank() + 1;
             
             if ($model->save())  {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -375,10 +376,58 @@ class CategoryController extends Controller
             $theme->category_id = 1;
             $theme->save();
         }
-        $this->findModel($id)->delete();
+
+        $model = $this->findModel($id);
+        $currRank = $model->self_rank;
+        $categories = Category::find(['<>', 'id', 1])->orderBy(['self_rank' => SORT_DESC])->all();
+        foreach ($categories as $category) {
+            if ($category->self_rank > $currRank) {
+                $category->self_rank = $category->self_rank - 1;
+                $category->save();
+            } else {
+                break;
+            }
+        }
+
+        $model->delete();
         return $this->redirect(['index']);
     }
 
+    /**
+     * Change Self Rank of category
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionPosition($id, $type) {
+        $model = $this->findModel($id);
+
+        if ($id == 1) return $this->redirect(['view', 'id' => $model->id]);
+
+
+        if ($type == 'up') {
+            $categories = Category::find(['<>', 'id', 1])->orderBy(['self_rank' => SORT_ASC])->all();
+        } else {
+            $categories = Category::find(['<>', 'id', 1])->orderBy(['self_rank' => SORT_DESC])->all();
+        }
+
+        $prevOne = null;
+        foreach($categories as $category) {
+            if ($category->id == $id) {
+                $c = $prevOne->self_rank;
+                $prevOne->self_rank = $category->self_rank;
+                $category->self_rank = $c;
+
+                $prevOne->save();
+                $category->save();
+
+                break;
+            } 
+
+            $prevOne = $category;
+        }
+        return $this->redirect(['index']);
+
+    }
 
     /**
      * Change Rank of companies in category
