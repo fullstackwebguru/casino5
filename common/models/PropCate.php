@@ -6,7 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "cate_comp".
+ * This is the model class for table "property_category".
  *
  * @property integer $id
  * @property integer $property_id
@@ -23,7 +23,7 @@ class PropCate extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{cate_comp}}';
+        return '{{property_category}}';
     }
 
     /**
@@ -42,8 +42,8 @@ class PropCate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['property_id', 'category_id', 'rank'], 'integer'],
-            [['property_id', 'category_id', 'rank'], 'required'],
+            [['property_id', 'category_id', 'position'], 'integer'],
+            [['property_id', 'category_id', 'position'], 'required'],
             [['property_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['property_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -58,7 +58,7 @@ class PropCate extends \yii\db\ActiveRecord
             'id' => 'ID',
             'property_id' => 'Property',
             'category_id' => 'Category',
-            'rank' => 'Rank'
+            'position' => 'Rank'
         ];
     }
 

@@ -50,6 +50,9 @@ $this->registerMetaTag([
                     <tr class="header-titles">
                         <th data-firstsort data-defaultsort="asc" class="hearder-box">#</th>
                         <th data-defaultsort="disabled" class="hearder-box">Casino Site</th>
+                        <?php foreach($category->propCates as $propCate) { ?> 
+                        <th data-defaultsort="disabled" class="hearder-box"><?= $propCate->property->title; ?></th>
+                        <?php } ?>
                         <th class="hearder-box">Offer</th>
                         <th data-defaultsort="disabled" class="hearder-box">Features</th>
                         <th class="hearder-box">Ratings</th>
@@ -85,6 +88,17 @@ $this->registerMetaTag([
                             <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
                             <img src="<?= $companyImage ?>" class=" t-img" alt="<?= $company->title ?>"></a>
                         </td>
+
+                        <?php foreach($category->propCates as $propCate) { 
+                            $propComp = $company->getPropCompByProperty($propCate->property_id);
+                        ?> 
+
+                        <td class="offers">
+                            <p class="offers-3"><?= $propComp == null ? ' ' : $propComp->value; ?> </p>
+                        </td>
+
+                        <?php } ?>
+
                         <td class="offers" data-value="<?= $company->bonus_as_value ?>">
                             <p class="offers-3"><?= $company->bonus_offer; ?> </p>
                         </td>
@@ -169,6 +183,13 @@ $this->registerMetaTag([
                 <?php } ?>
                 <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
                     <img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>
+                
+                <?php foreach($category->propCates as $propCate) { 
+                            $propComp = $company->getPropCompByProperty($propCate->property_id);
+                        ?> 
+                            <p class="offers-3"><?= $propComp == null ? ' ' : $propComp->value; ?> </p>
+                <?php } ?>
+                
                 <p class="offers-3"><?= $company->bonus_offer; ?></p>
                 <div class="i-wrapp-mob">
                     <div class="row">

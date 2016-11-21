@@ -8,8 +8,12 @@ use common\models\Category;
 use common\models\CateComp;
 use backend\models\CategorySearch;
 use backend\models\CateCompSearch;
+use backend\models\PropCateSearch;
 use backend\models\CompanySearch;
 use common\models\Theme;
+use common\models\Property;
+use common\models\PropCate;
+
 
 
 use yii\web\Controller;
@@ -41,7 +45,7 @@ class CategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','rank'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','rank','addfield','deletefield'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -210,6 +214,53 @@ class CategoryController extends Controller
     }
 
     /**
+     * Add Fields 
+     * @return mixed
+     */
+    
+    public function actionAddfield($id) {
+
+        $categoryModel = $this->findModel($id);
+        $currentProps = [];
+        $maxCount = count($categoryModel->propCates);
+        if ($maxCount > 0) {
+            foreach ($categoryModel->propCates as $propCate) {
+                $currentProps[] = $propCate->property_id;
+            }
+        }
+        $properties = Property::find()->orderBy('title')->andFilterWhere(['not in', 'id', $currentProps])->asArray()->all();
+        
+        $model = new PropCate();
+        $model->category_id = $id;
+        $model->position = $maxCount;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->category_id]);
+        }elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_infoform', [
+                        'model' => $model,
+                        'properties' => $properties
+            ]);
+        } else {
+            return $this->render('_infoform', [
+                        'model' => $model,
+                        'properties' => $properties
+            ]);
+        }
+    }
+
+    /**
+     * Delete Product Info to product
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeletefield($id, $fieldId) {
+        $model = $this->findModel($id);
+        PropCate::findOne($fieldId)->delete();
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /**
      * Displays a single Category model.
      * @param integer $id
      * @return mixed
@@ -236,6 +287,10 @@ class CategoryController extends Controller
         $searchModel->category_id = $id;
         $dataProvider = $searchModel->search([]);
 
+        $searchModel = new PropCateSearch();
+        $searchModel->category_id = $id;
+        $fieldDataProvider = $searchModel->search([]);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -250,6 +305,7 @@ class CategoryController extends Controller
                 'model' => $model,
                 'viewMode' => $viewMode,
                 'dataProvider' => $dataProvider,
+                'fieldDataProvider' => $fieldDataProvider
             ]);
         }
     }

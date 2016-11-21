@@ -194,6 +194,42 @@ $gridColumns = [
     ],
 ];
 
+
+
+
+//field additional information
+//
+//
+$deleteFieldMsg = 'Delete field information';
+
+$fieldGridColumns = [
+    ['class' => 'kartik\grid\SerialColumn'],
+    [
+        'attribute' => 'property_id',
+        'label' => 'Field',
+        'vAlign'=>'middle',
+        'width' => '30%',
+        'value'=>function ($model, $key, $index, $widget) { 
+             return $model->property->title;
+        },
+    ],
+    [
+        'class' => 'kartik\grid\ActionColumn',
+        'dropdown' => false,
+        'vAlign'=>'middle',
+        'template' => '{delete}',
+        'urlCreator' => function($action, $model, $key, $index) { 
+            if ($action == 'delete') {
+                return Url::toRoute(['deletefield', 'id'=>$model->category_id, 'fieldId'=>$model->id]);
+            } else {
+                return '';
+            }
+        },
+        'deleteOptions'=>['title'=>$deleteFieldMsg, 'data-toggle'=>'tooltip'], 
+    ],
+];
+
+
 $this->registerJs(
    '$(document).ready(function(){ 
         $(document).on("click", "#reset_companyinfos", function() {
@@ -274,6 +310,48 @@ $this->registerJs(
 <div class="row">
     <div class="col-xs-12">
     <div class="box-header with-border">
+    <h3 class="box-title">Additional Fields</h3>
+
+    <?= GridView::widget([
+        'dataProvider' => $fieldDataProvider,
+        'columns' => $fieldGridColumns,
+        'toolbar'=> false,
+        'export' => false,
+        'containerOptions'=>['style'=>'overflow: auto'], // only set when $responsive = false
+        'headerRowOptions'=>['class'=>'kartik-sheet-style'],
+        'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
+        'pjax' => true,
+        'bordered' => true,
+        'striped' => false,
+        'condensed' => false,
+        'responsive' => true,
+        'showFooter' => false,
+        'hover' => true,
+        'showPageSummary' => false,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => false,
+        ],
+        'toolbar'=> [
+            ['content'=>
+                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>'Add', 'id'=>'add_fieldinfos', 'class'=>'showModalButton btn btn-success', 'value'=>Url::toRoute(['addfield', 'id'=>$model->id])]) 
+            ],
+        ],
+        'pjaxSettings' => [
+            'neverTimeout' => true,
+            'options' => [
+                'id' => 'fieldinfos'
+            ]
+        ]
+    ]);?>
+
+    </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+    <div class="box-header with-border">
         <h3 class="box-title">Category Image</h3>
 
         <?= FileInput::widget([
@@ -300,3 +378,27 @@ $this->registerJs(
     </div>
     </div>
 <div>
+
+
+<?php
+    yii\bootstrap\Modal::begin([
+        'header' => 'Add Field Info',
+        'id'=>'addFieldInfoModal',
+        'class' =>'modal',
+        'size' => 'modal-md',
+    ]);
+        echo "<div class='modalContent' id='modalContent'></div>";
+    yii\bootstrap\Modal::end();
+
+        //js code:
+    $this->registerJs('
+
+        $(document).ready(function(){ 
+            $(document).on("click", "#add_fieldinfos", function() {
+                $("#addFieldInfoModal").modal("show")
+                    .find("#modalContent")
+                    .load($(this).attr("value"));
+            });
+        });
+    ');
+?>

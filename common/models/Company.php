@@ -137,4 +137,8 @@ class Company extends ActiveRecord
     {
         return $this->hasMany(PropComp::className(), ['company_id' => 'id']);
     }
+
+    public function getPropCompByProperty($property_id) {
+        return  PropComp::findOne(['company_id'=>$this->id, 'property_id' => $property_id]);
+    }
 }

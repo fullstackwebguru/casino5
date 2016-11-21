@@ -15,6 +15,24 @@ echo Form::widget([
     ]
 ]);
 
+echo Form::widget([
+    'model'=>$model,
+    'form'=>$form,
+    'columns'=> 1,
+    'attributes'=>[       //  column layout
+        'short_title'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter short title']]
+    ]
+]);
+
+echo Form::widget([
+    'model'=>$model,
+    'form'=>$form,
+    'columns'=> 1,
+    'attributes'=>[       //  column layout
+        'short_description'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Enter short description']]
+    ]
+]);
+
 echo $form->field($model, 'temp_image')->widget(
     FileInput::classname(), 
     [  
