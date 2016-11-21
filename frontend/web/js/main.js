@@ -9,6 +9,12 @@ var d = (new Date()).toString().split(' ').splice(1,3).join(' ');
 
 $(document).ready(function(){
 
+    $('a.goto_section_bottom').click(function(e) {
+        var destination = $("#wwd").offset().top;
+        $('html, body').animate({scrollTop: destination}, 800);
+
+    });
+
         
     $('a.read-more').click(function() {
         $('p.lazy').toggle(500);

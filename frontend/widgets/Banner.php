@@ -16,6 +16,10 @@ class Banner extends \yii\base\Widget
      */
     private $mainTheme;
 
+    public $class1;
+    public $breadcrumbs;
+    public $title;
+
     public function init()
     {
         parent::init();
@@ -25,11 +29,20 @@ class Banner extends \yii\base\Widget
         } else {
             throw new NotFoundHttpException('The requested theme does not exist.');
         }
+
+        if ($this->class1 == null) {
+            $this->class1 = "top";
+        }
     }
 
     public function run()
-    {        
-        return $this->render('banner', ['theme' => $this->mainTheme]);
+    {
+        if ($this->breadcrumbs != null) {
+            return $this->render('banner', ['class1'=> $this->class1, 'theme' => $this->mainTheme, 'breadcrumbs' => $this->breadcrumbs, 'title' => $this->title]);    
+        } else {
+            return $this->render('banner', ['class1'=> $this->class1, 'theme' => $this->mainTheme]);
+        }
+        
     }
 
     public function getViewPath() {

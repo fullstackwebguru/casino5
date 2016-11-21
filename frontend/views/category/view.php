@@ -8,8 +8,10 @@ use yii\helpers\Url;
 use frontend\widgets\Banner;
 use frontend\widgets\Rating;
 
+use frontend\widgets\HowToFind;
+use frontend\widgets\HowWeWork;
+
 use frontend\assets\Top10JsAsset;
-use frontend\widgets\SearchBox;
 
 $this->title = 'Category - '. $category->title;
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,14 +28,23 @@ $this->registerMetaTag([
 
 ?>
 
-<?= Banner::widget() ?>
+<?= Banner::widget(['breadcrumbs' => [
+    [  
+        'title' => 'Home', 
+        'route' => ['/']
+    ],
+    [  
+        'title' => $parentPage->title,
+        'route' => ['/category']
+    ],
+], 'title' => $category->title ]) ?>
 
 <section id="tables-1">
     <h1 class="headlines-hp">TOP 5<span class="red"> CASINO WEBSITES</span></h1>
     <div class="container" id="front">
         <div class="row">
             <div class="col-sm-6">
-                <p class="top-question"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank casinos?</p>
+                <a href="javascript:void(0)" class="goto_section_bottom"><p class="top-question"><i class="fa fa-question-circle" aria-hidden="true"></i> Wondering how we rank casinos?</p></a>
             </div>
             <div class="col-sm-6">
                     <select id="home">
@@ -101,8 +112,10 @@ $this->registerMetaTag([
 
                         <?php } ?>
 
-                        <td class="offers" data-value="<?= $company->bonus_as_value ?>">
+                        <td class="offers" data-value="<?= $company->bonus_as_value ?>">   
+                            <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"> 
                             <p class="offers-3"><?= $company->bonus_offer; ?> </p>
+                            </a>
                         </td>
                         <td class="padd-2">
                             <div class="i-wrapp">
@@ -193,8 +206,8 @@ $this->registerMetaTag([
                         ?> 
                             <p class="offers-3"><?= $propComp == null ? ' ' : $propComp->value; ?> </p>
                 <?php } ?>
-                
-                <p class="offers-3"><?= $company->bonus_offer; ?></p>
+
+                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"> <p class="offers-3"> <?= $company->bonus_offer; ?></p> </a>
                 <div class="i-wrapp-mob">
                     <div class="row">
                         <?php if ($company->feature_mobile > 0) {
@@ -239,6 +252,14 @@ $this->registerMetaTag([
         ?>
     </div>
 </section>
+
+<?= HowWeWork::widget() ?>
+
+<!--end of what we do section-->
+<hr class="divider">
+
+
+<?= HowToFind::widget() ?>
 
 <?php
 

@@ -4,7 +4,7 @@
 use yii\helpers\Url;
 use frontend\widgets\Rating;
 
-$casinoLogo = cloudinary_url($casino->logo_url, array("width" => 365, "height" => 214, "crop" => "fill"));
+$casinoLogo = cloudinary_url($casino->image_url, array("width" => 365, "height" => 214, "crop" => "fill"));
 
 ?>
 

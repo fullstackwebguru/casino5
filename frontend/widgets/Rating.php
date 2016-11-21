@@ -14,21 +14,24 @@ class Rating extends \yii\base\Widget
      */
     public $ratesTemplate = [
         'orange' => [
-            'filled'   => '<i class="glyphicon glyphicon-star orange"></i>',
-            'unfilled'  => '<i class="glyphicon glyphicon-star"></i>',
+            'filled' => '<i class="glyphicon glyphicon-star orange"></i>',
+            'half' => '<i class="glyphicon glyphicon-star half orange"></i>',
+            'unfilled'  => '<i class="glyphicon glyphicon-star black"></i>',
             'class1' => 'rate-wrapp',
             'class2' => 'rate-number',
             'class3' => 'stars-wrapper',
         ], 
         'red' => [
-            'filled'   => '<i class="glyphicon glyphicon-star red-size-comp"></i> ',
-            'unfilled'  => '<i class="glyphicon glyphicon-star black-size-comp"></i> ',
+            'filled'   => '<i class="glyphicon glyphicon-star red-size-comp"></i>',
+            'half' => '<i class="glyphicon glyphicon-star half red-size-comp"></i>',
+            'unfilled'  => '<i class="glyphicon glyphicon-star black-size-comp"></i>',
             'class1' => 'rate-wrapp-comp',
             'class2' => 'rate-numb-comp',
             'class3' => 'stars-wrapper-comp',
         ],
         'side' => [
             'filled'   => '<i class="glyphicon glyphicon-star red-size"></i>',
+            'half'   => '<i class="glyphicon glyphicon-star half half-comp red-size"></i> ',
             'unfilled'  => '<i class="glyphicon glyphicon-star black-size"></i>',
             'class1' => 'rate-wrapp-guide',
             'class2' => 'rate-number-gui',
@@ -36,6 +39,7 @@ class Rating extends \yii\base\Widget
         ],
         'category' => [
             'filled'   => '<i class="glyphicon glyphicon-star red-size"></i>',
+            'half'   => '<i class="glyphicon glyphicon-star half red-size"></i>',
             'unfilled'  => '<i class="glyphicon glyphicon-star black-size"></i>',
             'class2' => 'rate-number',
             'class3' => 'stars-wrapper',  
@@ -84,8 +88,16 @@ class Rating extends \yii\base\Widget
 
     public function run()
     {
+        $currRating = min($this->rating, $this->max_rating);
+
         $interval = ($this->max_rating - $this->min_rating) / $this->num_stars;
-        $value = floor(min($this->rating, $this->max_rating) / $interval);
+        $value = floor($currRating / $interval);
+
+        $halfFlag = false;
+
+        if ($currRating - $value * $interval >= ($interval/2) ) {
+            $halfFlag = true;;
+        }
 
         $html = '';
         if (isset($this->ratesTemplate[$this->type]['class1'])) {
@@ -97,6 +109,11 @@ class Rating extends \yii\base\Widget
 
         for ($i=0; $i< $value; $i++) {
             $html .= $this->ratesTemplate[$this->type]['filled'];
+        }
+
+        if ($halfFlag) {
+            $html .= $this->ratesTemplate[$this->type]['half'];
+            $i++;
         }
 
         for (; $i < $this->num_stars; $i++) {

@@ -15,7 +15,7 @@ use common\models\Page;
  */
 class CasinoController extends Controller
 {
-    public $numPerPage = 2;
+    public $numPerPage = 12;
 
     public function actionIndex() {
         $companyCount = Company::find()->orderBy('id')->count();
@@ -47,9 +47,12 @@ class CasinoController extends Controller
 
     public function actionSlug($slug) 
     {
+        $parentPage = Page::findOne(['page_id'=>'casinos']);
+
         $model = $this->findModelBySlug($slug);
         return $this->render('view', [
-            'model' => $model
+            'model' => $model,
+            'parentPage' => $parentPage
         ]);   
     }
 

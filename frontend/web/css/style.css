@@ -197,6 +197,10 @@ span.red {
 	color: #f05342;
 }
 
+.black {
+    color:#bdc3c7
+}
+
 .red-size {
 	color: #f05342;
 	font-size: 11px;
@@ -204,6 +208,7 @@ span.red {
 
 .black-size {
     font-size: 11px;
+    color:#bdc3c7
 }
 
 .blue {
@@ -532,15 +537,42 @@ img#nr1 {
     margin-bottom: -2px;
 }
 
+.glyphicon-star.half {
+position: relative;
+}
+
+.glyphicon-star.half:before {
+position: relative;
+z-index: 9;
+width: 47%;
+display: block;
+overflow: hidden;
+}
+
+.glyphicon-star.half:after {
+content: '\e006';
+position: absolute;
+z-index: 8;
+color: #bdc3c7;
+top: 0;
+left: 0;
+
+}
+
 .stars-wrapper .glyphicon-star {
 	/*margin-right: -4px;*/
     font-weight: 600;
 }
 
 .stars-wrapper-comp .glyphicon-star {
-    margin-right: -4px;
+    /*margin-right: -4px;*/
     font-weight: 600;
 }
+
+.stars-wrapper .glyphicon-star.half.half-comp {
+    margin-right: -4px;
+}
+
 
 .rate-number-2 {
 	color: #383838;
@@ -1017,7 +1049,7 @@ p.post-content {
 
 .post-wrapper {
 	margin: 0px 0 150px 0!important;
-	min-height: 200px;
+	min-height: 170px;
 }
 
 section#pager {
@@ -1559,6 +1591,7 @@ p.rate-numb-comp a {
 
 .black-size-comp {
     font-size: 24px!important;
+    color:#bdc3c7
 }
 
 .red-size-comp-2 {

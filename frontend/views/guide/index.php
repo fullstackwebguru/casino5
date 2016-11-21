@@ -22,8 +22,13 @@ $this->registerMetaTag([
         ]);
 
 ?>
+<?= Banner::widget(['breadcrumbs' => [
+    [  
+        'title' => 'Home', 
+        'route' => ['/']
+    ],
+], 'title' => $this->title ]) ?>
 
-<?= Banner::widget() ?>
 <div class="top"></div>
 <section id="guide">
     <div class="container">
@@ -35,8 +40,7 @@ $this->registerMetaTag([
             <div class="post-wrapper">
                 <a href="<?=Url::toRoute($guide->getRoute())?>"> <img src="<?= $guideImage ?>" class="img-responsive col-sm-3 no-padding post-img" alt="p-image"> </a>
                 <div class="text-gui col-sm-9">
-                    <h3><?= $guide->title ?></h3>
-                    <span class="post-date">On <?= Yii::$app->formatter->asDate($guide->created_at , 'long'); ?> </span>
+                    <a href="<?=Url::toRoute($guide->getRoute())?>"><h3><?= $guide->title ?></h3></a>
                     <p class="post-content">
                         <?= $guide->meta_description ?>
                     </p>

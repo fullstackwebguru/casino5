@@ -28,7 +28,16 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height"
 
 ?>
 
-<?= Banner::widget() ?>
+<?= Banner::widget(['breadcrumbs' => [
+    [  
+        'title' => 'Home', 
+        'route' => ['/']
+    ],
+    [  
+        'title' => $parentPage->title,
+        'route' => ['/casino']
+    ],
+], 'title' => $model->title ]) ?>
 
 <div class="top"></div>
 <section id="company">
@@ -127,7 +136,7 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height"
                                 <p class="s-table-2">Website</p>
                             </td>
                             <td class="right">
-                                <p class="s-table-2"><?= $model->website_url ?></p>
+                                <a href="<?= $model->website_url ?>" onclick="trackOutboundLink('<?= $model->title ?>', '<?= $model->website_url ?>'); return false;"> <p class="s-table-2">Visit Website</p> </a>
                             </td>
                         </tr>
                         <tr>

@@ -22,7 +22,12 @@ $this->registerMetaTag([
 
 ?>
 
-<?= Banner::widget() ?>
+<?= Banner::widget(['breadcrumbs' => [
+    [  
+        'title' => 'Home', 
+        'route' => ['/']
+    ],
+], 'title' => $this->title ]) ?>
 
 <section id="casinos-1">
     <div class="container" id="all-casino-container">

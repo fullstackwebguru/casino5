@@ -45,10 +45,10 @@ use frontend\widgets\GetInTouch;
                     </ul>
                 </div>
                 <div class="col-md-5">
-                    <p class="copy-1-l">Best Casinos Online Top 10 © 2016 All rights reserved.</p>
+                    <p class="copy-1-l">Top5BestOnlineCasinos.today © 2016 All rights reserved.
                 </div>
                 <div class="col-md-7">
-                    <p class="copy-1-r">Best Casinos Online Top 10 is not affiliated with any of the casinos showd on the website</p>
+                    <p class="copy-1-r">Top 5 Best Online Casinos Today is not affiliated with any of the casinos showd on the website</p>
                 </div>
             </div>
         </div>

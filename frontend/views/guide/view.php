@@ -30,8 +30,6 @@ $guideImage = cloudinary_url($model->image_url, array("width" => 744, "height" =
 	<div class="container">
 	    <div class="main col-md-8">
 	       <img src="<?= $guideImage ?>" class="img-responsive top-gs" alt="top-image">
-
-            <span class="post-date">On <?= Yii::$app->formatter->asDate($model->created_at , 'long'); ?>  </span>
             <h3 class="gs-3"><?= $model->title ?></h3>
 
             <?= Markdown::convert($model->description) ?>

@@ -25,7 +25,6 @@ class CategoryController extends Controller
     public function actionIndex() {
 
         $categories = Category::find()->where(['<>', 'id', 1])->orderBy('title')->all();
-
         $model = Page::findOne(['page_id'=>'categories']);
         return $this->render('index', [
             'model' => $model,
@@ -36,6 +35,7 @@ class CategoryController extends Controller
     public function actionSlug($slug) 
     {
         $category = $this->findModelBySlug($slug);
+        $parentPage = Page::findOne(['page_id'=>'categories']);
 
         $queryParams = Yii::$app->request->queryParams;
         $filterSelected = isset($queryParams['filter']) ? $queryParams['filter'] : '';
@@ -66,7 +66,8 @@ class CategoryController extends Controller
         return $this->render('view', [
             'category' => $category,
             'filterSelected' => $filterSelected,
-            'cateComps' => $cateComps
+            'cateComps' => $cateComps,
+            'parentPage' => $parentPage
         ]);
     }
 
