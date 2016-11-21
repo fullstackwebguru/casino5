@@ -93,6 +93,7 @@ CREATE TABLE `cate_comp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
+  `rank` int(11) NOT NULL DEFAULT '0',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -100,11 +101,11 @@ CREATE TABLE `cate_comp` (
   KEY `fk-catecomp-company_id-company-id` (`company_id`),
   CONSTRAINT `fk-catecomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk-catecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `cate_comp` */
 
-insert  into `cate_comp`(`id`,`category_id`,`company_id`,`created_at`,`updated_at`) values (2,4,1,1478803367,1478803367),(3,4,2,1478866963,1478866963);
+insert  into `cate_comp`(`id`,`category_id`,`company_id`,`rank`,`created_at`,`updated_at`) values (6,4,1,0,1479666944,1479709743),(8,4,3,2,1479666944,1479709739),(10,5,3,1,1479710136,1479710136);
 
 /*Table structure for table `category` */
 
@@ -123,11 +124,11 @@ CREATE TABLE `category` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `category` */
 
-insert  into `category`(`id`,`title`,`short_title`,`description`,`short_description`,`image_url`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'NONE',NULL,'none','test',NULL,'NONE','NONE','NONE',1000000,1000000),(4,'Test1','stet',NULL,'test','fyacal2qtqh7rbig4zwd','test1','test','test',1478803357,1478803357);
+insert  into `category`(`id`,`title`,`short_title`,`description`,`short_description`,`image_url`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'NONE',NULL,'none','test',NULL,'NONE','NONE','NONE',1000000,1000000),(4,'Test1','stet',NULL,'Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','fyacal2qtqh7rbig4zwd','test1','test','test',1478803357,1479661898),(5,'test2 aefaefawe','test2 ',NULL,'ateateatet','tw0rukfpsek8zulnzwdl','test2-aefaefawe','aetaetat','aetataetaet',1479710089,1479710089);
 
 /*Table structure for table `company` */
 
@@ -137,18 +138,15 @@ CREATE TABLE `company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `short_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `logo_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `website_url` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `rating` double NOT NULL,
   `review` text COLLATE utf8_unicode_ci,
+  `bonus_as_value` int(10) DEFAULT '0',
   `bonus_offer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `software` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type_of_games` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `support` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `currencies` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `languages` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `feature_mobile` tinyint(1) NOT NULL DEFAULT '1',
   `feature_instant_play` tinyint(1) NOT NULL DEFAULT '1',
   `feature_download` tinyint(1) NOT NULL DEFAULT '1',
@@ -160,11 +158,11 @@ CREATE TABLE `company` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `company` */
 
-insert  into `company`(`id`,`category_id`,`title`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_offer`,`software`,`type_of_games`,`support`,`currencies`,`languages`,`feature_mobile`,`feature_instant_play`,`feature_download`,`feature_live_casino`,`feature_vip_program`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,0,'test1','**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n**Price** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','kpux3k0fdpqojgfxnsfg','bms1ybh60ronzjlgk7ae','https://google.com',4,'**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n**Price** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','$600 for every $1500','ate','ate','ate','ate','ate',1,0,1,0,1,'test1','ate','atete',1478802818,1478882982),(2,0,'test2','afeafaewf','yqsemyffpr2ucvxr4lnf','oj3csgdotsbls8gcmoax','https://yahoo.com',4,'aefafaewfaefaw','$200 for every $1500','afeafe','aefaf','afeaef','afaef','afeafe',1,1,1,1,1,'test2','aeafeawf','afeaefa',1478866940,1478882996);
+insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_as_value`,`bonus_offer`,`feature_mobile`,`feature_instant_play`,`feature_download`,`feature_live_casino`,`feature_vip_program`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,0,'test1','Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n**Price** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','kpux3k0fdpqojgfxnsfg','bms1ybh60ronzjlgk7ae','https://google.com',4.2,'**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n**Price** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',10,'$600 for every $1500',1,0,1,0,1,'test1','ate','atete',1478802818,1479662051),(3,0,'AFEAF','Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','efqefqefqefqfeqef','u1n2zpwt6r3lfoyigqmj','o7lhtkwqk87rcwyyt2li','234',4.6,'AWEFWAEFWEAFWAEF',10,'AFEAFAWEF',0,1,1,0,0,'afeaf','aWEFEWF','AEFAWEFAWEFEWAF',1479437339,1479662092),(4,0,'afe','afe','','ytuwewyplqbs1r7ewrqe',NULL,'afeaf',3.6,'afeafafe',1434,'afe',0,0,1,1,1,'afe','aefaf','afeafafaef',1479684430,1479710240);
 
 /*Table structure for table `guide` */
 
@@ -200,7 +198,7 @@ CREATE TABLE `migration` (
 
 /*Data for the table `migration` */
 
-insert  into `migration`(`version`,`apply_time`) values ('m000000_000000_base',1478614396),('m130524_201442_init',1478614399),('m140506_102106_rbac_init',1478614435),('m161108_142834_create_company_table',1478802508),('m161109_180719_create_category_table',1478802508),('m161109_190347_create_cate_comp_table',1478802508),('m161110_170051_create_guide_table',1478802508),('m161110_172805_create_page_table',1478802508),('m161110_175240_create_theme_table',1478874280);
+insert  into `migration`(`version`,`apply_time`) values ('m000000_000000_base',1478614396),('m130524_201442_init',1478614399),('m140506_102106_rbac_init',1478614435),('m161108_142834_create_company_table',1478802508),('m161109_180719_create_category_table',1478802508),('m161109_190347_create_cate_comp_table',1478802508),('m161110_170051_create_guide_table',1478802508),('m161110_172805_create_page_table',1478802508),('m161110_175240_create_theme_table',1478874280),('m161120_210104_create_property_table',1479677224),('m161120_210544_create_property_casino_table',1479677224),('m161120_210706_create_property_category_table',1479677224),('m161120_215912_create_relationship_prop_cate_comp',1479679340),('m161120_220259_create_relationship_prop_cate_comp1',1479679457);
 
 /*Table structure for table `page` */
 
@@ -217,11 +215,71 @@ CREATE TABLE `page` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `page` */
 
-insert  into `page`(`id`,`page_id`,`title`,`slug`,`description`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'about','About','about','about','about','keywords',1476880763,1476880763),(2,'home','Home1','home','Home','about234234234234','home1',1476880763,1477498675),(3,'contact','Contact','contact','Contact','about','about',1476880763,1476880763),(4,'tos','Tos','tos','**ateataewwe**','meta','keywords',1476880763,1477498722),(5,'privacy','Privacy','privacy','Privacy\r\n','meta','meta',1476880763,1476880763),(6,'disclaimer','Disclaimer','disclaimer','Disclaimer','meta','meta',1476880788,1476880788),(8,'categories','categories','categories','afeaefe','categories','categories',1476880788,1476880788),(9,'compare','Compare','compare','**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\nPrice Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.','compare','compare',1484353345,1478881020),(10,'guides','Guides','guide','guide','guide','guide',1484353346,1484353346);
+insert  into `page`(`id`,`page_id`,`title`,`slug`,`description`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'about','About','about','about','about','keywords',1476880763,1476880763),(2,'home','Home1','home','Home','about234234234234','home1',1476880763,1477498675),(3,'contact','Contact','contact','Contact','about','about',1476880763,1476880763),(4,'tos','Tos','tos','**ateataewwe**','meta','keywords',1476880763,1477498722),(5,'privacy','Privacy','privacy','Privacy\r\n','meta','meta',1476880763,1476880763),(6,'disclaimer','Disclaimer','disclaimer','Disclaimer','meta','meta',1476880788,1476880788),(8,'categories','categories','categories','afeaefe','categories','categories',1476880788,1476880788),(9,'compare','Compare','compare','**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\nPrice Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.','compare','compare',1484353345,1478881020),(10,'guides','Guides','guide','guide','guide','guide',1484353346,1484353346),(11,'casinos','Casinos','casinos','casinos','casinos','casinos',1484353347,1484353347);
+
+/*Table structure for table `property` */
+
+DROP TABLE IF EXISTS `property`;
+
+CREATE TABLE `property` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `property` */
+
+insert  into `property`(`id`,`title`,`created_at`,`updated_at`) values (3,'Type Of Games',1479677868,1479678120),(4,'Software',1479678032,1479678135),(5,'Support',1479678036,1479678144),(6,'Currencies',1479678151,1479678151),(7,'Languages',1479678160,1479678160);
+
+/*Table structure for table `property_casino` */
+
+DROP TABLE IF EXISTS `property_casino`;
+
+CREATE TABLE `property_casino` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `property_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-propcate-company_id-company-id` (`company_id`),
+  KEY `fk-propcate-property_id-property-id` (`property_id`),
+  CONSTRAINT `fk-propcate-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk-propcate-property_id-property-id` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `property_casino` */
+
+insert  into `property_casino`(`id`,`property_id`,`company_id`,`value`,`created_at`,`updated_at`) values (1,3,1,'mobile apps, video slot, 3D slots, high rolers, table games, blackjack, poker, scratch games',1479683435,1479709321),(3,6,1,'USD, EUR',1479683749,1479709314),(4,4,4,'wefwef',1479684536,1479684536),(6,3,4,'wefewfe',1479684556,1479684556),(7,5,4,'qwefqeff',1479684617,1479684617);
+
+/*Table structure for table `property_category` */
+
+DROP TABLE IF EXISTS `property_category`;
+
+CREATE TABLE `property_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `property_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-propcomp-category_id-category-id` (`category_id`),
+  KEY `fk-propcomp-property_id-property-id` (`property_id`),
+  CONSTRAINT `fk-propcomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk-propcomp-property_id-property-id` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `property_category` */
+
+insert  into `property_category`(`id`,`property_id`,`category_id`,`position`,`created_at`,`updated_at`) values (1,7,4,0,1479707770,1479707770),(2,6,4,1,1479707778,1479707778);
 
 /*Table structure for table `theme` */
 
@@ -252,7 +310,7 @@ CREATE TABLE `theme` (
 
 /*Data for the table `theme` */
 
-insert  into `theme`(`id`,`category_id`,`banner_image`,`banner_heading`,`banner_subheading`,`how_to_find_best`,`hwork_title1`,`hwork_title2`,`hwork_title3`,`hwork_title4`,`hwork_description1`,`hwork_description2`,`hwork_description3`,`hwork_description4`,`created_at`,`updated_at`,`contact_email`,`contact_phone`,`contact_address`) values (1,'4',NULL,'afeafe','aaefaef','afeafa','afe','abe','befe','afe','afe','afe','afefe','afeafe',14141414,1478874353,'test@test.com','123456789','random address');
+insert  into `theme`(`id`,`category_id`,`banner_image`,`banner_heading`,`banner_subheading`,`how_to_find_best`,`hwork_title1`,`hwork_title2`,`hwork_title3`,`hwork_title4`,`hwork_description1`,`hwork_description2`,`hwork_description3`,`hwork_description4`,`created_at`,`updated_at`,`contact_email`,`contact_phone`,`contact_address`) values (1,'4',NULL,'afeafe','aaefaef','afeafa','afe','abe','befe','afe','afe','afe','afefe','afeafe',14141414,1479710173,'test@test1.com','123456789','random address');
 
 /*Table structure for table `user` */
 
@@ -276,7 +334,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`username`,`auth_key`,`password_hash`,`password_reset_token`,`email`,`status`,`created_at`,`updated_at`) values (2,'admin','Yf-o2mMa1kvDaH12Gv9ZzCrRzQM2IlOf','$2y$13$de.zBrS.yG7rYUA1Q5Qp0.e1rE5.DbpgDSOmFfZ6HGZIIKFiHhXA6',NULL,'admin@kitchenrating.com',10,1478614588,1478614588),(3,'support','087HOunXey9yXcHWt8UkvhUO_s7lm5_6','$2y$13$fqRPYM7KRInlWqGgv//LneQEn4F202FlBaf9v7JK1y/rm9QuVhfOS',NULL,'support@kitchenrating.com',10,1478614589,1478614589);
+insert  into `user`(`id`,`username`,`auth_key`,`password_hash`,`password_reset_token`,`email`,`status`,`created_at`,`updated_at`) values (2,'admin','Yf-o2mMa1kvDaH12Gv9ZzCrRzQM2IlOf','$2y$13$de.zBrS.yG7rYUA1Q5Qp0.e1rE5.DbpgDSOmFfZ6HGZIIKFiHhXA6',NULL,'admin@top5bestcasinos.today	',10,1478614588,1478614588),(3,'support','087HOunXey9yXcHWt8UkvhUO_s7lm5_6','$2y$13$fqRPYM7KRInlWqGgv//LneQEn4F202FlBaf9v7JK1y/rm9QuVhfOS',NULL,'support@top5bestcasinos.today	',10,1478614589,1478614589);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
