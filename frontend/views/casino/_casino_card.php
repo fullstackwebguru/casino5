@@ -10,7 +10,7 @@ $casinoLogo = cloudinary_url($casino->image_url, array("width" => 365, "height" 
 
 <div class="col-md-4 col-sm-6 padd-left">
     <div class="cas-wrapp ">
-        <img src="<?= $casinoLogo ?>" class="img-responsive " alt="casino-img">
+        <a href="<?= Url::toRoute($casino->getRoute()) ?>"><img src="<?= $casinoLogo ?>" class="img-responsive " alt="casino-img"></a>
         <div class="cas-wrapp-2">
         <p class="cas-title "><?= $casino->title ?></p>
         <p class="cas-text "><?= $casino->short_description ?></p>

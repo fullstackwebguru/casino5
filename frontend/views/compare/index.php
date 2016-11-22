@@ -62,7 +62,7 @@ $this->registerMetaTag([
                         <tr>
                             <td class="offers-comp"><?= $compIndex?></td>
                             <td class="t-images-comp">
-                                <a href="<?=Url::toRoute($company->getRoute())?>"> <img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"> </a>
+                                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;"> <img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"> </a>
                             </td>
                             <td class="padd-comp">
                                 <?php if ($company->feature_mobile > 0) {
