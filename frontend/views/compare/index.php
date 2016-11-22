@@ -62,7 +62,7 @@ $this->registerMetaTag([
                         <tr>
                             <td class="offers-comp"><?= $compIndex?></td>
                             <td class="t-images-comp">
-                                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;"> <img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"> </a>
+                                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;"> <img src="<?= $companyLogo ?>" class="img-responsive t-img-company" alt="casino-img"> </a>
                             </td>
                             <td class="padd-comp">
                                 <?php if ($company->feature_mobile > 0) {
@@ -105,7 +105,7 @@ $this->registerMetaTag([
                                 </div>
                                 <?php }  ?>
                             </td>
-                            <td class="btn-padd-1"><a href="<?= $company->website_url ?>" class=" btn btn-comp btn-primary" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $compIndex ?>'); return false;">PLAY</a>
+                            <td class="btn-padd-1"><a href="<?= $company->website_url ?>" class=" btn btn-comp btn-primary" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;">PLAY</a>
                             </td>
                         </tr>
                     <?php
