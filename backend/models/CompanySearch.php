@@ -80,10 +80,12 @@ class CompanySearch extends Company
             ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'description', $this->description]);
 
+
         if (count($this->excludeCompanies) > 0) {
             $query->andFilterWhere(['not in', 'id', $this->excludeCompanies]);
         }
 
+        $query->orderBy(['self_rank' => SORT_ASC]);
         return $dataProvider;
     }
 }

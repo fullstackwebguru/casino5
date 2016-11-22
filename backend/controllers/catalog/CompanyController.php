@@ -39,7 +39,7 @@ class CompanyController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload', 'delogo', 'uplogo','addinfo','deleteinfo'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload', 'delogo', 'uplogo','addinfo','deleteinfo','position'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -292,6 +292,41 @@ class CompanyController extends Controller
         return $this->redirect(['view', 'id' => $model->id]);
     }
 
+
+    /**
+     * Change Self Rank of company
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionPosition($id, $type) {
+        $model = $this->findModel($id);
+
+        if ($type == 'up') {
+            $companies = Company::find()->orderBy(['self_rank' => SORT_ASC])->all();
+        } else {
+            $companies = Company::find()->orderBy(['self_rank' => SORT_DESC])->all();
+        }
+
+        $prevOne = null;
+        foreach($companies as $company) {
+            if ($company->id == $id) {
+                $c = $prevOne->self_rank;
+                $prevOne->self_rank = $company->self_rank;
+                $company->self_rank = $c;
+
+                $prevOne->save();
+                $company->save();
+
+                break;
+            } 
+
+            $prevOne = $company;
+        }
+        return $this->redirect(['index']);
+
+    }
+
+
     /**
      * Creates a new Company model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -323,6 +358,8 @@ class CompanyController extends Controller
                     $model->logo_url = $logo_url;
                 }
             }
+
+            $model->self_rank = $model->getMaxSelfRank() + 1;
             
             if ($model->save())  {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -361,7 +398,20 @@ class CompanyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        $currRank = $model->self_rank;
+        $companies = Company::find()->orderBy(['self_rank' => SORT_DESC])->all();
+        foreach ($companies as $company) {
+            if ($company->self_rank > $currRank) {
+                $company->self_rank = $company->self_rank - 1;
+                $company->save();
+            } else {
+                break;
+            }
+        }
+
+        $model->delete();
         return $this->redirect(['index']);
     }
 

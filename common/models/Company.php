@@ -20,6 +20,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $bonus_offer
  * @property integer $bonus_as_value
  * @property double $rating
+ * @property string $self_rank
  * @property string $review
  * @property integer $feature_mobile
  * @property integer $feature_instant_play
@@ -75,6 +76,7 @@ class Company extends ActiveRecord
             [['bonus_as_value','bonus_offer'], 'required'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'required'],
             [['rating'], 'required'],
+            [['self_rank'], 'integer'],
             [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['bonus_offer'], 'string'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'boolean'],
@@ -140,5 +142,14 @@ class Company extends ActiveRecord
 
     public function getPropCompByProperty($property_id) {
         return  PropComp::findOne(['company_id'=>$this->id, 'property_id' => $property_id]);
+    }
+
+    public function getMaxSelfRank() {
+        $maxModels = Company::find()->orderBy(['self_rank' => SORT_DESC])->limit(1)->all();
+        foreach ($maxModels as $maxModel) {
+            return $maxModel->self_rank;
+        }
+
+        return 0;
     }
 }
