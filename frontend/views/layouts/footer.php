@@ -13,8 +13,7 @@ use frontend\widgets\GetInTouch;
             <div class="row">
                 <div class="col-sm-4">
                     <p class="title-info-1">Best Casinos</p>
-                    <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt uvinventore veritatis et </p>
-                    <p class="info-text">sed do eiusmod tempor incididunt uvinventore veritatis et quasi architecto </p>
+                    <p class="info-text">Disclaimer: Top5BestOnlineCasinos.today is compensated by the casino brand listed on this website allowing the website to maintain its comparison services. Reliance on the information on this website are entirely at your own responsibility. </p>
                 </div>
                 <div class="col-sm-4">
                     <div class="net-wrapp">
@@ -23,7 +22,6 @@ use frontend\widgets\GetInTouch;
                         <p class="info-text-2"><?=  Html::a('Privacy',['/site/policy']) ?></p>
                         <p class="info-text-2"><?=  Html::a('ToS',['/site/tos']) ?></p>
                         <p class="info-text-2"><?=  Html::a('Disclamer',['/site/disclaimer']) ?></p>
-                        <p class="info-text-2"><?=  Html::a('Contact',['/site/contact']) ?></p>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -37,11 +35,11 @@ use frontend\widgets\GetInTouch;
             <div class="row">
                 <div class="col-sm-12 more">
                     <ul class="foot-icons">
-                        <li><a href=""><img src="/images/foot1.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="/images/foot2.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="/images/foot3.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="/images/foot4.png" class="img-responsive f-width" alt="Image"></a></li>
-                        <li><a href=""><img src="/images/foot5.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href="http://www.gambleaware.co.uk/" target="_blank"><img src="/images/foot1.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href="http://igcouncil.org/" target="_blank"><img src="/images/foot2.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href="https://www.gamblingtherapy.org/" target="_blank"><img src="/images/foot3.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href="http://www.ecogra.org/" target="_blank"><img src="/images/foot4.png" class="img-responsive f-width" alt="Image"></a></li>
+                        <li><a href="http://www.gamcare.org.uk/" target="_blank"><img src="/images/foot5.png" class="img-responsive f-width" alt="Image"></a></li>
                     </ul>
                 </div>
                 <div class="col-md-5">
