@@ -13,7 +13,9 @@ use frontend\widgets\GetInTouch;
             <div class="row">
                 <div class="col-sm-4">
                     <p class="title-info-1">Best Casinos</p>
-                    <p class="info-text">Disclaimer: Top5BestOnlineCasinos.today is compensated by the casino brand listed on this website allowing the website to maintain its comparison services. Reliance on the information on this website are entirely at your own responsibility. </p>
+                    <p class="info-text">Disclaimer: <br> Top5BestOnlineCasinos.today is compensated by the casino brand listed on this website allowing the website to maintain its comparison services. <br>  Reliance on the information on this website are entirely at your own responsibility. <br> 
+                    The content of this website is not intended for an audience under 18 years of age.</p>
+
                 </div>
                 <div class="col-sm-4">
                     <div class="net-wrapp">
