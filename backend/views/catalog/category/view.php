@@ -161,7 +161,7 @@ $gridColumns = [
             if ($action == 'view') {
                 return Url::toRoute(['/catalog/company/view', 'id'=> $model->company_id]);
             } else if ($action == 'delete') {
-                return Url::toRoute(['', 'id'=>$model->category->id, 'infoId'=>$model->id]);
+                return Url::toRoute(['deleteinfo', 'id'=>$model->category->id, 'infoId'=>$model->id]);
             } else if ($action == 'up') {
                 return Url::toRoute(['rank', 'id'=>$model->category->id, 'actionId'=>$model->id, 'type' => 'up']);
             } else if ($action == 'down') {
