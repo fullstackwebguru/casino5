@@ -17,6 +17,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $short_description
  * @property string $description
  * @property string $website_url
+ * @property string $bonus_text_font
  * @property string $bonus_offer
  * @property integer $bonus_as_value
  * @property double $rating
@@ -81,7 +82,7 @@ class Company extends ActiveRecord
             [['bonus_offer'], 'string'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'boolean'],
             [['rating'], 'number', 'max' => 10],
-            [['bonus_as_value'], 'integer'],
+            [['bonus_as_value','bonus_text_font'], 'integer'],
             [['title', 'slug','short_description'], 'string', 'max' => 255],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],

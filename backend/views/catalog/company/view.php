@@ -48,6 +48,10 @@ $attributes = [
         'value'=>$model->bonus_offer
     ],
     [
+        'attribute'=>'bonus_text_font', 
+        'value'=>$model->bonus_text_font
+    ],
+    [
         'attribute'=>'short_description', 
         'value'=>$model->short_description
     ],

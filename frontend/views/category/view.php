@@ -114,38 +114,38 @@ $this->registerMetaTag([
 
                         <td class="offers" data-value="<?= $company->bonus_as_value ?>">   
                             <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"> 
-                            <p class="offers-3"><?= $company->bonus_offer; ?> </p>
+                            <p class="offers-3" style="font-size:<?= $company->bonus_text_font?>px;"><?= $company->bonus_offer; ?> </p>
                             </a>
                         </td>
                         <td class="padd-2">
                             <div class="i-wrapp">
                                 <?php if ($company->feature_mobile > 0) {
                                 ?>
-                                <div class="col-xs-6 no-padding"><i class="fa fa-mobile red" aria-hidden="true"></i></div>
+                                <div class="col-xs-6 no-padding"><i class="fa fa-mobile red" aria-hidden="true" title="Mobile"></i></div>
                                 <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_instant_play > 0) {
                                 ?>
-                                <div class="col-xs-6 no-padding"><i class="fa fa-play red" aria-hidden="true"></i></div>
+                                <div class="col-xs-6 no-padding"><i class="fa fa-play red" aria-hidden="true" title="Instant Play"></i></div>
                                 <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_download > 0) {
                                 ?>
-                                <div class="col-xs-6 no-padding"><i class="fa fa-download red" aria-hidden="true"></i></div>
+                                <div class="col-xs-6 no-padding"><i class="fa fa-download red" aria-hidden="true" title="Download" ></i></div>
                                 <?php 
                                 }
                                 ?>
                                 <?php if ($company->feature_live_casino > 0) {
                                 ?>
-                                <div class="col-xs-6 no-padding"><i class="fa fa-video-camera red" aria-hidden="true"></i></div>
+                                <div class="col-xs-6 no-padding"><i class="fa fa-video-camera red" aria-hidden="true" title="Live Casino"></i></div>
                                 <?php    
                                 }
                                 ?>
                                 <?php if ($company->feature_vip_program > 0) {
                                 ?>
-                                <div class="col-xs-6 no-padding"><i class="fa fa-user-circle-o red" aria-hidden="true"></i></div>
+                                <div class="col-xs-6 no-padding"><i class="fa fa-user-circle-o red" aria-hidden="true" title="VIP Program"></i></div>
                                 <?php    
                                 }
                                 ?>
@@ -207,36 +207,36 @@ $this->registerMetaTag([
                             <p class="offers-3"><?= $propComp == null ? ' ' : $propComp->value; ?> </p>
                 <?php } ?>
 
-                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"> <p class="offers-3"> <?= $company->bonus_offer; ?></p> </a>
+                <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"> <p class="offers-3" style="font-size:<?= $company->bonus_text_font?>px;"><?= $company->bonus_offer; ?> </p> </a>
                 <div class="i-wrapp-mob">
                     <div class="row">
                         <?php if ($company->feature_mobile > 0) {
                         ?>
-                        <div class="col-xs-6 no-padding"><i class="fa fa-mobile red" aria-hidden="true"></i></div>
+                        <div class="col-xs-6 no-padding"><i class="fa fa-mobile red" aria-hidden="true" title="Mobile"></i></div>
                         <?php    
                         }
                         ?>
                         <?php if ($company->feature_instant_play > 0) {
                         ?>
-                        <div class="col-xs-6 no-padding"><i class="fa fa-play red" aria-hidden="true"></i></div>
+                        <div class="col-xs-6 no-padding"><i class="fa fa-play red" aria-hidden="true" title="Instant Play"></i></div>
                         <?php    
                         }
                         ?>
                         <?php if ($company->feature_download > 0) {
                         ?>
-                        <div class="col-xs-6 no-padding"><i class="fa fa-download red" aria-hidden="true"></i></div>
+                        <div class="col-xs-6 no-padding"><i class="fa fa-download red" aria-hidden="true" title="Download"></i></div>
                         <?php    
                         }
                         ?>
                         <?php if ($company->feature_live_casino > 0) {
                         ?>
-                        <div class="col-xs-6 no-padding"><i class="fa fa-video-camera red" aria-hidden="true"></i></div>
+                        <div class="col-xs-6 no-padding"><i class="fa fa-video-camera red" aria-hidden="true" title="Live Casino"></i></div>
                         <?php    
                         }
                         ?>
                         <?php if ($company->feature_vip_program > 0) {
                         ?>
-                        <div class="col-xs-6 no-padding"><i class="fa fa-user-circle-o red" aria-hidden="true"></i></div>
+                        <div class="col-xs-6 no-padding"><i class="fa fa-user-circle-o red" aria-hidden="true" title="VIP Program"></i></div>
                         <?php    
                         } 
                         ?>
