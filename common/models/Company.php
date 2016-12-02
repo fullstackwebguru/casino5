@@ -84,6 +84,7 @@ class Company extends ActiveRecord
             [['rating'], 'number', 'max' => 10],
             [['bonus_as_value','bonus_text_font'], 'integer'],
             [['title', 'slug','short_description'], 'string', 'max' => 255],
+            [['button_text', 'link_text'], 'string', 'max' => 255],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
         ];
@@ -161,5 +162,10 @@ class Company extends ActiveRecord
         }
 
         return 0;
+    }
+
+    public function getLinkText() {
+        $sanitizedLinkText = str_replace("#name#", $this->title, $this->link_text);
+        return $sanitizedLinkText;
     }
 }

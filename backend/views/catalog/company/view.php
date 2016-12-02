@@ -187,7 +187,7 @@ $attributes = [
     ],
     [
         'attribute'=>'link_text', 
-        'label' => 'Link Text ( $name indicates casino name )',
+        'label' => 'Link Text ( #name# indicates casino name )',
         'value'=>$model->link_text
     ],
 ];

@@ -142,8 +142,8 @@ $this->registerMetaTag([
                             <?= Rating::widget(['rating' => $company->rating, 'link_url'=> Url::toRoute($company->getRoute()) ]) ?>
                         </td>
                         <td class="btn-padd">
-                            <a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">GET BONUS</a>
-                            <a href="<?= $company->website_url ?>" class=" btn btn-md" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">VISIT <?= $company->title ?></a>
+                            <a href="<?= $company->website_url ?>" class=" btn btn-md t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"><?= $company->button_text ?></a>
+                            <a href="<?= $company->website_url ?>" class=" btn btn-md" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"><?= $company->getLinkText() ?></a>
                         </td>
 
                     </tr>
@@ -231,7 +231,7 @@ $this->registerMetaTag([
                     </div>
                 </div>
                 <?= Rating::widget(['rating' => $company->rating, 'link_url'=> Url::toRoute($company->getRoute())]) ?>
-                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">GET BONUS</a>
+                <div class="col-sm-12 more"> <a href="<?= $company->website_url ?>" class=" btn btn-md btn-primary t-btn" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"><?= $company->button_text ?></a>
                 </div>
             </div>
         </div>

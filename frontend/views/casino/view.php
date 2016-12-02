@@ -50,7 +50,7 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height"
                     <img src="<?= $companyLogo ?>" class="img-responsive comp-logo" alt="logo">
                 </div>
                 <div class="col-sm-6 no-padding" id="more-top">
-                    <a href="<?= $model->website_url ?>" onclick="trackOutboundLink('<?= $model->title ?>', '<?= $model->website_url ?>'); return false;" class="btn btn-bonus">GET BONUS</a>
+                    <a href="<?= $model->website_url ?>" onclick="trackOutboundLink('<?= $model->title ?>', '<?= $model->website_url ?>'); return false;" class="btn btn-bonus"><?= $model->button_text ?></a>
                 </div>
             </div>
             <div class="text-wrapp">
@@ -121,7 +121,7 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height"
                     </div>
                 </div>
                         <div class="col-sm-12" id="more-top-2">
-                                <a href="<?= $model->website_url ?>" class="btn btn-bonus-1" onclick="trackOutboundLink('<?= $model->title ?>', '<?= $model->website_url ?>'); return false;">GET BONUS</a>
+                                <a href="<?= $model->website_url ?>" class="btn btn-bonus-1" onclick="trackOutboundLink('<?= $model->title ?>', '<?= $model->website_url ?>'); return false;"><?= $model->button_text ?></a>
                         </div>
                 </div>
             
