@@ -56,6 +56,9 @@ $this->registerMetaTag([
                     <?php 
                     $compIndex = 0;
                     foreach ($companies as $company ) {
+                        if ($company->status != 1) {
+                            continue;
+                        }
                         $compIndex++;
                         $companyLogo = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
                     ?>
