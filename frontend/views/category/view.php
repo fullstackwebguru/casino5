@@ -79,23 +79,29 @@ $this->registerMetaTag([
                     </tr>
 
                     <?php
+
+                    $compIndex = 0;
                     foreach($cateComps as $catComp) {
                         $company = $catComp->company;
+                        if ($company->status != 1) {
+                            continue;
+                        }
+                        $compIndex++;
                         $companyImage = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
                     ?>
 
                     <?php 
 
-                    if ($catComp->rank == 0) {
+                    if ($compIndex == 1) {
                     ?>
                     <tr id="first">
-                        <td class="t-images-1" data-value="<?= $catComp->rank ?>"><img src="/images/nr1.jpg" id="nr1" alt="nr1"></td>
+                        <td class="t-images-1" data-value="<?= $compIndex ?>"><img src="/images/nr1.jpg" id="nr1" alt="nr1"></td>
 
                     <?php
                     } else {
                     ?>
                         <tr>
-                            <td class="offers" data-value="<?= $catComp->rank ?>"><p class="nr-desk"><?= $catComp->rank+1 ?></p></td>
+                            <td class="offers" data-value="<?= $compIndex ?>"><p class="nr-desk"><?= $compIndex ?></p></td>
                     <?php } ?>
                         <td class="t-images">
                             <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
@@ -169,14 +175,20 @@ $this->registerMetaTag([
         </div>
 
         <?php
+        $compIndex = 0;
         foreach($cateComps as $catComp) {
             $company = $catComp->company;
 
+            if ($company->status != 1) {
+                continue;
+            }
+            $compIndex++;
+            
             $companyImage = cloudinary_url($company->logo_url, array("width" => 247, "height" => 78, "crop" => "fill"));
         ?>
 
         <?php 
-        if ($catComp->rank == 0) {
+        if ($compIndex == 1) {
         ?>
         <hr class="cas-top mob">
         <div class="small-wrapp mob first-mob ">
@@ -189,13 +201,13 @@ $this->registerMetaTag([
         <?php } ?>
             <div class="cas-mob-wrapp">
                 <?php 
-                if ($catComp->rank == 0) {
+                if ($compIndex == 1) {
                 ?>
                 <img src="/images/nr1.png" id="nr-1" alt="nr1">
                 <?php
                 } else {
                 ?>
-                <p class="nr-mob"><?= $catComp->rank+1 ?></p>
+                <p class="nr-mob"><?= $compIndex ?></p>
                 <?php } ?>
                  <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
                     <img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>

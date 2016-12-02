@@ -18,8 +18,8 @@ class CasinoController extends Controller
     public $numPerPage = 12;
 
     public function actionIndex() {
-        $companyCount = Company::find()->orderBy('id')->count();
-        $companies = Company::find()->orderBy(['self_rank' => SORT_ASC])->limit($this->numPerPage)->all();
+        $companyCount = Company::find()->where(['=','status',1])->orderBy('id')->count();
+        $companies = Company::find()->where(['=','status',1])->orderBy(['self_rank' => SORT_ASC])->limit($this->numPerPage)->all();
         $model = Page::findOne(['page_id'=>'casinos']);
         $more = $companyCount > $this->numPerPage ? 1 : 0;
         return $this->render('index', [
@@ -35,8 +35,8 @@ class CasinoController extends Controller
         $qs = Yii::$app->request->getQueryParams();
         $startNum = isset($qs['startPos']) ? $qs['startPos'] : 0;
 
-        $companyCount = Company::find()->orderBy(['self_rank' => SORT_ASC])->count();
-        $companies = Company::find()->orderBy(['self_rank' => SORT_ASC])->limit($this->numPerPage)->offset($startNum)->all();
+        $companyCount = Company::find()->where(['=','status',1])->orderBy(['self_rank' => SORT_ASC])->count();
+        $companies = Company::find()->where(['=','status',1])->orderBy(['self_rank' => SORT_ASC])->limit($this->numPerPage)->offset($startNum)->all();
         $more = $companyCount >$startNum + $this->numPerPage ? 1 : 0;
         return $this->renderPartial('_companyList', [
             'companies' => $companies,
