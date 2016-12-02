@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.5.52-0ubuntu0.14.04.1 : Database - casino10
+MySQL - 5.5.53-0ubuntu0.14.04.1 : Database - casino10
 *********************************************************************
 */
 
@@ -101,11 +101,11 @@ CREATE TABLE `cate_comp` (
   KEY `fk-catecomp-company_id-company-id` (`company_id`),
   CONSTRAINT `fk-catecomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk-catecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `cate_comp` */
 
-insert  into `cate_comp`(`id`,`category_id`,`company_id`,`rank`,`created_at`,`updated_at`) values (6,4,1,0,1479666944,1479709743),(8,4,3,2,1479666944,1479709739),(10,5,3,1,1479710136,1479710136);
+insert  into `cate_comp`(`id`,`category_id`,`company_id`,`rank`,`created_at`,`updated_at`) values (8,4,3,2,1479666944,1479709739),(12,4,4,1,1480351611,1480351611);
 
 /*Table structure for table `category` */
 
@@ -123,12 +123,13 @@ CREATE TABLE `category` (
   `meta_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `self_rank` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `category` */
 
-insert  into `category`(`id`,`title`,`short_title`,`description`,`short_description`,`image_url`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'NONE',NULL,'none','test',NULL,'NONE','NONE','NONE',1000000,1000000),(4,'Test1','stet',NULL,'Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','fyacal2qtqh7rbig4zwd','test1','test','test',1478803357,1479661898),(5,'test2 aefaefawe','test2 ',NULL,'ateateatet','tw0rukfpsek8zulnzwdl','test2-aefaefawe','aetaetat','aetataetaet',1479710089,1479710089);
+insert  into `category`(`id`,`title`,`short_title`,`description`,`short_description`,`image_url`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`self_rank`) values (1,'NONE',NULL,'none','test',NULL,'NONE','NONE','NONE',1000000,1000000,0),(4,'Test14545','stet4',NULL,'Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','fyacal2qtqh7rbig4zwd','test14545','test','test',1478803357,1479755875,1),(6,'qfeq','qefqwef',NULL,'qwfeqewfqw',NULL,'qfeq','qfeqwefqwef','qwefqwefqwef',1479754689,1479755070,2);
 
 /*Table structure for table `company` */
 
@@ -157,12 +158,14 @@ CREATE TABLE `company` (
   `meta_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `self_rank` int(11) NOT NULL DEFAULT '1',
+  `bonus_text_font` int(11) DEFAULT '19',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `company` */
 
-insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_as_value`,`bonus_offer`,`feature_mobile`,`feature_instant_play`,`feature_download`,`feature_live_casino`,`feature_vip_program`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,0,'test1','Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n**Price** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','kpux3k0fdpqojgfxnsfg','bms1ybh60ronzjlgk7ae','https://google.com',4.2,'**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n**Price** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',10,'$600 for every $1500',1,0,1,0,1,'test1','ate','atete',1478802818,1479662051),(3,0,'AFEAF','Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','efqefqefqefqfeqef','u1n2zpwt6r3lfoyigqmj','o7lhtkwqk87rcwyyt2li','234',4.6,'AWEFWAEFWEAFWAEF',10,'AFEAFAWEF',0,1,1,0,0,'afeaf','aWEFEWF','AEFAWEFAWEFEWAF',1479437339,1479662092),(4,0,'afe','afe','','ytuwewyplqbs1r7ewrqe',NULL,'afeaf',3.6,'afeafafe',1434,'afe',0,0,1,1,1,'afe','aefaf','afeafafaef',1479684430,1479710240);
+insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_as_value`,`bonus_offer`,`feature_mobile`,`feature_instant_play`,`feature_download`,`feature_live_casino`,`feature_vip_program`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`self_rank`,`bonus_text_font`) values (3,0,'AFEAF','Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','efqefqefqefqfeqef','u1n2zpwt6r3lfoyigqmj','o7lhtkwqk87rcwyyt2li','234',4.6,'AWEFWAEFWEAFWAEF',10,'AFEAFAWEF',0,1,1,0,0,'afeaf','aWEFEWF','AEFAWEFAWEFEWAF',1479437339,1480342542,2,30),(4,0,'afe','afe','','ytuwewyplqbs1r7ewrqe','hthp3q9x5a1jboqm8us7','afeaf',3.6,'afeafafe',1434,'afe',0,0,1,1,1,'afe','aefaf','afeafafaef',1479684430,1480342447,1,30);
 
 /*Table structure for table `guide` */
 
@@ -180,11 +183,11 @@ CREATE TABLE `guide` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `guide` */
 
-insert  into `guide`(`id`,`title`,`author`,`slug`,`description`,`image_url`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'How to organize test','Jone Doe','how-to-organize-test','afeafaefaefeaf','zxejpcyu2yezmadnosk7','afeafa','afeafaefaefaefaefaef',1478882326,1478882326);
+insert  into `guide`(`id`,`title`,`author`,`slug`,`description`,`image_url`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'How to organize test','Jone Doe','how-to-organize-test','afeafaefaefeaf','zxejpcyu2yezmadnosk7','afeafa','afeafaefaefaefaefaef',1478882326,1478882326),(2,'Test2guide','tada','test2guide','afeafaewfaefaef','xymcje27wyl8ann5qyhp','awefawefawef','aefaefaefafe',1479744819,1479744819);
 
 /*Table structure for table `migration` */
 
@@ -257,7 +260,7 @@ CREATE TABLE `property_casino` (
 
 /*Data for the table `property_casino` */
 
-insert  into `property_casino`(`id`,`property_id`,`company_id`,`value`,`created_at`,`updated_at`) values (1,3,1,'mobile apps, video slot, 3D slots, high rolers, table games, blackjack, poker, scratch games',1479683435,1479709321),(3,6,1,'USD, EUR',1479683749,1479709314),(4,4,4,'wefwef',1479684536,1479684536),(6,3,4,'wefewfe',1479684556,1479684556),(7,5,4,'qwefqeff',1479684617,1479684617);
+insert  into `property_casino`(`id`,`property_id`,`company_id`,`value`,`created_at`,`updated_at`) values (4,4,4,'wefwef',1479684536,1479684536),(6,3,4,'wefewfe',1479684556,1479684556),(7,5,4,'qwefqeff',1479684617,1479684617);
 
 /*Table structure for table `property_category` */
 
@@ -275,7 +278,7 @@ CREATE TABLE `property_category` (
   KEY `fk-propcomp-property_id-property-id` (`property_id`),
   CONSTRAINT `fk-propcomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk-propcomp-property_id-property-id` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `property_category` */
 

@@ -136,6 +136,14 @@ class Company extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getCateComps()
+    {
+        return $this->hasMany(CateComp::className(), ['company_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getPropComps()
     {
         return $this->hasMany(PropComp::className(), ['company_id' => 'id']);

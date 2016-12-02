@@ -400,6 +400,27 @@ class CompanyController extends Controller
     {
         $model = $this->findModel($id);
 
+        //Regenerate Order for Company ranking in category
+        $cateCompsForCompany = $model->cateComps;
+
+        if ($cateCompsForCompany != null) {
+            foreach($cateCompsForCompany as $currModel) {
+                $currRank = $currModel->rank;
+
+                $cateComps = $currModel->category->getCateComps()->orderBy(['rank' => SORT_DESC])->all();
+                foreach ($cateComps as $cateComp) {
+                    if ($cateComp->rank > $currRank) {
+                        $cateComp->rank = $cateComp->rank - 1;
+                        $cateComp->save();
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        //Regenerate Order for Company ranking
+
         $currRank = $model->self_rank;
         $companies = Company::find()->orderBy(['self_rank' => SORT_DESC])->all();
         foreach ($companies as $company) {
