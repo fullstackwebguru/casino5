@@ -65,6 +65,13 @@ $gridColumns = [
         'falseLabel' => 'No',
     ],
     [
+        'class'=>'kartik\grid\BooleanColumn',
+        'attribute'=>'status', 
+        'vAlign'=>'middle',
+        'trueLabel' => 'Yes',
+        'falseLabel' => 'No',
+    ],
+    [
     'class'=>'kartik\grid\CheckboxColumn',
         'headerOptions'=>['class'=>'kartik-sheet-style'],
     ],

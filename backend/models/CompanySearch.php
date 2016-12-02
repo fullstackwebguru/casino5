@@ -24,6 +24,7 @@ class CompanySearch extends Company
             [['id', 'feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program', 'created_at', 'updated_at'], 'integer'],
             [['title', 'slug', 'description'], 'safe'],
             [['rating'], 'number'],
+            [['status'], 'integer'],
         ];
     }
 
@@ -70,6 +71,7 @@ class CompanySearch extends Company
             'feature_download' => $this->feature_download,
             'feature_live_casino' => $this->feature_live_casino,
             'feature_vip_program' => $this->feature_vip_program,
+            'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

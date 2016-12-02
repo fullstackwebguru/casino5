@@ -22,6 +22,7 @@ class CategorySearch extends Category
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
             [['title', 'slug'], 'safe'],
+            [['status'], 'integer'],
         ];
     }
 
@@ -62,6 +63,7 @@ class CategorySearch extends Category
         // grid filtering conditions
         $where = [
             'id' => $this->id,
+            'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

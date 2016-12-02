@@ -65,6 +65,18 @@ $attributes = [
         ]
     ],
     [
+        'attribute'=>'status', 
+        'format'=>'raw',
+        'value'=>$model->status ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
         'group'=>true,
         'label'=>'Features',
         'rowOptions'=>['class'=>'info'],
@@ -163,6 +175,20 @@ $attributes = [
     [
         'attribute'=>'meta_description', 
         'value'=>$model->meta_description
+    ],
+    [
+        'group'=>true,
+        'label'=>'Table Setting',
+        'rowOptions'=>['class'=>'info']
+    ],
+    [
+        'attribute'=>'button_text', 
+        'value'=>$model->button_text
+    ],
+    [
+        'attribute'=>'link_text', 
+        'label' => 'Link Text ( $name indicates casino name )',
+        'value'=>$model->link_text
     ],
 ];
 

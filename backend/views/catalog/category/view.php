@@ -154,6 +154,16 @@ $gridColumns = [
         }
     ],
     [
+        'class'=>'kartik\grid\BooleanColumn',
+        'label' => 'Enabled',
+        'vAlign'=>'middle',
+        'trueLabel' => 'Yes',
+        'falseLabel' => 'No',
+        'value'=>function ($model, $key, $index, $widget) { 
+            return ($model->company->status == 1);
+        }
+    ],
+    [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',

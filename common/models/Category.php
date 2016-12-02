@@ -85,6 +85,7 @@ class Category extends ActiveRecord
             'temp_image' => 'Image',
             'meta_keywords' => 'SEO Keywords',
             'meta_description' => 'SEO description',
+            'status' => 'Enabled',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
