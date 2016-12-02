@@ -49,6 +49,8 @@ class SiteController extends Controller
 
         $filterSelected = isset($queryParams['filter']) ? $queryParams['filter'] : '';
 
+        $kw = isset($queryParams['kw']) ? $queryParams['kw'] : $category->kw;
+
         // if ($filterSelected == 'features') {
         //     $cateComps = $category->getCateCompsSortByFeatures();
         // } else if ($filterSelected != '') {
@@ -85,7 +87,8 @@ class SiteController extends Controller
             'category' => $category,
             'model' => $model,
             'filterSelected' => $filterSelected,
-            'cateComps' => $cateComps
+            'cateComps' => $cateComps,
+            'kw' => strtoupper($kw)
         ]);
     }
 

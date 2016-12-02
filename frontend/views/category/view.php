@@ -40,7 +40,7 @@ $this->registerMetaTag([
 ], 'title' => $category->title ]) ?>
 
 <section id="tables-1">
-    <h1 class="headlines-hp">TOP 5<span class="red"> CASINO WEBSITES</span></h1>
+    <h1 class="headlines-hp"><?= $category->getTableTitleText($kw) ?></h1>
     <div class="container" id="front">
         <div class="row">
             <div class="col-sm-6">

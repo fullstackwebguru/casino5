@@ -49,13 +49,27 @@ $attributes = [
         'value'=>$model->slug
     ],
     [
-        'attribute'=>'meta_keywords', 
+        'attribute'=>'meta_keywords',
         'value'=>$model->meta_keywords
     ],
     [
         'attribute'=>'meta_description', 
         'value'=>$model->meta_description
-    ]
+    ],
+    [
+        'group'=>true,
+        'label'=>'Table Setting',
+        'rowOptions'=>['class'=>'info']
+    ],
+    [
+        'attribute'=>'subtitle', 
+        'label'=>'Table Title <br/> (Highlight Text goes between ##@ and @##,  <br/>  %kw% indicates KW)',
+        'value'=>$model->subtitle
+    ],
+    [
+        'attribute'=>'kw', 
+        'value'=>$model->kw
+    ],
 ];
 
 //images

@@ -63,7 +63,7 @@ class Category extends ActiveRecord
     {
         return [
             [['title','short_title', 'short_description', 'meta_keywords', 'meta_description'], 'required'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'subtitle', 'kw'], 'string', 'max' => 255],
             [['self_rank'], 'integer'],
             [['description', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['temp_image'], 'safe'],
@@ -86,6 +86,7 @@ class Category extends ActiveRecord
             'meta_keywords' => 'SEO Keywords',
             'meta_description' => 'SEO description',
             'status' => 'Enabled',
+            'kw' => 'Default KW',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -141,6 +142,19 @@ class Category extends ActiveRecord
         }
     }
 
+
+
+    public function getTableTitleText($kw) {
+
+        if ($kw == null || $kw == '') {
+            $kw = $this->kw;
+        }
+        $sanitizedLinkText = str_replace("##@", "<span class=\"red\">", $this->subtitle);
+        $sanitizedLinkText = str_replace("@##", "</span>", $sanitizedLinkText);
+        $sanitizedLinkText = str_replace("%kw%", $kw, $sanitizedLinkText);
+        return $sanitizedLinkText;
+    }
+
     /**
      * @return url
      */
@@ -149,3 +163,4 @@ class Category extends ActiveRecord
         return ['category/slug', 'slug' => $this->slug];
     }
 }
+

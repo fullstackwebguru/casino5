@@ -39,6 +39,7 @@ class CategoryController extends Controller
 
         $queryParams = Yii::$app->request->queryParams;
         $filterSelected = isset($queryParams['filter']) ? $queryParams['filter'] : '';
+        $kw = isset($queryParams['kw']) ? $queryParams['kw'] : $category->kw;
 
         $filters = [];
         
@@ -67,7 +68,8 @@ class CategoryController extends Controller
             'category' => $category,
             'filterSelected' => $filterSelected,
             'cateComps' => $cateComps,
-            'parentPage' => $parentPage
+            'parentPage' => $parentPage,
+            'kw' => strtoupper($kw)
         ]);
     }
 
