@@ -9,7 +9,7 @@ use yii\helpers\Url;
 <header>
     <!-- Navigation -->
     <nav class="navbar navbar-default">
-        <div class="container" id="full-width">
+        <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
