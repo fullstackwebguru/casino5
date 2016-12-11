@@ -31,6 +31,7 @@ use yii\behaviors\SluggableBehavior;
  * @property integer $feature_paypal
  * @property string $slider_text
  * @property integer $show_review_link
+ * @property integer $user_favorite
  * @property string $meta_description
  * @property string $meta_keywords
  * @property string $slug
@@ -80,7 +81,7 @@ class Company extends ActiveRecord
             [['bonus_as_value','bonus_offer'], 'required'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program', 'feature_paypal'], 'required'],
             [['rating'], 'required'],
-            [['self_rank','status', 'show_review_link'], 'integer'],
+            [['self_rank','status', 'show_review_link', 'user_favorite'], 'integer'],
             [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['bonus_offer'], 'string'],
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program', 'feature_paypal'], 'boolean'],

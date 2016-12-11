@@ -25,11 +25,11 @@ use yii\helpers\Html;
             ?>
         </ul>
             <p class="banner-text-3-hp">
-                <?= $category->banner_heading ?>
+                <?= $mainCategory->banner_heading ?>
                 <span><a class=" read-more">Read More</a></span>
             </p>
             <p class="lazy">
-                <?= $category->banner_subheading ?>
+                <?= $mainCategory->banner_subheading ?>
             </p>
 
     </div>

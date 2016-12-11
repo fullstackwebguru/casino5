@@ -203,6 +203,18 @@ $attributes = [
         'value'=>$model->link_text
     ],
     [
+        'attribute'=>'user_favorite', 
+        'format'=>'raw',
+        'value'=>$model->user_favorite ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
         'attribute'=>'show_review_link', 
         'format'=>'raw',
         'value'=>$model->show_review_link ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',

@@ -80,8 +80,11 @@ use yii\helpers\Url;
                             <td class="offers" data-value="<?= $compIndex ?>" ><p class="nr-desk"><?= $compIndex ?></p></td>
                     <?php } ?>
                         <td class="t-images">
+                            <?php if ($company->user_favorite) { ?>
+                            <img src="/images/userfavourite.png" id="favourite" alt="favorite-image">
+                            <?php } ?>
                             <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
-                            <img src="<?= $companyImage ?>" class=" t-img" alt="<?= $company->title ?>"></a>
+                            <img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>
                         </td>
 
                         <?php foreach($category->propCates as $propCate) { 
@@ -189,6 +192,9 @@ use yii\helpers\Url;
                 } else {
                 ?>
                 <p class="nr-mob"><?= $compIndex ?></p>
+                <?php } ?>
+                <?php if ($company->user_favorite) { ?>
+                    <img src="/images/userfavourite.png" id="favourite" alt="favorite-image">
                 <?php } ?>
                 <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
                     <img src="<?= $companyImage ?>" class="img-responsive t-img" alt="<?= $company->title ?>"></a>
