@@ -12,6 +12,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/reset.css',
         'css/style.css',
         'css/bootstrap-sortable.css'
     ];

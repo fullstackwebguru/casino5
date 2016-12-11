@@ -55,7 +55,9 @@ class Rating extends \yii\base\Widget
     public $min_rating;
     public $num_stars;
 
+
     public $link_url;
+    public $show_review;
 
     public function init()
     {
@@ -83,6 +85,10 @@ class Rating extends \yii\base\Widget
 
         if ($this->link_url == null) {
             $this->link_url = "javascript:void(0)";
+        }
+
+        if ($this->show_review == null) {
+            $this->show_review = 0;
         }
     }
 
@@ -122,6 +128,9 @@ class Rating extends \yii\base\Widget
 
         $html .= '</div>';
         if (isset($this->ratesTemplate[$this->type]['class1'])) {
+            if ($this->show_review != 0 ) {
+                $html .= '<a href="' . $this->link_url . '" class="read-r">Read Review</a>';
+            }
             $html .= '</div>';
         }
 

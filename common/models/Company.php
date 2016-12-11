@@ -28,6 +28,9 @@ use yii\behaviors\SluggableBehavior;
  * @property integer $feature_download
  * @property integer $feature_live_casino
  * @property integer $feature_vip_program
+ * @property integer $feature_paypal
+ * @property string $slider_text
+ * @property integer $show_review_link
  * @property string $meta_description
  * @property string $meta_keywords
  * @property string $slug
@@ -75,16 +78,16 @@ class Company extends ActiveRecord
         return [
             [['title', 'website_url', 'meta_keywords', 'meta_description'], 'required'],
             [['bonus_as_value','bonus_offer'], 'required'],
-            [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'required'],
+            [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program', 'feature_paypal'], 'required'],
             [['rating'], 'required'],
-            [['self_rank','status'], 'integer'],
+            [['self_rank','status', 'show_review_link'], 'integer'],
             [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['bonus_offer'], 'string'],
-            [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program' ], 'boolean'],
+            [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program', 'feature_paypal'], 'boolean'],
             [['rating'], 'number', 'max' => 10],
             [['bonus_as_value','bonus_text_font'], 'integer'],
             [['title', 'slug','short_description'], 'string', 'max' => 255],
-            [['button_text', 'link_text'], 'string', 'max' => 255],
+            [['button_text', 'link_text', 'slider_text'], 'string', 'max' => 255],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
         ];
@@ -115,6 +118,7 @@ class Company extends ActiveRecord
             'feature_download' => 'Download',
             'feature_live_casino' => 'Live Casino',
             'feature_vip_program' => 'VIP Program',
+            'feature_paypal' => 'Paypal',
             'meta_keywords' => 'SEO Keywords',
             'meta_description' => 'SEO description',
             'slug' => 'Slug',

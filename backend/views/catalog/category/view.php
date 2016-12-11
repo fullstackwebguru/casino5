@@ -117,7 +117,7 @@ if ($model->banner_icon) {
             'frameAttr'=> [
                 'style' => 'height:150px; width:100px;',
             ],
-            'url' => Url::toRoute(['detach', 'id'=>$model->id])
+            'url' => Url::toRoute(['detachbanner', 'id'=>$model->id])
     ];
 }
 
@@ -213,7 +213,7 @@ $gridColumns = [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',
-        'urlCreator' => function($action, $model, $key, $index) { 
+        'urlCreator' => function($action, $model, $key, $index) {
             if ($action == 'view') {
                 return Url::toRoute(['/catalog/company/view', 'id'=> $model->company_id]);
             } else if ($action == 'delete') {
@@ -249,9 +249,6 @@ $gridColumns = [
         'width' => '110px'
     ],
 ];
-
-
-
 
 //field additional information
 //
@@ -458,7 +455,7 @@ $this->registerJs(
                 'showRemove' => false,
                 'showUpload' => false,
                 'previewFileType' => 'image',
-                'uploadUrl' => Url::toRoute(['upload']),
+                'uploadUrl' => Url::toRoute(['uploadbanner', 'id'=>$model->id]),
             ]
         ]) ?>
     </div>

@@ -1246,13 +1246,28 @@ img#nr1 {
 	padding-top: 10px!important;
 }
 
+.fa-laptop {
+    font-size: 22px!important;
+    margin-bottom: 5px;
+}
+
+.fa-download {
+    font-size: 22px!important;
+    margin-bottom: 5px;
+}
+
+.fa-user-circle-o {
+    font-size: 22px!important;
+    margin-bottom: 5px;    
+}
+
 .fa-play {
     font-size: 22px!important;
     margin-bottom: 5px;
 }
 
 .fa-mobile {
-    font-size: 25px!important;
+    font-size: 22px!important;
     margin-bottom: 5px;
 }
 
@@ -1263,14 +1278,14 @@ img#nr1 {
 
 .fa-usd {
     font-size: 22px!important;
-    margin-bottom: 15px;	
+    margin-bottom: 15px;
 }
 
 .fa-paypal {
     font-size: 22px!important;
     margin-top: 3px;
     text-align: center;
-    margin-bottom: 5px;   
+    margin-bottom: 5px;
 }
 
 .fa-forward {

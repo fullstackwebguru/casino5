@@ -142,6 +142,18 @@ $attributes = [
         ],
     ],
     [
+        'attribute'=>'feature_paypal', 
+        'format'=>'raw',
+        'value'=>$model->feature_paypal ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
         'group'=>true,
         'label'=>'Editor\'s Review',
         'rowOptions'=>['class'=>'info'],
@@ -189,6 +201,27 @@ $attributes = [
         'attribute'=>'link_text', 
         'label' => 'Link Text ( #name# indicates casino name)',
         'value'=>$model->link_text
+    ],
+    [
+        'attribute'=>'show_review_link', 
+        'format'=>'raw',
+        'value'=>$model->show_review_link ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
+        'group'=>true,
+        'label'=>'Slider Setting',
+        'rowOptions'=>['class'=>'info']
+    ],
+    [
+        'attribute'=>'slider_text', 
+        'value'=>$model->slider_text
     ],
 ];
 

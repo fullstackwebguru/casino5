@@ -45,7 +45,7 @@ class CategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank','addfield','deletefield'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank','addfield','deletefield', 'uploadbanner', 'detachbanner'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -126,6 +126,56 @@ class CategoryController extends Controller
                 $model->save();
 
                 $allImages[] = '<img src="' . cloudinary_url($image_url, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
+
+                $allImageConfig[] =[   
+                        'caption' => 'Image',
+                        'frameAttr'=> [
+                            'style' => 'height:150px; width:100px;',
+                        ],
+                        'url' => Url::toRoute(['detach', 'id'=>$model->id])
+                ];
+            }
+
+            $output['initialPreview'] = $allImages;
+            $output['initialPreviewConfig'] = $allImageConfig;
+        }
+
+        echo json_encode($output);
+    }
+
+    /**
+     * Detach image from Category
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDetachbanner($id) {
+        $model = $this->findModel($id);
+        $output = [];
+        \Cloudinary\Uploader::destroy($model->banner_icon);
+        $model->banner_icon = '';
+        $model->save();
+        echo json_encode($output);
+    }
+
+    public function actionUploadbanner($id)
+    {
+        $model = $this->findModel($id);
+
+        $output = [];
+
+        $image = UploadedFile::getInstanceByName('new_banner_image');
+
+        if ($image) {
+
+            $uploadResult = \Cloudinary\Uploader::upload($image->tempName);
+
+            if (isset($uploadResult['public_id'])) {
+                $banner_icon = $uploadResult['public_id'];
+                $model->banner_icon = $banner_icon;
+
+                $model->save();
+
+                $allImages[] = '<img src="' . cloudinary_url($banner_icon, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
 
                 $allImageConfig[] =[   
                         'caption' => 'Image',

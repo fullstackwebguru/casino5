@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <p class="slider-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p class="slider-text"><?= $company->slider_text ?></p>
                             <p class="slider-offer"><?= $company->bonus_offer ?></p>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="cd-author">                                 
                             <ul class="cd-author-info">
                                 <li><img src="<?= $companyImage ?>" alt="Author image"></li>
-                                <li><a class="btn btn-md btn-slider" href="#">Visit Casino Bovada</a></li>
+                                <li><a href="<?= $company->website_url ?>" class="btn btn-md btn-slider" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;">  <?= $company->getLinkText() ?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -45,7 +45,6 @@
             <?php 
             }
             ?>
-
             
         </ul> <!-- cd-testimonials -->
             <p class="cd-see-all"></p>
