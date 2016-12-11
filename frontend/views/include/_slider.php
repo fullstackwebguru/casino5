@@ -28,14 +28,14 @@
                         </div>
                         <div class="col-sm-12">
                             <p class="slider-text"><?= $company->slider_text ?></p>
-                            <p class="slider-offer"><?= $company->bonus_offer ?></p>
+                            <p class="slider-offer"><a href="<?= $company->website_url ?>" target="_blank">  <?= $company->bonus_offer ?></a> </p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="cd-author">                                 
                             <ul class="cd-author-info">
                                 <li><img src="<?= $companyImage ?>" alt="Author image"></li>
-                                <li><a href="<?= $company->website_url ?>" class="btn btn-md btn-slider" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;">  <?= $company->getLinkText() ?></a></li>
+                                <li><a href="<?= $company->website_url ?>" class="btn btn-md btn-slider" target="_blank">  <?= $company->getLinkText() ?></a></li>
                             </ul>
                         </div>
                     </div>
