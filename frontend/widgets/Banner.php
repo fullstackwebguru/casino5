@@ -7,42 +7,36 @@ use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-use common\models\Theme;
+use common\models\Category;
 
 class Banner extends \yii\base\Widget
 {
     /**
      * @var array the options for rendering 
      */
-    private $mainTheme;
-
     public $class1;
-    public $breadcrumbs;
+    public $category;
     public $title;
+    public $categories;
 
     public function init()
     {
         parent::init();
 
-        if (($models = Theme::find()->all()) !== null && count($models) > 0)  {
-            $this->mainTheme = $models[0];
-        } else {
-            throw new NotFoundHttpException('The requested theme does not exist.');
-        }
-
         if ($this->class1 == null) {
             $this->class1 = "top";
         }
+
+        if ($this->category == null) {
+            throw new NotFoundHttpException('The requested category does not exist.');   
+        }
+
+        $this->categories = Category::find()->where(['<>', 'id', 1])->orderBy(['self_rank' => SORT_ASC])->all();
     }
 
     public function run()
     {
-        if ($this->breadcrumbs != null) {
-            return $this->render('banner', ['class1'=> $this->class1, 'theme' => $this->mainTheme, 'breadcrumbs' => $this->breadcrumbs, 'title' => $this->title]);    
-        } else {
-            return $this->render('banner', ['class1'=> $this->class1, 'theme' => $this->mainTheme]);
-        }
-        
+        return $this->render('banner', ['class1'=> $this->class1, 'categories' => $this->categories, 'mainCategory'=> $this->category]);
     }
 
     public function getViewPath() {

@@ -21,6 +21,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link href="http://allfont.net/allfont.css?fonts=montserrat-light" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <?php $this->head() ?>
 </head>
 <body>
@@ -43,8 +44,8 @@ AppAsset::register($this);
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script',' https://www.google-analytics.com/analytics.js','ga');
 
-// ga('create', 'UA-87288532-1', 'auto');
-ga('create', 'UA-78699744-2', 'auto');
+ga('create', 'UA-87288532-1', 'auto');
+// ga('create', 'UA-78699744-2', 'auto');
 ga('send', 'pageview');
 
 </script>

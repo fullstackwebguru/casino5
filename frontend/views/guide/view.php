@@ -24,7 +24,6 @@ $this->registerMetaTag([
 $guideImage = cloudinary_url($model->image_url, array("width" => 744, "height" => 347, "crop" => "fill"));
 ?>
 
-<?= Banner::widget() ?>
 <div class="top"></div>
 <section id="guide">
 	<div class="container">

@@ -28,17 +28,6 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 250, "height"
 
 ?>
 
-<?= Banner::widget(['breadcrumbs' => [
-    [  
-        'title' => 'Home', 
-        'route' => ['/']
-    ],
-    [  
-        'title' => $parentPage->title,
-        'route' => ['/casino']
-    ],
-], 'title' => $model->title ]) ?>
-
 <div class="top"></div>
 <section id="company">
     <div class="container">

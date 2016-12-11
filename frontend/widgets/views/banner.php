@@ -7,53 +7,30 @@ use yii\helpers\Html;
 ?>
 
 <!-- top banner-->
-
-
-
-<?php
-
-if ($theme->banner_image) {
-    $banner_image =  cloudinary_url($theme->banner_image, array("width" => 1918, "height" => 257, "crop" => "fill"));
-?>
-<section id="<?= $class1 ?>" style="background-image: url('<?= $banner_image ?>');">
-<?php
-} else  { 
-?>
-<section id="<?= $class1 ?>">
-<?php
-}
-?>
-
+<section id="top-hp">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p id="banner-text-3-hp">
-                    <?= $theme->banner_heading; ?>
+        <ul class="icon-menu">
+            <?php foreach ($categories as $category) {
+                $banner_icon = $category->banner_icon ? $category->banner_icon : "/images/icons-01-b.png";
+            ?>
+            
+            <li class="top-banner">
+                <a href="<?= Url::toRoute($category->getRoute())?>">
+                    <img src="/images/icons-01-b.png" class="img-responsive menu-icons icon1-b invert-normal" alt="icons" >
+                    <p class="i-text-1"><?= $category->title ?></p>
+                </a>
+            </li>
+            <?php
+            }
+            ?>
+        </ul>
+             <p class="banner-text-3-hp">
+                    <?= $category->banner_heading ?>
                     <span><a class=" read-more">Read More</a></span>
-                </p>
-                <p class="lazy">
-                    <?= $theme->banner_subheading; ?>
-                </p>
-            </div>
-        </div>
+              </p>
+              <p class="lazy">
+                    <?= $category->banner_subheading ?>
+              </p>
+
     </div>
-
-<?php if (isset($breadcrumbs)) { ?>
-    <section id="bread">
-            <div class="container">
-                <ol class="breadcrumb">
-
-                    <?php  foreach ($breadcrumbs as $item) { ?> 
-                    <li>
-                        <?=  Html::a($item['title'],$item['route']) ?>
-                    </li>
-                    <?php } ?>
-
-                    <li class="active"><?= $title ?></li>
-                </ol>
-            </div>
-        </section>
-
-<?php } ?>
 </section>
-<!--end of top banner-->

@@ -20,6 +20,10 @@ class AppAsset extends AssetBundle
         'js/bootstrap-sortable.js',
         'js/moment.js',
         'js/main.js',
+        'js/main-1.js',
+        'js/masonry.pkgd.min.js',
+        'js/jquery.flexslider-min.js',
+        'js/modernizr.js'
     ];
     public $depends = [
         'yii\web\JqueryAsset',

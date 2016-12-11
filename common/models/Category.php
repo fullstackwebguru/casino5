@@ -18,6 +18,9 @@ use yii\db\ActiveRecord;
  * @property string $self_rank
  * @property string $slug
  * @property string $image_url
+ * @property string $banner_icon
+ * @property string $banner_heading
+ * @property string $banner_subheading
  * @property string $meta_description
  * @property string $meta_keywords
  * @property integer $created_at
@@ -67,6 +70,7 @@ class Category extends ActiveRecord
             [['self_rank'], 'integer'],
             [['description', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['temp_image'], 'safe'],
+            [['banner_heading','banner_subheading','banner_icon'], 'string'],
             [['temp_image'], 'file', 'extensions'=>'jpg, gif, png'],
         ];
     }

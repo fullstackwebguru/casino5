@@ -12,7 +12,6 @@ $(document).ready(function(){
     $('a.goto_section_bottom').click(function(e) {
         var destination = $("#wwd").offset().top;
         $('html, body').animate({scrollTop: destination}, 800);
-
     });
 
         
@@ -38,50 +37,6 @@ $(document).ready(function(){
         });
     });
 
-    $("p.plus").click(function(){
-        $("tr.hide-0").toggleClass("visible");
-    });
-
-    $("p.plus-1").click(function(){
-        $("tr.hide-1").toggleClass("visible");
-    });
-
-    $("p.plus-2").click(function(){
-        $("tr.hide-2").toggleClass("visible");
-    });
-    
-    $("p.plus-3").click(function(){
-        $("tr.hide-3").toggleClass("visible");
-    });
-
-    $("p.plus-4").click(function(){
-        $("tr.hide-4").toggleClass("visible");
-    });
-
-    $("p.plus-5").click(function(){
-        $("tr.hide-5").toggleClass("visible");
-    });
-
-    $("p.plus-6").click(function(){
-        $("tr.hide-6").toggleClass("visible");
-    });
-
-    $("p.plus-7").click(function(){
-        $("tr.hide-7").toggleClass("visible");
-    });
-
-    $("p.plus-8").click(function(){
-        $("tr.hide-8").toggleClass("visible");
-    });
-
-    $("p.plus-9").click(function(){
-        $("tr.hide-9").toggleClass("visible");
-    });
-
-
-
-
-
     $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span></div>');
         $(window).scroll(function () {
             if ($(this).scrollTop() != 0) {
@@ -96,3 +51,18 @@ $(document).ready(function(){
     });   
  
 });
+
+$("li.top-banner").mouseenter(function(){
+    $(this).css("background-color", "#000");
+    $(this).find("p.i-text-1").css("color", "#fff");
+    $(this).find("img.icon1-b").removeClass("invert-normal");
+    $(this).find("img.icon1-b").addClass("inverted");
+});
+
+$("li.top-banner").mouseleave(function(){
+    $(this).find("img.icon1-b").removeClass("inverted");
+    $(this).find("img.icon1-b").addClass("invert-normal");
+    $(this).css("background-color", "#fff");
+    $(this).find("p.i-text-1").css("color", "#000");
+});
+

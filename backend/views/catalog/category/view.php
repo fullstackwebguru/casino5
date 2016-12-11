@@ -58,6 +58,21 @@ $attributes = [
     ],
     [
         'group'=>true,
+        'label'=>'Main Banner',
+        'rowOptions'=>['class'=>'info'],
+    ],
+    [
+        'attribute'=>'banner_heading', 
+        'value'=>$model->banner_heading,
+        'type'=>DetailView::INPUT_TEXTAREA
+    ],
+    [
+        'attribute'=>'banner_subheading', 
+        'value'=>$model->banner_subheading,
+        'type'=>DetailView::INPUT_TEXTAREA
+    ],
+    [
+        'group'=>true,
         'label'=>'Table Setting',
         'rowOptions'=>['class'=>'info']
     ],
@@ -81,6 +96,23 @@ if ($model->image_url) {
     $allImages[] = '<img src="' . cloudinary_url($model->image_url, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
 
     $allImageConfig[] =[   
+            'caption' => 'Current Image',
+            'frameAttr'=> [
+                'style' => 'height:150px; width:100px;',
+            ],
+            'url' => Url::toRoute(['detach', 'id'=>$model->id])
+    ];
+}
+
+//images
+$allBannerImages = [];
+$allBannerImageConfig = [];
+
+if ($model->banner_icon) {
+    // $allBannerImages[] = Yii::$app->imageCache->img('@mainUpload/' . $model->image_url, '200x150', ['class' => 'file-preview-image']);
+    $allBannerImages[] = '<img src="' . cloudinary_url($model->banner_icon, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
+
+    $allBannerImageConfig[] =[   
             'caption' => 'Current Image',
             'frameAttr'=> [
                 'style' => 'height:150px; width:100px;',
@@ -397,6 +429,36 @@ $this->registerJs(
                 'showUpload' => false,
                 'previewFileType' => 'image',
                 'uploadUrl' => Url::toRoute(['upload', 'id'=>$model->id]),
+            ]
+        ]) ?>
+    </div>
+    </div>
+<div>
+
+<div class="row">
+    <div class="col-xs-12">
+    <div class="box-header with-border">
+        <h3 class="box-title">Banner Icon</h3>
+
+        <?= FileInput::widget([
+            'name'=>'new_banner_image',
+            'options' => [
+                'id' => 'input-911'
+            ],
+            'pluginOptions' => [
+                'uploadAsync' =>  false,
+                'maxFileCount' =>  1,
+                'initialPreview' => $allBannerImages,
+                'initialPreviewConfig' => $allBannerImageConfig,
+                'initialPreviewAsData' => false,
+                'overwriteInitial' => true,
+                'autoReplace' => true,
+                'showClose' => false,
+                'showBrowse' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+                'previewFileType' => 'image',
+                'uploadUrl' => Url::toRoute(['upload']),
             ]
         ]) ?>
     </div>

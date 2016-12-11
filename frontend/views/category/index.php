@@ -22,13 +22,6 @@ $this->registerMetaTag([
 
 ?>
 
-<?= Banner::widget(['breadcrumbs' => [
-    [  
-        'title' => 'Home', 
-        'route' => ['/']
-    ],
-], 'title' => $this->title ]) ?>
-
 <!-- casinos section-->
 <section id="casinos-1">
     <div class="container">

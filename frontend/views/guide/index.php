@@ -22,12 +22,6 @@ $this->registerMetaTag([
         ]);
 
 ?>
-<?= Banner::widget(['breadcrumbs' => [
-    [  
-        'title' => 'Home', 
-        'route' => ['/']
-    ],
-], 'title' => $this->title ]) ?>
 
 <div class="top"></div>
 <section id="guide">
