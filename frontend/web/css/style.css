@@ -661,7 +661,7 @@ ul.icon-menu li{
   display: inline-block;
   border: 7px solid #c5c5c5;
   margin: 2px;
-  /*width: 18%;*/
+  min-width: 18%;
   width: auto;
   padding: 0 1%;
   height: 100px;
