@@ -12,11 +12,13 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/bootstrap.min.css',
         'css/reset.css',
         'css/style.css',
         'css/bootstrap-sortable.css'
     ];
     public $js = [
+        'js/jquery.min.js',
         'js/bootstrap.js',
         'js/bootstrap-sortable.js',
         'js/moment.js',
@@ -24,11 +26,10 @@ class AppAsset extends AssetBundle
         'js/main-1.js',
         'js/masonry.pkgd.min.js',
         'js/jquery.flexslider-min.js',
-        'js/modernizr.js'
+        'js/modernizr.js',
+        'js/jquery.ui.min.js'
     ];
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\bootstrap\BootstrapAsset',
         'rmrevin\yii\fontawesome\AssetBundle'
     ];
 }

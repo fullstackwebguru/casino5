@@ -71,7 +71,7 @@ use yii\helpers\Url;
                 
                     ?>
                     <tr id="first">
-                        <td class="t-images-1" data-value="<?= $compIndex ?>"><img src="/images/nr1.jpg" id="nr1" alt="nr1"></td>
+                        <td class="t-images-1" data-value="<?= $compIndex ?>"><img src="/images/nr-1.png" id="nr1" alt="nr1"></td>
 
                     <?php
                     } else {
@@ -104,42 +104,95 @@ use yii\helpers\Url;
                         </td>
                         <td class="padd-2" data-value="0">
                             <div class="i-wrapp">
+                                <?php 
+                                    $featureCount = 0;
+                                ?>
+                                <div class="row">
                                 <?php if ($company->feature_mobile > 0) {
+                                    $featureCount++;
+                                    if ($featureCount > 3) {
+                                        $featureCount =0 ;
+                                ?>
+                                    </div>
+                                    <div class="row">
+                                <?php
+                                    }
                                 ?>
                                 <div class="col-xs-4 no-padding"><i class="fa fa-mobile red" aria-hidden="true" title="Mobile"></i></div>
                                 <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_instant_play > 0) {
+                                    $featureCount++;
+                                    if ($featureCount > 3) {
+                                        $featureCount =0 ;
+                                ?>
+                                    </div>
+                                    <div class="row">
+                                <?php
+                                    }
                                 ?>
                                 <div class="col-xs-4 no-padding"><i class="fa fa-play red" aria-hidden="true" title="Instant Play"></i></div>
                                 <?php
                                 }
                                 ?>
                                 <?php if ($company->feature_download > 0) {
+                                    $featureCount++;
+                                    if ($featureCount > 3) {
+                                        $featureCount =0 ;
+                                ?>
+                                    </div>
+                                    <div class="row">
+                                <?php
+                                    }
                                 ?>
                                 <div class="col-xs-4 no-padding"><i class="fa fa-download red" aria-hidden="true" title="Download"></i></div>
                                 <?php 
                                 }
                                 ?>
                                 <?php if ($company->feature_live_casino > 0) {
+                                $featureCount++;
+                                if ($featureCount > 3) {
+                                        $featureCount =0 ;
+                                ?>
+                                    </div>
+                                    <div class="row">
+                                <?php
+                                    }
                                 ?>
                                 <div class="col-xs-4 no-padding"><i class="fa fa-paypal red" aria-hidden="true" title="Live Casino"></i></div>
                                 <?php    
                                 }
                                 ?>
                                 <?php if ($company->feature_live_casino > 0) {
+                                $featureCount++;
+                                if ($featureCount > 3) {
+                                        $featureCount =0 ;
+                                ?>
+                                    </div>
+                                    <div class="row">
+                                <?php
+                                    }
                                 ?>
                                 <div class="col-xs-4 no-padding"><i class="fa fa-video-camera red" aria-hidden="true" title="Live Casino"></i></div>
                                 <?php    
                                 }
                                 ?>
                                 <?php if ($company->feature_vip_program > 0) {
+                                $featureCount++;
+                                if ($featureCount > 3) {
+                                        $featureCount =0 ;
+                                ?>
+                                    </div>
+                                    <div class="row">
+                                <?php
+                                    }
                                 ?>
                                 <div class="col-xs-4 no-padding"><i class="fa fa-user-circle-o red" aria-hidden="true" title="VIP Program"></i></div>
                                 <?php
                                 }
                                 ?>
+                                </div>
                             </div>
                         </td>
                         <td class="padd-1" data-value="<?= $company->rating ?>">
