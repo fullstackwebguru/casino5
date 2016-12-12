@@ -21,6 +21,7 @@ use frontend\widgets\GetInTouch;
                     <div class="net-wrapp">
                         <p class="title-info-2">SITE</p>
                         <p class="info-text-2"><?=  Html::a('Home',['/']) ?></a></p>
+                        <p class="info-text-2"><?=  Html::a('Compare',['/compare']) ?></p>
                         <p class="info-text-2"><?=  Html::a('Privacy',['/site/policy']) ?></p>
                         <p class="info-text-2"><?=  Html::a('ToS',['/site/tos']) ?></p>
                         <p class="info-text-2"><?=  Html::a('Disclamer',['/site/disclaimer']) ?></p>

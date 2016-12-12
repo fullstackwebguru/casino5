@@ -30,10 +30,8 @@ use yii\helpers\Url;
                     <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
                 </ul> -->
                 <ul class="nav navbar-nav">
-                    <li><?=  Html::a('Home',['/']) ?></li>
                     <li><?=  Html::a('Casinos',['/casino']) ?></li>
                     <li><?=  Html::a('Categories',['/category']) ?></li>
-                    <li><?=  Html::a('Compare',['/compare']) ?></li>
                     <li><?=  Html::a('Guides',['/guide']) ?></li>
                 </ul>
             </div>
