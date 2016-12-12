@@ -31,7 +31,7 @@ class Banner extends \yii\base\Widget
             throw new NotFoundHttpException('The requested category does not exist.');   
         }
 
-        $this->categories = Category::find()->where(['<>', 'id', 1])->orderBy(['self_rank' => SORT_ASC])->all();
+        $this->categories = Category::find()->where(['<>', 'id', 1])->orderBy(['self_rank' => SORT_ASC])->limit(5)->all();
     }
 
     public function run()

@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Url;
+?>
+
 
     <!--testimonial slider-->
  
@@ -16,7 +20,7 @@
                 <div class="row">
                     <div class="col-sm-9">
                         <div class="col-lg-4">
-                            <p class="slider-name"><?= $company->title ?></p>
+                            <p class="slider-name"><a href="<?= $company->website_url ?>" class="slider-link" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;"> <?= $company->title ?> </a></p>
                         </div>
                         <div class="col-lg-8">
                             <div class="slider-i-wrapp">
@@ -27,15 +31,15 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <p class="slider-text"><?= $company->slider_text ?></p>
-                            <p class="slider-offer"><a href="<?= $company->website_url ?>" target="_blank">  <?= $company->bonus_offer ?></a> </p>
+                            <p class="slider-text"><a href="<?= Url::toRoute($company->getRoute()) ?>" class="slider-link"><?= $company->slider_text ?></a></p>
+                            <p class="slider-offer"><a href="<?= $company->website_url ?>" class="slider-link" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;">  <?= $company->bonus_offer ?></a> </p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="cd-author">                                 
                             <ul class="cd-author-info">
                                 <li><img src="<?= $companyImage ?>" alt="Author image"></li>
-                                <li><a href="<?= $company->website_url ?>" class="btn btn-md btn-slider" target="_blank">  <?= $company->getLinkText() ?></a></li>
+                                <li><a href="<?= $company->website_url ?>" class="btn btn-md btn-slider" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>'); return false;">  <?= $company->getLinkText() ?></a></li>
                             </ul>
                         </div>
                     </div>
