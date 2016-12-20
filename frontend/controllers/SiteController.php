@@ -79,6 +79,9 @@ class SiteController extends Controller
             case 'vip': 
                 $filters = ['<>', 'feature_vip_program', 0];
                 break;
+            case 'paypal': 
+                $filters = ['<>', 'feature_paypal', 0];
+                break;
         }
 
         $cateComps = $category->getCateCompsSortByRank($filters);
