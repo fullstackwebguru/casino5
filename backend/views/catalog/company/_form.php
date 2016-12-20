@@ -106,7 +106,7 @@ echo $form->field($model, 'review')->widget(
 echo Form::widget([       // 3 column layout
     'model'=>$model,
     'form'=>$form,
-    'columns'=>5,
+    'columns'=>6,
     'attributes'=>[
         'feature_mobile'=>[
             'type'=>Form::INPUT_RADIO_LIST, 
@@ -129,6 +129,11 @@ echo Form::widget([       // 3 column layout
             'options'=>['inline'=>true]
         ],
         'feature_vip_program'=>[
+            'type'=>Form::INPUT_RADIO_LIST, 
+            'items'=>[true=>'Yes', false=>'No'], 
+            'options'=>['inline'=>true]
+        ],
+        'feature_paypal'=>[
             'type'=>Form::INPUT_RADIO_LIST, 
             'items'=>[true=>'Yes', false=>'No'], 
             'options'=>['inline'=>true]
