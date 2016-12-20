@@ -150,7 +150,7 @@ use yii\helpers\Url;
                                 <?php 
                                 }
                                 ?>
-                                <?php if ($company->feature_live_casino > 0) {
+                                <?php if ($company->feature_paypal > 0) {
                                 $featureCount++;
                                 if ($featureCount > 3) {
                                         $featureCount =0 ;
@@ -160,7 +160,7 @@ use yii\helpers\Url;
                                 <?php
                                     }
                                 ?>
-                                <div class="col-xs-4 no-padding"><i class="fa fa-paypal red" aria-hidden="true" title="Live Casino"></i></div>
+                                <div class="col-xs-4 no-padding"><i class="fa fa-paypal red" aria-hidden="true" title="Paypal"></i></div>
                                 <?php    
                                 }
                                 ?>
@@ -279,6 +279,12 @@ use yii\helpers\Url;
                         <?php if ($company->feature_download > 0) {
                         ?>
                         <div class="col-xs-4 no-padding"><i class="fa fa-download red" aria-hidden="true" title="Download"></i></div>
+                        <?php    
+                        }
+                        ?>
+                        <?php if ($company->feature_paypal > 0) {
+                        ?>
+                        <div class="col-xs-4 no-padding"><i class="fa fa-paypal red" aria-hidden="true" title="Paypal"></i></div>
                         <?php    
                         }
                         ?>

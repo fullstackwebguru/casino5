@@ -87,8 +87,8 @@ class Company extends ActiveRecord
             [['feature_mobile', 'feature_instant_play', 'feature_download', 'feature_live_casino', 'feature_vip_program', 'feature_paypal'], 'boolean'],
             [['rating'], 'number', 'max' => 10],
             [['bonus_as_value','bonus_text_font'], 'integer'],
-            [['title', 'slug','short_description'], 'string', 'max' => 255],
-            [['button_text', 'link_text', 'slider_text'], 'string', 'max' => 255],
+            [['title', 'slug','short_description'], 'string'],
+            [['button_text', 'link_text', 'slider_text'], 'string'],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
         ];

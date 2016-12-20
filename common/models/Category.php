@@ -66,7 +66,7 @@ class Category extends ActiveRecord
     {
         return [
             [['title','short_title', 'short_description', 'meta_keywords', 'meta_description'], 'required'],
-            [['title', 'subtitle', 'kw'], 'string', 'max' => 255],
+            [['title', 'subtitle', 'kw'], 'string'],
             [['self_rank'], 'integer'],
             [['description', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['temp_image'], 'safe'],
