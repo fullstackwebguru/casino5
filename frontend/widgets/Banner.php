@@ -27,7 +27,7 @@ class Banner extends \yii\base\Widget
             $this->class1 = "top";
         }
 
-        if ($this->category == null) {
+        if ($this->category == null && $this->class1 == "top") {
             throw new NotFoundHttpException('The requested category does not exist.');   
         }
 
@@ -36,7 +36,11 @@ class Banner extends \yii\base\Widget
 
     public function run()
     {
-        return $this->render('banner', ['class1'=> $this->class1, 'categories' => $this->categories, 'mainCategory'=> $this->category]);
+        if ($this->class1 == "top") {
+            return $this->render('banner', ['class1'=> $this->class1, 'categories' => $this->categories, 'mainCategory'=> $this->category]);
+        } else {
+            return $this->render('banner_mob', ['categories' => $this->categories]);    
+        }
     }
 
     public function getViewPath() {

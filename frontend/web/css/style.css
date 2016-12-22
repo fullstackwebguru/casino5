@@ -646,29 +646,100 @@ img.icon1-b {
   width: 60px;
 }
 
-.invert-normal {
-  filter: invert(.1);
-  -webkit-filter: invert(.2);
+p#i-text-2 {
+  font-size: 18px;
+  margin-top: -8px;
+  text-align: center;
+  font-weight: 600;
+  color: #000;
 }
 
-.inverted {
-  filter: invert(0); 
-  -webkit-filter: invert(0);
+img#icon2-w {
+  display: none;
 }
+
+img#icon2-b {
+  margin: auto;
+  width: 60px;
+}
+
+p#i-text-3 {
+  font-size: 18px;
+  margin-top: -8px;
+  text-align: center;
+  font-weight: 600;
+  color: #000;
+}
+
+img#icon3-w {
+  display: none;
+}
+
+img#icon3-b {
+  margin: auto;
+  width: 60px;
+}
+p#i-text-4 {
+  font-size: 18px;
+  margin-top: -8px;
+  text-align: center;
+  font-weight: 600;
+  color: #000;
+}
+
+img#icon4-w {
+  display: none;
+}
+
+img#icon4-b {
+  margin: auto;
+    width: 60px;
+}
+p#i-text-5 {
+  font-size: 18px;
+  margin-top: -8px;
+  text-align: center;
+  font-weight: 600;
+  color: #000;
+}
+
+img#icon5-w {
+  display: none;
+}
+
+img#icon5-b {
+  margin: auto;
+    width: 60px;
+}
+
+div.icon-menu-block > ul.icon-menu {
+  display: none;
+}
+
+ @media screen and (max-width: 767px) {
+  div.icon-menu-block > ul.icon-menu{
+    display: block;
+  }
+ }
 
 ul.icon-menu {
     width: 100%;
     margin: auto;
-    display: inline-block;
     text-align: center;
+    display: block;
 }
+
+@media screen and (max-width: 767px) {
+    ul.icon-menu {
+      display: none;
+    }
+  }
 
 ul.icon-menu li{
   display: inline-block;
   border: 7px solid #c5c5c5;
   margin: 2px;
-  min-width: 18%;
-  width: auto;
+  width: 18%;
   padding: 0 1%;
   height: 100px;
 }
@@ -734,10 +805,22 @@ a.casino-link {
     font-size: 12px;
 }
 
+@media screen and (max-width: 767px) {
+  a.casino-link {
+    display: none;
+  }
+}
+
 a.read-r {
     color: #34495e;
     font-size: 9px;
     text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+  a.read-r {
+    display: none;
+  }
 }
 
 a.read-r:hover
@@ -792,7 +875,7 @@ p#banner-text-3 {
     margin-bottom: 30px;
 }
 
-p.banner-text-3-hp {
+p#banner-text-3-hp {
     color: #949494;
     font-size: 14px;
     text-align: left;
@@ -968,6 +1051,33 @@ p.nr-desk {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+@media screen and (max-width: 767px) {
+  p.nr-mob {
+    color: #fff;
+    float: left;
+    position: relative;
+    z-index: 10;
+    font-size: 14px;
+    padding: 0 0 0 5px;
+  }
+}
+@media screen and (max-width: 767px) {
+  p.nr-mob::after {
+       position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 24px solid transparent;
+    border-bottom: 23px solid transparent;
+    border-right: 24px solid #a6afb7;
+    transform: rotate(45deg);
+    top: -16px;
+    left: -5px;
+    z-index: -1;
+  }
+}
+
 
 .contact-info {
 	margin-right: 10px;
@@ -1321,6 +1431,13 @@ img#nr1 {
 
 .i-wrapp {
 	  padding: 0 22px;!important;
+}
+
+@media screen and (max-width: 767px) {
+  .i-wrapp {
+    display: none;
+    
+  }
 }
 
 .t-img {
@@ -2975,6 +3092,10 @@ a.side-categ:hover{
         font-size: 22px;
     }
 
+    .glyphicon-star{
+      font-size: 10px;
+    }
+
     p.slider-text {
         margin-top: 64px;
     }
@@ -2982,6 +3103,16 @@ a.side-categ:hover{
     p.slider-name {
       font-size: 18px;
       width: 56%;
+  }
+
+  .small-wrapp {
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .small-wrapp .cas-top {
+        margin-top: 0;
   }
 
     img#flag {
@@ -3010,10 +3141,10 @@ a.side-categ:hover{
     }
 
     img#favourite {
-        position: relative;
-        top: 13px;
-        left: -64px;
-        width: auto;
+        position: absolute;
+        top: 25px;
+        left: 38px;
+        width: 100px;
     }
 
     a.casino-link {
@@ -3051,7 +3182,7 @@ a.side-categ:hover{
     .first-mob {
         box-shadow: 5px 5px 5px 2px #C2C2C2;
         background: #f0f4f7;
-        min-height: 530px;
+        min-height: 0;
     }
 
     img#nr-1 {
@@ -3060,10 +3191,7 @@ a.side-categ:hover{
         margin-top: 10px;
     }
 
-    p.nr-mob {
-        font-size: 30px;
-        font-weight: 600;
-    }
+
 
     hr.cas-top {
         height: 3px;
@@ -3071,34 +3199,60 @@ a.side-categ:hover{
     }
 
     .rate-wrapp {
-        width: 150px;
-        margin: auto;
+        width: 90px;
+        margin: 0;
         text-align: center;
-        margin-bottom: 10px;
+        position: absolute; 
+        right: 0; 
+        top: 2px; 
+        overflow: hidden;
+    }
+
+    .rate-number {
+        font-size: 14px;
+        margin-bottom: -5px;
+        padding-bottom: 0;
+        text-align: right;
+        float: right;
+        margin: 0 10px;
+    }
+
+    .stars-wrapper{
+      float: right;
     }
 
     .i-wrapp-mob {
         width: 130px;
         margin: auto;
         text-align: center;
+        display: none;
     }
 
     p.offers-3 {
     text-align: center;
-    font-size: 18px;
-    margin: 5px 0 20px;
+    font-size: 14px;
+    margin: 0;
     color: #2c2e37;
+    padding: 0;
+    position: absolute;
+    left: 10px;
+    bottom: 6px;
+    max-width: none;
         }
 
     .t-img {
-        margin: auto;
-        max-width: 300px;
+        margin: 0;
+        max-width: 140px;
+        float: left;
+        margin:19px 10px 0 8px;
     }
 
     .cas-mob-wrapp {
-        width: 248px;
         margin: auto;
         text-align: center;
+        position: relative; 
+        overflow: hidden;
+        padding: 0 0 30px;
     }
 
 
@@ -3113,14 +3267,25 @@ a.side-categ:hover{
 	}
 
 	.t-btn {
-	    padding: 15px 22px 15px 15px!important;
-	    height: 60px;
-	    font-weight: 600;
-	    font-size: 18px;
-	    float: none;
-	    width: 94%;
-        margin-bottom: 10px;
+	   padding: 6px 22px 7px 15px!important;
+    height: 28px;
+    font-weight: 600;
+    font-size: 10px;
+    float: right;
+    max-width: 113px;
+    border: 2px solid #05ad31;
+    margin: 32px -11px 0 0;
 	}
+
+  .t-btn:hover {
+    border: 2px solid #05ad31;
+  }
+
+  .fa-forward {
+    padding-left: 3px;
+    font-size: 10px !important;
+  }
+
 
 	.info-text {
 		text-align: center;
@@ -3139,7 +3304,7 @@ a.side-categ:hover{
 	.mob{
 		display: block;
 		margin: auto;
-		margin-top: 20px;
+		margin-top: 14px;
         max-width: 100%;
 	}
 
@@ -3372,6 +3537,10 @@ a.side-categ:hover{
         width: 95%;
     }
 
+    .rate-wrapp {
+      top: 7px;  
+    }
+
 		p.text {
 			line-height: 17px;
 		}
@@ -3379,6 +3548,17 @@ a.side-categ:hover{
     .navbar-default .navbar-brand {
         font-size: 18px;
     }
+
+    p.offers-3 {
+      font-size: 11px;  
+      width: 100%;  
+      text-align: center; 
+    }
+
+    hr.cas-top {
+      margin-bottom: 0;  
+    }
+
 
 		.more-btn {
 			width: 100%;

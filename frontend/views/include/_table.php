@@ -237,15 +237,7 @@ use yii\helpers\Url;
 
         <?php } ?>
             <div class="cas-mob-wrapp">
-                <?php 
-                if ($compIndex == 1) {
-                ?>
-                <img src="/images/nr1.png" id="nr-1" alt="nr1">
-                <?php
-                } else {
-                ?>
                 <p class="nr-mob"><?= $compIndex ?></p>
-                <?php } ?>
                 <?php if ($company->user_favorite) { ?>
                     <img src="/images/userfavourite.png" id="favourite" alt="favorite-image">
                 <?php } ?>
@@ -259,7 +251,7 @@ use yii\helpers\Url;
                 <?php } ?>
 
                 <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;"> 
-                    <p class="offers-3" style="font-size:<?= $company->bonus_text_font?>px;"><?= $company->bonus_offer; ?> </p>
+                    <p class="offers-3"><?= $company->bonus_offer; ?> </p>
                 </a>
 
                 <div class="i-wrapp-mob">

@@ -1,9 +1,12 @@
 <?php
 use yii\helpers\Url;
+use frontend\widgets\Banner;
 ?>
 
 
     <!--testimonial slider-->
+
+    <?= Banner::widget(['class1'=>'mobile']) ?>
  
     <div class="cd-testimonials-wrapper cd-container">
         <ul class="cd-testimonials">
