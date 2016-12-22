@@ -3080,20 +3080,24 @@ a.side-categ:hover{
 @media screen and (max-width: 767px) {
 
     .cd-author .cd-author-info {
-        margin-top: 25px;
+      margin-top: 25px;
     }
 
     .btn-slider {
-        font-size: 14px;
-        padding: 10px 5px;
+      font-size: 14px;
+      padding: 10px 5px;
     }
 
     span.slider-i {
-        font-size: 22px;
+      font-size: 22px;
     }
 
     .glyphicon-star{
       font-size: 10px;
+    }
+
+    .cas-mob-wrapp .rate-wrapp .stars-wrapper i.glyphicon-star {
+      margin-right: 0px;
     }
 
     p.slider-text {
