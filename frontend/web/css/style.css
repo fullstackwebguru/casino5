@@ -646,6 +646,16 @@ img.icon1-b {
   width: 60px;
 }
 
+.invert-normal {
+  filter: invert(.6);
+  -webkit-filter: invert(.6);
+}
+
+.inverted {
+  filter: invert(0); 
+  -webkit-filter: invert(0);
+}
+
 p#i-text-2 {
   font-size: 18px;
   margin-top: -8px;
